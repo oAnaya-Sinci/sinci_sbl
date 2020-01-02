@@ -22,6 +22,7 @@ class OeeController extends Controller
 
     public function datos($idmachine,$caso,$date)
     {
+            
             $oee = DB::select('call ConsultaOEETrends(?,?,?)',array($caso,$idmachine,$date));
             $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?)',array($caso,$idmachine,$date));
         return array ($oee,$oeepro);
