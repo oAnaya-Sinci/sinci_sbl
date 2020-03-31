@@ -35132,8 +35132,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             variable_id: 0,
             idmachine: 0,
-            name_machine: '',
             name: '',
+            name_machine: '',
             highLimit: 0,
             lowLimit: 0,
             eu: 0,
@@ -35341,8 +35341,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modal = 0;
             this.tituloModal = '';
             this.idmachine = 0;
-            this.name_machine = '';
             this.name = '';
+            this.name_machine = '';
             this.highLimit = 0;
             this.lowLimit = 0;
             this.eu = 0;
@@ -35360,8 +35360,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.modal = 1;
                                     this.tituloModal = 'Registrar Variable';
                                     this.idmachine = 0;
-                                    this.name_machine = '';
                                     this.name = '';
+                                    this.name_machine = '';
                                     this.highLimit = 0;
                                     this.lowLimit = 0;
                                     this.eu = 0;
@@ -35375,8 +35375,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.tituloModal = 'Actualizar Variable';
                                     this.tipoAccion = 2;
                                     this.variable_id = data['id'];
-                                    this.idmachine = data['idmachine'];
                                     this.name = data['name'];
+                                    this.idmachine = data['idmachine'];
                                     this.highLimit = data['highLimit'];
                                     this.lowLimit = data['lowLimit'];
                                     this.eu = data['eu'];
@@ -38434,11 +38434,11 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(variable.name) }
+                      domProps: { textContent: _vm._s(variable.name_machine) }
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(variable.name_machine) }
+                      domProps: { textContent: _vm._s(variable.name) }
                     }),
                     _vm._v(" "),
                     _c("td", {

@@ -54,8 +54,8 @@
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="variable.name"></td>
                                     <td v-text="variable.name_machine"></td>
+                                    <td v-text="variable.name"></td>
                                     <td v-text="variable.highLimit"></td>
                                     <td v-text="variable.lowLimit"></td>
                                     <td v-text="variable.eu"></td>
@@ -164,8 +164,8 @@
             return {
                 variable_id: 0,
                 idmachine : 0,
-                name_machine : '',
                 name : '',
+                name_machine : '',
                 highLimit : 0,
                 lowLimit : 0,
                 eu : 0,
@@ -389,8 +389,8 @@
                 this.modal=0;
                 this.tituloModal='';
                 this.idmachine= 0;
-                this.name_machine = '';
                 this.name = '';
+                this.name_machine = '';
                 this.highLimit = 0;
                 this.lowLimit = 0;
                 this.eu = 0;
@@ -406,8 +406,8 @@
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Variable';
                                 this.idmachine=0;
-                                this.name_machine='';
                                 this.name= '';
+                                this.name_machine='';
                                 this.highLimit=0;
                                 this.lowLimit=0;
                                 this.eu = 0;
@@ -421,8 +421,8 @@
                                 this.tituloModal='Actualizar Variable';
                                 this.tipoAccion=2;
                                 this.variable_id=data['id'];
-                                this.idmachine=data['idmachine'];
                                 this.name = data['name'];
+                                this.idmachine=data['idmachine'];
                                 this.highLimit=data['highLimit'];
                                 this.lowLimit=data['lowLimit'];
                                 this.eu= data['eu'];
