@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Machine extends Model
 {
     protected $fillable=[
-        'name', 'iduser', 'condicion'
+        'name', 'condicion'
     ];
 }

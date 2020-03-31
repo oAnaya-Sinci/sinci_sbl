@@ -33209,13 +33209,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             machine_id: 0,
             name: '',
-            iduser: '',
             arrayMachine: [],
             modal: 0,
             tituloModal: '',
@@ -33291,8 +33291,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var me = this;
 
             axios.post('/machine/registrar', {
-                'name': this.name,
-                'iduser': this.iduser
+                'name': this.name
             }).then(function (response) {
                 me.cerrarModal();
                 me.listarMachine(1, '', 'name');
@@ -33309,7 +33308,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.put('/machine/actualizar', {
                 'name': this.name,
-                'iduser': this.iduser,
                 'id': this.machine_id
             }).then(function (response) {
                 me.cerrarModal();
@@ -33396,7 +33394,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.modal = 0;
             this.tituloModal = '';
             this.name = '';
-            this.iduser = '';
         },
         abrirModal: function abrirModal(modelo, accion) {
             var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -33410,7 +33407,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.modal = 1;
                                     this.tituloModal = 'Registrar Maquina';
                                     this.name = '';
-                                    this.iduser = '';
+
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -33422,7 +33419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.tipoAccion = 2;
                                     this.machine_id = data['id'];
                                     this.name = data['name'];
-                                    this.iduser = data['iduser'];
+
                                     break;
                                 }
                         }
@@ -35164,9 +35161,7 @@ var render = function() {
                       domProps: { textContent: _vm._s(persona.usuario) }
                     }),
                     _vm._v(" "),
-                    _c("td", {
-                      domProps: { textContent: _vm._s(persona.role) }
-                    })
+                    _c("td", { domProps: { textContent: _vm._s(persona.rol) } })
                   ])
                 })
               )

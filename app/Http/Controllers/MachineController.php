@@ -52,7 +52,6 @@ class MachineController extends Controller
       
         $machine = new Machine();
         $machine->name = $request->name;
-        $machine->iduser = $request->iduser;
         $machine->condicion = '1';
         $machine->save();
     }

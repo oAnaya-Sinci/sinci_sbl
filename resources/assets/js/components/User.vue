@@ -53,7 +53,7 @@
                                     </td>
                                     <td v-text="persona.nombre"></td>
                                     <td v-text="persona.usuario"></td>
-                                    <td v-text="persona.role"></td>
+                                    <td v-text="persona.rol"></td>
                                 </tr>                                
                             </tbody>
                         </table>

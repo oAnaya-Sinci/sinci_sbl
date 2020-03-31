@@ -53,6 +53,7 @@
                                     </td>
                                     <td v-text="machine.name"></td>
                                     <td v-text="machine.iduser"></td>
+                                   
                                     <td>
                                         <div v-if="machine.condicion">
                                             <span class="badge badge-success">Activo</span>
@@ -137,7 +138,6 @@
             return {
                 machine_id: 0,
                 name : '',
-                iduser : '',
                 arrayMachine : [],
                 modal : 0,
                 tituloModal : '',
@@ -214,8 +214,7 @@
                 let me = this;
 
                 axios.post('/machine/registrar',{
-                    'name': this.name,
-                    'iduser': this.iduser
+                    'name': this.name
                 }).then(function (response) {
                     me.cerrarModal();
                     me.listarMachine(1,'','name');
@@ -232,7 +231,6 @@
 
                 axios.put('/machine/actualizar',{
                     'name': this.name,
-                    'iduser': this.iduser,
                     'id': this.machine_id
                 }).then(function (response) {
                     me.cerrarModal();
@@ -333,7 +331,7 @@
                 this.modal=0;
                 this.tituloModal='';
                 this.name='';
-                this.iduser='';
+          
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
@@ -345,7 +343,7 @@
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Maquina';
                                 this.name= '';
-                                this.iduser = '';
+                           
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -357,7 +355,7 @@
                                 this.tipoAccion=2;
                                 this.machine_id=data['id'];
                                 this.name = data['name'];
-                                this.iduser= data['iduser'];
+                             
                                 break;
                             }
                         }
