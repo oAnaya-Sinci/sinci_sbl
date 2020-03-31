@@ -69,9 +69,8 @@ class MachineController extends Controller
         if (!$request->ajax()) return redirect('/');
         $machine = Machine::findOrFail($request->id);
         $machine->name = $request->name;
-        $machine->iduser = $request->iduser;
         $machine->condicion = '1';
-        $categoria->save();
+        $machine->save();
     }
 
     public function desactivar(Request $request)

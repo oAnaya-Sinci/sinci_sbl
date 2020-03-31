@@ -99,15 +99,18 @@
                                     <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="name" class="form-control" placeholder="Nombre de la maquina">
-                                        
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">Descripción</label>
-                                    <div class="col-md-9">
-                                        <input type="email" v-model="descripcion" class="form-control" placeholder="Ingrese descripción">
-                                    </div>
-                                </div> -->
+                           <div class="form-group row">
+                               <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                               <div class="col-md-9">
+                                   <select class="form-control" v-model="idcategoria" >
+                                       <option value="0" disabled>Seleccione</option>
+                                       <option v-for="categoria in arrayCategoria" :key="categoria.id"
+                                           :value="categoria.id" v-text="categoria.nombre"></option>
+                                   </select>
+                               </div>
+                           </div>
                                 <div v-show="errorMachine" class="form-group row div-error">
                                     <div class="text-center text-error">
                                         <div v-for="error in errorMostrarMsjMachine" :key="error" v-text="error">
