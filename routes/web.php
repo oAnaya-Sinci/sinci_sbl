@@ -36,7 +36,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/machine/actualizar', 'MachineController@update');
         Route::put('/machine/desactivar', 'MachineController@desactivar');
         Route::put('/machine/activar', 'MachineController@activar');
-        Route::get('/machine/selectMaquina', 'MachineController@selectMachine');
+        Route::get('/machine/selectMachine', 'MachineController@selectMachine');
 
         Route::get('/variable', 'VariableController@index');
         Route::post('/variable/registrar', 'VariableController@store');

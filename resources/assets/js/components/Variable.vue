@@ -1,15 +1,15 @@
 <template>
             <main class="main">
             <!-- Breadcrumb -->
-              <ol class="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">OEE</a></li>
             </ol>
             <div class="container-fluid">
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> Maquinas
-                        <button type="button" @click="abrirModal('machine','registrar')" class="btn btn-secondary">
+                        <i class="fa fa-align-justify"></i> Variables
+                        <button type="button" @click="abrirModal('variable','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -21,8 +21,8 @@
                                       <option value="nombre">Nombre</option>
                                       <option value="descripcion">Descripción</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarMachine(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarMachine(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listarVariable(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listarVariable(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -31,32 +31,37 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>Nombre</th>
-                                    <th>Usuario</th>
+                                    <th>Maquina</th>
+                                    <th>Limite Alto</th>
+                                    <th>Limite Bajo</th>
+                                    <th>EU</th>
                                     <th>Estado</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="machine in arrayMachine" :key="machine.id">
+                                <tr v-for="variable in arrayVariable" :key="variable.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('machine','actualizar',machine)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('variable','actualizar',articulo)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
-                                        <template v-if="machine.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarMachine(machine.id)">
+                                        <template v-if="variable.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarVariable(variable.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarMachine(machine.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarVariable(variable.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="machine.name"></td>
-                                    <td v-text="machine.iduser"></td>
-                                   
+                                    <td v-text="variable.name"></td>
+                                    <td v-text="variable.name_machine"></td>
+                                    <td v-text="variable.highLimit"></td>
+                                    <td v-text="variable.lowLimit"></td>
+                                    <td v-text="variable.eu"></td>
                                     <td>
-                                        <div v-if="machine.condicion">
+                                        <div v-if="variable.condicion">
                                             <span class="badge badge-success">Activo</span>
                                         </div>
                                         <div v-else>
@@ -97,24 +102,41 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="name" class="form-control" placeholder="Nombre de la maquina">
+                                        <select class="form-control" v-model="idmachine">
+                                            <option value="0" disabled>Seleccione</option>
+                                            <option v-for="machine in arrayMachine" :key="machine.id" :value="machine.id" v-text="machine.name"></option>
+                                        </select>                                        
                                     </div>
                                 </div>
-                           <div class="form-group row">
-                               <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
-                               <div class="col-md-9">
-                                   <select class="form-control" v-model="idcategoria" >
-                                       <option value="0" disabled>Seleccione</option>
-                                       <option v-for="categoria in arrayCategoria" :key="categoria.id"
-                                           :value="categoria.id" v-text="categoria.nombre"></option>
-                                   </select>
-                               </div>
-                           </div>
-                                <div v-show="errorMachine" class="form-group row div-error">
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <div class="col-md-9">
+                                        <input type="text" v-model="name" class="form-control" placeholder="Nombre de la variable">                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Limite Alto</label>
+                                    <div class="col-md-9">
+                                        <input type="number" v-model="highLimit" class="form-control" placeholder="">                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="text-input">Limite Bajo</label>
+                                    <div class="col-md-9">
+                                        <input type="number" v-model="lowLimit" class="form-control" placeholder="">                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-3 form-control-label" for="email-input">EU</label>
+                                    <div class="col-md-9">
+                                        <input type="number" v-model="eu" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div v-show="errorVariable" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjMachine" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjVariable" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -124,8 +146,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarMachine()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarMachine()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarVariable()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarVariable()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -137,17 +159,23 @@
 </template>
 
 <script>
+    import VueBarcode from 'vue-barcode';
     export default {
         data (){
             return {
-                machine_id: 0,
+                variable_id: 0,
+                idmachine : 0,
+                name_machine : '',
                 name : '',
-                arrayMachine : [],
+                highLimit : 0,
+                lowLimit : 0,
+                eu : 0,
+                arrayVariable : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorMachine : 0,
-                errorMostrarMsjMachine : [],
+                errorVariable : 0,
+                errorMostrarMsjVariable : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -158,9 +186,13 @@
                 },
                 offset : 3,
                 criterio : 'name',
-                buscar : ''
+                buscar : '',
+                arrayMachine :[]
             }
         },
+        components: {
+        'barcode': VueBarcode
+    },
         computed:{
             isActived: function(){
                 return this.pagination.current_page;
@@ -191,13 +223,25 @@
             }
         },
         methods : {
-            listarMachine (page,buscar,criterio){
+            listarVariable (page,buscar,criterio){
                 let me=this;
-                var url= '/machine?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/variable?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayMachine = respuesta.machines.data;
+                    me.arrayVariable = respuesta.variables.data;
                     me.pagination= respuesta.pagination;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
+            selectMachine(){
+                let me=this;
+                var url= '/machine/selectMachine';
+                axios.get(url).then(function (response) {
+                    //console.log(response);
+                    var respuesta= response.data;
+                    me.arrayMachine = respuesta.machines;
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -208,44 +252,52 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarCategoria(page,buscar,criterio);
+                me.listarArticulo(page,buscar,criterio);
             },
-            registrarMachine(){
-                if (this.validarMachine()){
+            registrarVariable(){
+                if (this.validarVariable()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/machine/registrar',{
-                    'name': this.name
+                axios.post('/variable/registrar',{
+                    'idmachine': this.idmachine,
+                    'name': this.name,
+                    'highLimit': this.highLimit,
+                    'lowLimit': this.lowLimit,
+                    'eu': this.eu
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarMachine(1,'','name');
+                    me.listarVariable(1,'','name');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarMachine(){
-               if (this.validarMachine()){
+            actualizarVariable(){
+               if (this.validarVariable()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/machine/actualizar',{
-                    'name': this.name,
-                    'id': this.machine_id
+                axios.put('/variable/actualizar',{
+                    'idmachine': this.idmachine,
+                      'name': this.name,
+                    'highLimit': this.highLimit,
+                    'lowLimit': this.lowLimit,
+                    'eu': this.eu,
+                    'id': this.variable_id
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarMachine(1,'','name');
+                    me.listarVariable(1,'','name');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },
-            desactivarMachine(id){
+            desactivarVariable(id){
                swal({
-                title: 'Esta seguro de desactivar esta maquina?',
+                title: 'Esta seguro de desactivar esta variable?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -260,10 +312,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/machine/desactivar',{
+                    axios.put('/variable/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarMachine(1,'','name');
+                        me.listarArticulo(1,'','name');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
@@ -282,9 +334,9 @@
                 }
                 }) 
             },
-            activarMachine(id){
+            activarVariable(id){
                swal({
-                title: 'Esta seguro de activar esta maquina?',
+                title: 'Esta seguro de activar esta variable?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -299,10 +351,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/machine/activar',{
+                    axios.put('/variable/activar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarMachine(1,'','name');
+                        me.listarVariable(1,'','name');
                         swal(
                         'Activado!',
                         'El registro ha sido activado con éxito.',
@@ -321,33 +373,45 @@
                 }
                 }) 
             },
-            validarMachine(){
-                this.errorMachine=0;
-                this.errorMostrarMsjMachine =[];
+            validarVariable(){
+                this.errorVariable=0;
+                this.errorMostrarMsjVariable =[];
 
-                if (!this.name) this.errorMostrarMsjMachine.push("El nombre de la maquina no puede estar vacío.");
+                if (this.idmachine==0) this.errorMostrarMsjVariable.push("Seleccione una maquina.");
+                if (!this.name) this.errorMostrarMsjVariable.push("El nombre de la variable no puede estar vacío.");
+                if (!this.highLimit) this.errorMostrarMsjVariable.push("El limite alto no puede estar vacío.");
+                if (!this.lowLimit) this.errorMostrarMsjVariable.push("El limite bajo no puede estar vacío.");
 
-                if (this.errorMostrarMsjMachine.length) this.errorMachine = 1;
+                if (this.errorMostrarMsjVariable.length) this.errorVariable = 1;
 
-                return this.errorMachine;
+                return this.errorVariable;
             },
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
-                this.name='';
-          
+                this.idmachine= 0;
+                this.name_machine = '';
+                this.name = '';
+                this.highLimit = 0;
+                this.lowLimit = 0;
+                this.eu = 0;
+		        this.errorVariable=0;
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "machine":
+                    case "variable":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Maquina';
+                                this.tituloModal = 'Registrar Variable';
+                                this.idmachine=0;
+                                this.name_machine='';
                                 this.name= '';
-                           
+                                this.highLimit=0;
+                                this.lowLimit=0;
+                                this.eu = 0;
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -355,20 +419,24 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar maquina';
+                                this.tituloModal='Actualizar Variable';
                                 this.tipoAccion=2;
-                                this.machine_id=data['id'];
+                                this.variable_id=data['id'];
+                                this.idmachine=data['idmachine'];
                                 this.name = data['name'];
-                             
+                                this.highLimit=data['highLimit'];
+                                this.lowLimit=data['lowLimit'];
+                                this.eu= data['eu'];
                                 break;
                             }
                         }
                     }
                 }
+                this.selectMachine();
             }
         },
         mounted() {
-            this.listarMachine(1,this.buscar,this.criterio);
+            this.listarVariable(1,this.buscar,this.criterio);
         }
     }
 </script>

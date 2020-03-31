@@ -15,13 +15,15 @@ class CreateVariablesTable extends Migration
     {
         Schema::create('variables', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idmaquina')->unsigned();
+            $table->integer('idmachine')->unsigned();
             $table->string('name', 30)->unique();
             $table->decimal('highLimit', 10);
             $table->decimal('lowLimit', 10);
             $table->integer('eu');
+            $table->boolean('condicion')->default(1);
             $table->timestamps();
 
+            $table->foreign('idmachine')->references('id')->on('machines');
         });
     }
 

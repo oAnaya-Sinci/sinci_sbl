@@ -41,6 +41,13 @@ class MachineController extends Controller
         ];
     }   
 
+    public function selectMachine(Request $request){
+        if (!$request->ajax()) return redirect('/');
+        $machines = Machine::where('condicion','=','1')
+        ->select('id','name')->orderBy('name', 'asc')->get();
+        return ['machines' => $machines];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
