@@ -35223,7 +35223,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //Actualiza la página actual
             me.pagination.current_page = page;
             //Envia la petición para visualizar la data de esa página
-            me.listarArticulo(page, buscar, criterio);
+            me.listarVariable(page, buscar, criterio);
         },
         registrarVariable: function registrarVariable() {
             if (this.validarVariable()) {
@@ -35288,7 +35288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     axios.put('/variable/desactivar', {
                         'id': id
                     }).then(function (response) {
-                        me.listarArticulo(1, '', 'name');
+                        me.listarVariable(1, '', 'name');
                         swal('Desactivado!', 'El registro ha sido desactivado con éxito.', 'success');
                     }).catch(function (error) {
                         console.log(error);

@@ -252,7 +252,7 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarArticulo(page,buscar,criterio);
+                me.listarVariable(page,buscar,criterio);
             },
             registrarVariable(){
                 if (this.validarVariable()){
@@ -315,7 +315,7 @@
                     axios.put('/variable/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarArticulo(1,'','name');
+                        me.listarVariable(1,'','name');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
