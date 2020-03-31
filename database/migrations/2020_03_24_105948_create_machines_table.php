@@ -19,9 +19,7 @@ class CreateMachinesTable extends Migration
             $table->string('name', 30)->unique();
             $table->boolean('condicion')->default(1);
             $table->timestamps();
-
-
-      
+            
         });
     }
 
