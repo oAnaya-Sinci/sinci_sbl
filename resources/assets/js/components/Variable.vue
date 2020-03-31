@@ -19,7 +19,6 @@
                                 <div class="input-group">
                                     <select class="form-control col-md-3" v-model="criterio">
                                       <option value="nombre">Nombre</option>
-                                      <option value="descripcion">Descripción</option>
                                     </select>
                                     <input type="text" v-model="buscar" @keyup.enter="listarVariable(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
                                     <button type="submit" @click="listarVariable(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
@@ -55,8 +54,8 @@
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="variable.name"></td>
                                     <td v-text="variable.name_machine"></td>
+                                    <td v-text="variable.name"></td>
                                     <td v-text="variable.highLimit"></td>
                                     <td v-text="variable.lowLimit"></td>
                                     <td v-text="variable.eu"></td>
@@ -165,8 +164,8 @@
             return {
                 variable_id: 0,
                 idmachine : 0,
-                name_machine : '',
                 name : '',
+                name_machine : '',
                 highLimit : 0,
                 lowLimit : 0,
                 eu : 0,
@@ -252,7 +251,7 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarArticulo(page,buscar,criterio);
+                me.listarVariable(page,buscar,criterio);
             },
             registrarVariable(){
                 if (this.validarVariable()){
@@ -315,7 +314,7 @@
                     axios.put('/variable/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarArticulo(1,'','name');
+                        me.listarVariable(1,'','name');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
@@ -390,8 +389,8 @@
                 this.modal=0;
                 this.tituloModal='';
                 this.idmachine= 0;
-                this.name_machine = '';
                 this.name = '';
+                this.name_machine = '';
                 this.highLimit = 0;
                 this.lowLimit = 0;
                 this.eu = 0;
@@ -407,8 +406,8 @@
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Variable';
                                 this.idmachine=0;
-                                this.name_machine='';
                                 this.name= '';
+                                this.name_machine='';
                                 this.highLimit=0;
                                 this.lowLimit=0;
                                 this.eu = 0;
@@ -422,8 +421,8 @@
                                 this.tituloModal='Actualizar Variable';
                                 this.tipoAccion=2;
                                 this.variable_id=data['id'];
-                                this.idmachine=data['idmachine'];
                                 this.name = data['name'];
+                                this.idmachine=data['idmachine'];
                                 this.highLimit=data['highLimit'];
                                 this.lowLimit=data['lowLimit'];
                                 this.eu= data['eu'];
