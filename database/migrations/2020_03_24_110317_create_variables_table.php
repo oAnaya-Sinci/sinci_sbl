@@ -19,7 +19,7 @@ class CreateVariablesTable extends Migration
             $table->string('name', 30)->unique();
             $table->decimal('highLimit', 10);
             $table->decimal('lowLimit', 10);
-            $table->integer('eu');
+            $table->string('eu', 10);
             $table->boolean('condicion')->default(1);
             $table->timestamps();
 

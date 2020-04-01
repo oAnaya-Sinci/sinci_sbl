@@ -40,7 +40,7 @@
                             <tbody>
                                 <tr v-for="variable in arrayVariable" :key="variable.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('variable','actualizar',articulo)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('variable','actualizar',variable)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
                                         <template v-if="variable.condicion">
@@ -101,7 +101,7 @@
                         <div class="modal-body">
                             <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Categoría</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Maquina</label>
                                     <div class="col-md-9">
                                         <select class="form-control" v-model="idmachine">
                                             <option value="0" disabled>Seleccione</option>
@@ -128,9 +128,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="email-input">EU</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">EU</label>
                                     <div class="col-md-9">
-                                        <input type="number" v-model="eu" class="form-control" placeholder="">
+                                        <input type="text" v-model="eu" class="form-control" placeholder="">
                                     </div>
                                 </div>
                                 <div v-show="errorVariable" class="form-group row div-error">
@@ -168,7 +168,7 @@
                 name_machine : '',
                 highLimit : 0,
                 lowLimit : 0,
-                eu : 0,
+                eu : '',
                 arrayVariable : [],
                 modal : 0,
                 tituloModal : '',
@@ -393,7 +393,7 @@
                 this.name_machine = '';
                 this.highLimit = 0;
                 this.lowLimit = 0;
-                this.eu = 0;
+                this.eu = '';
 		        this.errorVariable=0;
             },
             abrirModal(modelo, accion, data = []){
@@ -410,7 +410,7 @@
                                 this.name_machine='';
                                 this.highLimit=0;
                                 this.lowLimit=0;
-                                this.eu = 0;
+                                this.eu = '';
                                 this.tipoAccion = 1;
                                 break;
                             }
