@@ -104,10 +104,10 @@
                            <div class="form-group row">
                                <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
                                <div class="col-md-9">
-                                   <select class="form-control" v-model="idcategoria" >
+                                   <select class="form-control" v-model="iduser" >
                                        <option value="0" disabled>Seleccione</option>
-                                       <option v-for="categoria in arrayCategoria" :key="categoria.id"
-                                           :value="categoria.id" v-text="categoria.nombre"></option>
+                                       <option v-for="user in arrayUser" :key="user.id"
+                                           :value="user.id" v-text="user.usuario"></option>
                                    </select>
                                </div>
                            </div>
@@ -140,6 +140,7 @@
         data (){
             return {
                 machine_id: 0,
+                iduser: 0,
                 name : '',
                 arrayMachine : [],
                 modal : 0,
@@ -157,7 +158,8 @@
                 },
                 offset : 3,
                 criterio : 'name',
-                buscar : ''
+                buscar : '',
+                arrayUser : []
             }
         },
         computed:{
@@ -202,6 +204,18 @@
                     console.log(error);
                 });
             },
+            selectUser(){
+                let me=this;
+                var url= '/user/selectUser';
+                axios.get(url).then(function (response) {
+                    //console.log(response);
+                    var respuesta= response.data;
+                    me.arrayUser = respuesta.users;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            },
             cambiarPagina(page,buscar,criterio){
                 let me = this;
                 //Actualiza la página actual
@@ -217,6 +231,7 @@
                 let me = this;
 
                 axios.post('/machine/registrar',{
+                    'iduser': this.iduser,
                     'name': this.name
                 }).then(function (response) {
                     me.cerrarModal();
@@ -233,6 +248,7 @@
                 let me = this;
 
                 axios.put('/machine/actualizar',{
+                    'iduser': this.iduser,
                     'name': this.name,
                     'id': this.machine_id
                 }).then(function (response) {
@@ -333,6 +349,7 @@
             cerrarModal(){
                 this.modal=0;
                 this.tituloModal='';
+                this.iduser= 0;
                 this.name='';
           
             },
@@ -345,6 +362,7 @@
                             {
                                 this.modal = 1;
                                 this.tituloModal = 'Registrar Maquina';
+                                this.iduser= 0;
                                 this.name= '';
                            
                                 this.tipoAccion = 1;
@@ -357,6 +375,7 @@
                                 this.tituloModal='Actualizar maquina';
                                 this.tipoAccion=2;
                                 this.machine_id=data['id'];
+                                this.iduser=data['iduser'];
                                 this.name = data['name'];
                              
                                 break;
@@ -364,6 +383,7 @@
                         }
                     }
                 }
+                 this.selectUser();
             }
         },
         mounted() {

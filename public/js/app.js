@@ -34079,6 +34079,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             machine_id: 0,
+            iduser: 0,
             name: '',
             arrayMachine: [],
             modal: 0,
@@ -34096,7 +34097,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             offset: 3,
             criterio: 'name',
-            buscar: ''
+            buscar: '',
+            arrayUser: []
         };
     },
 
@@ -34140,6 +34142,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
+        selectUser: function selectUser() {
+            var me = this;
+            var url = '/user/selectUser';
+            axios.get(url).then(function (response) {
+                //console.log(response);
+                var respuesta = response.data;
+                me.arrayUser = respuesta.users;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
         cambiarPagina: function cambiarPagina(page, buscar, criterio) {
             var me = this;
             //Actualiza la página actual
@@ -34155,6 +34168,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var me = this;
 
             axios.post('/machine/registrar', {
+                'iduser': this.iduser,
                 'name': this.name
             }).then(function (response) {
                 me.cerrarModal();
@@ -34171,6 +34185,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var me = this;
 
             axios.put('/machine/actualizar', {
+                'iduser': this.iduser,
                 'name': this.name,
                 'id': this.machine_id
             }).then(function (response) {
@@ -34257,6 +34272,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cerrarModal: function cerrarModal() {
             this.modal = 0;
             this.tituloModal = '';
+            this.iduser = 0;
             this.name = '';
         },
         abrirModal: function abrirModal(modelo, accion) {
@@ -34270,6 +34286,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                 {
                                     this.modal = 1;
                                     this.tituloModal = 'Registrar Maquina';
+                                    this.iduser = 0;
                                     this.name = '';
 
                                     this.tipoAccion = 1;
@@ -34282,6 +34299,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.tituloModal = 'Actualizar maquina';
                                     this.tipoAccion = 2;
                                     this.machine_id = data['id'];
+                                    this.iduser = data['iduser'];
                                     this.name = data['name'];
 
                                     break;
@@ -34289,6 +34307,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     }
             }
+            this.selectUser();
         }
     },
     mounted: function mounted() {
@@ -34703,8 +34722,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.idcategoria,
-                                expression: "idcategoria"
+                                value: _vm.iduser,
+                                expression: "iduser"
                               }
                             ],
                             staticClass: "form-control",
@@ -34718,7 +34737,7 @@ var render = function() {
                                     var val = "_value" in o ? o._value : o.value
                                     return val
                                   })
-                                _vm.idcategoria = $event.target.multiple
+                                _vm.iduser = $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
                               }
@@ -34731,12 +34750,12 @@ var render = function() {
                               [_vm._v("Seleccione")]
                             ),
                             _vm._v(" "),
-                            _vm._l(_vm.arrayCategoria, function(categoria) {
+                            _vm._l(_vm.arrayUser, function(user) {
                               return _c("option", {
-                                key: categoria.id,
+                                key: user.id,
                                 domProps: {
-                                  value: categoria.id,
-                                  textContent: _vm._s(categoria.nombre)
+                                  value: user.id,
+                                  textContent: _vm._s(user.usuario)
                                 }
                               })
                             })
