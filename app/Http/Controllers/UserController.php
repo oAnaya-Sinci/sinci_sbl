@@ -42,6 +42,13 @@ class UserController extends Controller
         ];
     }
 
+    public function selectUser(Request $request){
+        if (!$request->ajax()) return redirect('/');
+        $users = User::where('condicion','=','1')
+        ->select('id','usuario')->orderBy('usuario', 'asc')->get();
+        return ['users' => $users];
+    }
+
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');

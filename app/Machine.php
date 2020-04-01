@@ -14,4 +14,8 @@ class Machine extends Model
     {
         return $this->hasMany('App\Variable');
     }
+    public function user()
+    {
+        return $this->hasMany('App\User');
+    }
 }

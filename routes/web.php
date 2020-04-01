@@ -52,6 +52,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/user/actualizar', 'UserController@update');
         Route::put('/user/desactivar', 'UserController@desactivar');
         Route::put('/user/activar', 'UserController@activar');
+        Route::get('/user/selectUser', 'UserController@selectUser');
     });
 
 });
