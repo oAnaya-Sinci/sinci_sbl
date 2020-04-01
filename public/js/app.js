@@ -35155,7 +35155,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             name_machine: '',
             highLimit: 0,
             lowLimit: 0,
-            eu: 0,
+            eu: '',
             arrayVariable: [],
             modal: 0,
             tituloModal: '',
@@ -35364,7 +35364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.name_machine = '';
             this.highLimit = 0;
             this.lowLimit = 0;
-            this.eu = 0;
+            this.eu = '';
             this.errorVariable = 0;
         },
         abrirModal: function abrirModal(modelo, accion) {
@@ -35383,7 +35383,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.name_machine = '';
                                     this.highLimit = 0;
                                     this.lowLimit = 0;
-                                    this.eu = 0;
+                                    this.eu = '';
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -38409,7 +38409,7 @@ var render = function() {
                                 _vm.abrirModal(
                                   "variable",
                                   "actualizar",
-                                  _vm.articulo
+                                  variable
                                 )
                               }
                             }
@@ -38639,7 +38639,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Categoría")]
+                        [_vm._v("Maquina")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -38806,7 +38806,7 @@ var render = function() {
                         "label",
                         {
                           staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "email-input" }
+                          attrs: { for: "text-input" }
                         },
                         [_vm._v("EU")]
                       ),
@@ -38822,7 +38822,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "number", placeholder: "" },
+                          attrs: { type: "text", placeholder: "" },
                           domProps: { value: _vm.eu },
                           on: {
                             input: function($event) {
