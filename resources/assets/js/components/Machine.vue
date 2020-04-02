@@ -5,6 +5,7 @@
                 <li class="breadcrumb-item"><a href="/">OEE</a></li>
             </ol>
             <div class="container-fluid">
+                
                 <!-- Ejemplo de tabla Listado -->
                 <div class="card">
                     <div class="card-header">

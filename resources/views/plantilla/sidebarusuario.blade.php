@@ -4,6 +4,9 @@
                     <li @click="menu=0" class="nav-item">
                         <a class="nav-link active" href="#"><i class="icon-speedometer"></i> OEE</a>
                     </li>
+                    <li @click="menu=1" class="nav-item">
+                        <a class="nav-link active" href="#"><i class="icon-speedometer"></i> Variables</a>
+                    </li>
                     <li class="nav-title">
                         Menu
                     </li>
