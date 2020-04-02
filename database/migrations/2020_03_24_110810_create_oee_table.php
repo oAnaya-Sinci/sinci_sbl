@@ -15,21 +15,22 @@ class CreateOeeTable extends Migration
     {
         Schema::create('oee', function (Blueprint $table) {
             $table->increments('id');
-            $table->datetime('capturedTime');
-            $table->float('oee');
-            $table->float('availability');
-            $table->integer('runnigTime');
-            $table->string('availableTime', 45);
-            $table->float('performance');
-            $table->integer('ict');
-            $table->integer('totalPieces');
-            $table->integer('runTime');
-            $table->string('oeeCol');
-            $table->float('quality');
-            $table->integer('goodParts');
-            $table->string('lotId', 45);
-            $table->string('partId', 45);
-            $table->integer('idShift');
+            $table->datetime('capturedTime')->nullable();
+            $table->float('oee')->nullable();
+            $table->float('availability')->nullable();
+            $table->integer('runnigTime')->nullable();
+            $table->string('availableTime', 45)->nullable();
+            $table->float('performance')->nullable();
+            $table->integer('ict')->nullable();
+            $table->integer('totalPieces')->nullable();
+            $table->integer('runTime')->nullable();
+            $table->string('oeeCol')->nullable();
+            $table->float('quality')->nullable();
+            $table->integer('goodParts')->nullable();
+            $table->string('lotId', 45)->nullable();
+            $table->string('partId', 45)->nullable();
+            $table->integer('idShift')->nullable();
+            $table->decimal('total', 11, 2)->nullable();
             $table->timestamps();
 
          
