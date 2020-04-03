@@ -28,6 +28,9 @@
             <template v-if="menu==0">
                 <h1>OEE</h1>
             </template>
+            <template v-if="menu==1">
+                <graficvar></graficvar>
+            </template>
             @else
 
             @endif

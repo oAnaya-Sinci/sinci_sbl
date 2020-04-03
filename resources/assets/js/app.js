@@ -19,6 +19,8 @@ window.Vue = require('vue');
  Vue.component('variable', require('./components/Variable.vue'));
  Vue.component('rol', require('./components/Rol.vue'));
  Vue.component('user', require('./components/User.vue'));
+ Vue.component('graficvar', require('./components/graficvar.vue'));
+
 
 const app = new Vue({
     el: '#app',
