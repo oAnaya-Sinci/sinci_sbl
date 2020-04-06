@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> Tipos de eventos
-                        <button type="button" @click="abrirModal('eventos','registrar')" class="btn btn-secondary">
+                        <button type="button" @click="abrirModal('typeevent','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
                     </div>
@@ -17,8 +17,8 @@
                                     <select class="form-control col-md-3" v-model="criterio">
                                       <option value="nombre">Nombre</option>
                                     </select>
-                                    <input type="text" v-model="buscar" @keyup.enter="listarVariable(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
-                                    <button type="submit" @click="listarVariable(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
+                                    <input type="text" v-model="buscar" @keyup.enter="listartypeevent(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
+                                    <button type="submit" @click="listartypeevent(1,buscar,criterio)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>Nombre</th>
-                                    <th>id_faild</th>
+                                    <th>id_fallo</th>
                                     <th>descripcion</th>
                                     <th>Gravedad</th>
                                     <th>Fecha creacion</th>
@@ -38,16 +38,16 @@
                             <tbody>
                                 <tr v-for="evento in arrayEvento" :key="evento.id">
                                     <td>
-                                        <button type="button" @click="abrirModal('variable','actualizar',variable)" class="btn btn-warning btn-sm">
+                                        <button type="button" @click="abrirModal('typeevent','actualizar',evento)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
-                                        <template v-if="variable.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarVariable(variable.id)">
+                                        <template v-if="evento.condicion">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarEvento(evento.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarVariable(variable.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarEvento(evento.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
@@ -57,6 +57,8 @@
                                     <td v-text="evento.id_faild"></td>
                                     <td v-text="evento.description"></td>
                                     <td v-text="evento.severity"></td>
+                                    <td v-text="evento.created_at"></td>
+                                    <td v-text="evento.updated_at"></td>
                                     <td>
                                         <div v-if="evento.condicion">
                                             <span class="badge badge-success">Activo</span>
@@ -108,32 +110,32 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Tipo de Evento</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="name" class="form-control" placeholder="Nombre de la variable">                                        
+                                        <input type="text" v-model="name" class="form-control" placeholder="Nombre del Evento">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Limite Alto</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">id_fallo</label>
                                     <div class="col-md-9">
-                                        <input type="number" v-model="highLimit" class="form-control" placeholder="">                                        
+                                        <input type="number" v-model="id_faild" class="form-control" placeholder="">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">Limite Bajo</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
                                     <div class="col-md-9">
-                                        <input type="number" v-model="lowLimit" class="form-control" placeholder="">                                        
+                                        <input type="number" v-model="descripcion" class="form-control" placeholder="">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">EU</label>
+                                    <label class="col-md-3 form-control-label" for="text-input">Gravedad</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="eu" class="form-control" placeholder="">
+                                        <input type="text" v-model="severity" class="form-control" placeholder="">
                                     </div>
                                 </div>
-                                <div v-show="errorVariable" class="form-group row div-error">
+                                <div v-show="errorEvento" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjVariable" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjEvento" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -160,14 +162,16 @@
     export default {
         data (){
             return {
-                variable_id: 0,
+                evento_id: 0,
                 idmachine : 0,
                 name : '',
                 name_machine : '',
-                highLimit : 0,
-                lowLimit : 0,
-                eu : '',
-                arrayVariable : [],
+                id_faild : 0,
+                description : '',
+                severity : 0,
+                created_at : '',
+                updated_at : '',
+                arrayEvento : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
@@ -220,12 +224,12 @@
             }
         },
         methods : {
-            listarVariable (page,buscar,criterio){
+            listartypeevent (page,buscar,criterio){
                 let me=this;
-                var url= '/variable?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
+                var url= '/typeevent?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayVariable = respuesta.variables.data;
+                    me.arrayEvento = respuesta.variables.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -249,52 +253,52 @@
                 //Actualiza la página actual
                 me.pagination.current_page = page;
                 //Envia la petición para visualizar la data de esa página
-                me.listarVariable(page,buscar,criterio);
+                me.listartypeevent(page,buscar,criterio);
             },
-            registrarVariable(){
-                if (this.validarVariable()){
+            registrarEvento(){
+                if (this.validarEvento()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.post('/variable/registrar',{
+                axios.post('/typeevent/registrar',{
                     'idmachine': this.idmachine,
                     'name': this.name,
-                    'highLimit': this.highLimit,
-                    'lowLimit': this.lowLimit,
-                    'eu': this.eu
+                    'id_faild': this.id_faild,
+                    'description': this.description,
+                    'severity': this.severity
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarVariable(1,'','name');
+                    me.listartypeevent(1,'','name');
                 }).catch(function (error) {
                     console.log(error);
                 });
             },
-            actualizarVariable(){
-               if (this.validarVariable()){
+            actualizarEvento(){
+               if (this.validarEvento()){
                     return;
                 }
                 
                 let me = this;
 
-                axios.put('/variable/actualizar',{
+                axios.put('/typeevent/actualizar',{
                     'idmachine': this.idmachine,
-                      'name': this.name,
-                    'highLimit': this.highLimit,
-                    'lowLimit': this.lowLimit,
-                    'eu': this.eu,
-                    'id': this.variable_id
+                    'name': this.name,
+                    'id_faild': this.id_faild,
+                    'description': this.description,
+                    'severity': this.severity,
+                    'id': this.evento_id
                 }).then(function (response) {
                     me.cerrarModal();
-                    me.listarVariable(1,'','name');
+                    me.listartypeevent(1,'','name');
                 }).catch(function (error) {
                     console.log(error);
                 }); 
             },
-            desactivarVariable(id){
+            desactivarEvento(id){
                swal({
-                title: 'Esta seguro de desactivar esta variable?',
+                title: 'Esta seguro de desactivar esta Evento?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -309,10 +313,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/variable/desactivar',{
+                    axios.put('/typeevent/desactivar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarVariable(1,'','name');
+                        me.listartypeevent(1,'','name');
                         swal(
                         'Desactivado!',
                         'El registro ha sido desactivado con éxito.',
@@ -331,9 +335,9 @@
                 }
                 }) 
             },
-            activarVariable(id){
+            activarEvento(id){
                swal({
-                title: 'Esta seguro de activar esta variable?',
+                title: 'Esta seguro de activar esta Evento?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -348,10 +352,10 @@
                 if (result.value) {
                     let me = this;
 
-                    axios.put('/variable/activar',{
+                    axios.put('/typeevent/activar',{
                         'id': id
                     }).then(function (response) {
-                        me.listarVariable(1,'','name');
+                        me.listartypeevent(1,'','name');
                         swal(
                         'Activado!',
                         'El registro ha sido activado con éxito.',
@@ -370,18 +374,19 @@
                 }
                 }) 
             },
-            validarVariable(){
-                this.errorVariable=0;
-                this.errorMostrarMsjVariable =[];
+            validarEvento(){
+                this.errorEvento=0;
+                this.errorMostrarMsjEvento =[];
 
-                if (this.idmachine==0) this.errorMostrarMsjVariable.push("Seleccione una maquina.");
-                if (!this.name) this.errorMostrarMsjVariable.push("El nombre de la variable no puede estar vacío.");
-                if (!this.highLimit) this.errorMostrarMsjVariable.push("El limite alto no puede estar vacío.");
-                if (!this.lowLimit) this.errorMostrarMsjVariable.push("El limite bajo no puede estar vacío.");
+                if (this.idmachine==0) this.errorMostrarMsjEvento.push("Seleccione una maquina.");
+                if (!this.name) this.errorMostrarMsjEvento.push("El nombre de la evento no puede estar vacío.");
+                if (!this.description) this.errorMostrarMsjEvento.push("la descripcion no puede estar vacío.");
+                if (!this.id_faild) this.errorMostrarMsjEvento.push("id del evento no puede estar vacío.");
+                if (!this.severity) this.errorMostrarMsjEvento.push("Gravedad no puede estar vacío.");
 
-                if (this.errorMostrarMsjVariable.length) this.errorVariable = 1;
+                if (this.errorMostrarMsjEvento.length) this.errorEvento = 1;
 
-                return this.errorVariable;
+                return this.errorEvento;
             },
             cerrarModal(){
                 this.modal=0;
@@ -389,26 +394,27 @@
                 this.idmachine= 0;
                 this.name = '';
                 this.name_machine = '';
-                this.highLimit = 0;
-                this.lowLimit = 0;
-                this.eu = '';
-		        this.errorVariable=0;
+                this.severity = 0;
+                this.description = '';
+                this.id_faild = 0;
+		        this.errorEvento=0;
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
-                    case "variable":
+                    case "typeevent":
                     {
                         switch(accion){
                             case 'registrar':
                             {
                                 this.modal = 1;
-                                this.tituloModal = 'Registrar Variable';
-                                this.idmachine=0;
-                                this.name= '';
-                                this.name_machine='';
-                                this.highLimit=0;
-                                this.lowLimit=0;
-                                this.eu = '';
+                                this.tituloModal = 'Registrar Evento';
+                                this.idmachine= 0;
+                                this.name = '';
+                                this.name_machine = '';
+                                this.severity = 0;
+                                this.description = '';
+                                this.id_faild = 0;
+		                        this.errorEvento=0;
                                 this.tipoAccion = 1;
                                 break;
                             }
@@ -416,14 +422,14 @@
                             {
                                 //console.log(data);
                                 this.modal=1;
-                                this.tituloModal='Actualizar Variable';
+                                this.tituloModal='Actualizar Evento';
                                 this.tipoAccion=2;
-                                this.variable_id=data['id'];
+                                this.evento_id=data['id'];
                                 this.name = data['name'];
                                 this.idmachine=data['idmachine'];
-                                this.highLimit=data['highLimit'];
-                                this.lowLimit=data['lowLimit'];
-                                this.eu= data['eu'];
+                                this.description=data['description'];
+                                this.id_faild=data['id_faild'];
+                                this.severity= data['severity'];
                                 break;
                             }
                         }
@@ -433,7 +439,7 @@
             }
         },
         mounted() {
-            this.listarVariable(1,this.buscar,this.criterio);
+            this.listartypeevent(1,this.buscar,this.criterio);
         }
     }
 </script>

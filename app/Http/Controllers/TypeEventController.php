@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Variable;
+use App\TypeEvent;
 use Illuminate\Http\Request;
 
 class TypeEventController extends Controller
@@ -15,60 +15,62 @@ class TypeEventController extends Controller
         $criterio = $request->criterio;
         
         if ($buscar==''){
-            $variables = Variable::join('machines','variables.idmachine','=','machines.id')
-            ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name as name_machine','variables.eu','variables.condicion')
-            ->orderBy('variables.id', 'desc')->paginate(3);
+            $typeevent = TypeEvent::join('machines','type_events.idmachine','=','machines.id')
+            ->select('type_events.id','type_events.idmachine','type_events.name','type_events.id_faild','type_events.description','type_events.severity','type_events.condicion','type_events.created_at','type_events.updated_at')
+            ->orderBy('type_events.id', 'desc')->paginate(3);
         }
         else{
-            $variables = Variable::join('machines','variables.idmachine','=','machines.id')
-            ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name as name_machine','variables.eu','variables.condicion')
-            ->where('variables.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('variables.id', 'desc')->paginate(3);
+            $typeevent = TypeEvent::join('machines','type_events.idmachine','=','machines.id')
+            ->select('type_events.id','type_events.idmachine','type_events.name','type_events.id_faild','type_events.description','type_events.severity','type_events.condicion','type_events.created_at','type_events.updated_at')
+            ->where('type_events.'.$criterio, 'like', '%'. $buscar . '%')
+            ->orderBy('type_events.id', 'desc')->paginate(3);
         }
         
 
         return [
             'pagination' => [
-                'total'        => $variables->total(),
-                'current_page' => $variables->currentPage(),
-                'per_page'     => $variables->perPage(),
-                'last_page'    => $variables->lastPage(),
-                'from'         => $variables->firstItem(),
-                'to'           => $variables->lastItem(),
+                'total'        => $typeevent->total(),
+                'current_page' => $typeevent->currentPage(),
+                'per_page'     => $typeevent->perPage(),
+                'last_page'    => $typeevent->lastPage(),
+                'from'         => $typeevent->firstItem(),
+                'to'           => $typeevent->lastItem(),
             ],
-            'variables' => $variables
+            'typeevent' => $typeevent
         ];
     }
     
     public function store(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $variable = new Variable();
-        $variable->idmachine = $request->idmachine;
-        $variable->name = $request->name;
-        $variable->highLimit = $request->highLimit;
-        $variable->lowLimit = $request->lowLimit;
-        $variable->eu = $request->eu;
-        $variable->condicion = '1';
-        $variable->save();
+        $typeevent = new TypeEvent();
+        $typeevent->idmachine = $request->idmachine;
+        $typeevent->name = $request->name;
+        $typeevent->id_faild = $request->id_faild;
+        $typeevent->description = $request->description;
+        $typeevent->severity = $request->severity;
+        $typeevent->created_at = '';
+        $typeevent->condicion = '1';
+        $typeevent->save();
     }
     public function update(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $variable = Variable::findOrFail($request->id);
-        $variable->idmachine = $request->idmachine;
-        $variable->name = $request->name;
-        $variable->highLimit = $request->highLimit;
-        $variable->lowLimit = $request->lowLimit;
-        $variable->eu = $request->eu;
-        $variable->condicion = '1';
-        $variable->save();
+        $typeevent = TypeEvent::findOrFail($request->id);
+        $typeevent->idmachine = $request->idmachine;
+        $typeevent->name = $request->name; 
+        $typeevent->id_faild = $request->id_faild;
+        $typeevent->description = $request->description;
+        $typeevent->severity = $request->severity;
+        $typeevent->updated_at = '';
+        $typeevent->condicion = '1';
+        $typeevent->save();
     }
 
     public function desactivar(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $variable = Variable::findOrFail($request->id);
+        $variable = TypeEvent::findOrFail($request->id);
         $variable->condicion = '0';
         $variable->save();
     }
@@ -76,7 +78,7 @@ class TypeEventController extends Controller
     public function activar(Request $request)
     {
         if (!$request->ajax()) return redirect('/');
-        $variable = Variable::findOrFail($request->id);
+        $variable = TypeEvent::findOrFail($request->id);
         $variable->condicion = '1';
         $variable->save();
     }

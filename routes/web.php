@@ -44,6 +44,12 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/variable/desactivar', 'VariableController@desactivar');
         Route::put('/variable/activar', 'VariableController@activar');
 
+        Route::get('/typeevent', 'TypeEventController@index');
+        Route::post('/typeevent/registrar', 'TypeEventController@store');
+        Route::put('/typeevent/actualizar', 'TypeEventController@update');
+        Route::put('/typeevent/desactivar', 'TypeEventController@desactivar');
+        Route::put('/typeevent/activar', 'TypeEventController@activar');
+
         Route::get('/rol', 'RolController@index');
         Route::get('/rol/selectRol', 'RolController@selectRol');
         

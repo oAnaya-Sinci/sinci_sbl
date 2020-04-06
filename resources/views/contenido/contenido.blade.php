@@ -15,6 +15,9 @@
             <template v-if="menu==2">
                 <variable></variable>
             </template>
+            <template v-if="menu==3">
+                <type_event></type_event>
+            </template>
 
             <template v-if="menu==7">
                 <user></user>
