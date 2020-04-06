@@ -36,8 +36,13 @@ export default {
     fillData ()
     {
       this.datacollection = {
-        labels: ['01','02','07','15','20', '23' , '30'],
+        labels: ['01','02','07','15','20', '23','30'],
         datasets: [
+          {
+            label: 'Consumo por Dia',
+            backgroundColor: '#00c8ff',
+            data: [ 20, 40, 50, 20, 50, 40,65]
+          },
           {
             label: 'Consumo por Dia',
             backgroundColor: '#00c8ff',
