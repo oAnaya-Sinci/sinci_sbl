@@ -62,7 +62,7 @@
                 me.varOee=document.getElementById('oees').getContext('2d');
 
                 me.charOee = new Chart(me.varOee, {
-                    type: 'line',
+                    type: 'bar',
                     data: {
                         labels: me.varMesOee,
                         datasets: [{
