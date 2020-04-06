@@ -14,6 +14,7 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+ Vue.component('oee', require('./components/Oee.vue'));
  Vue.component('machine', require('./components/Machine.vue'));
  Vue.component('variable', require('./components/Variable.vue'));
  Vue.component('rol', require('./components/Rol.vue'));

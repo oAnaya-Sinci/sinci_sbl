@@ -16,12 +16,12 @@ class VariableController extends Controller
         
         if ($buscar==''){
             $variables = Variable::join('machines','variables.idmachine','=','machines.id')
-            ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name as name_machine','variables.eu','variables.condicion')
+            ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name','machines.name as name_machine','variables.eu','variables.condicion')
             ->orderBy('variables.id', 'desc')->paginate(3);
         }
         else{
             $variables = Variable::join('machines','variables.idmachine','=','machines.id')
-            ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name as name_machine','variables.eu','variables.condicion')
+            ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name','machines.name as name_machine','variables.eu','variables.condicion')
             ->where('variables.'.$criterio, 'like', '%'. $buscar . '%')
             ->orderBy('variables.id', 'desc')->paginate(3);
         }
