@@ -7,6 +7,9 @@
                     <li @click="menu=1" class="nav-item">
                         <a class="nav-link active" href="#"><i class="icon-speedometer"></i> Variables</a>
                     </li>
+                    <li @click="menu=2" class="nav-item">
+                        <a class="nav-link active" href="#"><i class="icon-speedometer"></i> Pareto</a>
+                    </li>
                     <li class="nav-title">
                         Menu
                     </li>

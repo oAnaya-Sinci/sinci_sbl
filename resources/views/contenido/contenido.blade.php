@@ -31,6 +31,10 @@
             <template v-if="menu==1">
                 <graficvar></graficvar>
             </template>
+            <template v-if="menu==2">
+                
+                <paretovar></paretovar>
+            </template>
             @else
 
             @endif

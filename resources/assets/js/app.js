@@ -20,6 +20,7 @@ window.Vue = require('vue');
  Vue.component('rol', require('./components/Rol.vue'));
  Vue.component('user', require('./components/User.vue'));
  Vue.component('graficvar', require('./components/graficvar.vue'));
+ Vue.component('paretovar', require ('./components/paretovar.vue'));
 
 
 const app = new Vue({
