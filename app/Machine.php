@@ -14,6 +14,10 @@ class Machine extends Model
     {
         return $this->hasMany('App\Variable');
     }
+    public function typeevents()
+    {
+        return $this->hasMany('App\TypeEvent');
+    }
     public function user()
     {
         return $this->hasMany('App\User');

@@ -57747,6 +57747,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -57817,7 +57818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var url = '/typeevent?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
-                me.arrayTypeEvent = respuesta.variables.data;
+                me.arrayTypeEvent = respuesta.type_events.data;
                 me.pagination = respuesta.pagination;
             }).catch(function (error) {
                 console.log(error);
@@ -58203,11 +58204,11 @@ var render = function() {
                     ),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(evento.name_machine) }
+                      domProps: { textContent: _vm._s(evento.name) }
                     }),
                     _vm._v(" "),
                     _c("td", {
-                      domProps: { textContent: _vm._s(evento.name) }
+                      domProps: { textContent: _vm._s(evento.name_machine) }
                     }),
                     _vm._v(" "),
                     _c("td", {
@@ -58695,7 +58696,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("id_fallo")]),
+        _c("th", [_vm._v("Maquina")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("id_fallo_plc")]),
         _vm._v(" "),
         _c("th", [_vm._v("descripcion")]),
         _vm._v(" "),

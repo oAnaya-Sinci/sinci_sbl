@@ -27,7 +27,8 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>Nombre</th>
-                                    <th>id_fallo</th>
+                                    <th>Maquina</th>
+                                    <th>id_fallo_plc</th>
                                     <th>descripcion</th>
                                     <th>Gravedad</th>
                                     <th>Fecha creacion</th>
@@ -36,24 +37,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="evento in arrayEvento" :key="evento.id">
+                                <tr v-for="evento in arrayTypeEvent" :key="evento.id">
                                     <td>
                                         <button type="button" @click="abrirModal('typeevent','actualizar',evento)" class="btn btn-warning btn-sm">
                                           <i class="icon-pencil"></i>
                                         </button> &nbsp;
                                         <template v-if="evento.condicion">
-                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarEvento(evento.id)">
+                                            <button type="button" class="btn btn-danger btn-sm" @click="desactivarTypeEvent(evento.id)">
                                                 <i class="icon-trash"></i>
                                             </button>
                                         </template>
                                         <template v-else>
-                                            <button type="button" class="btn btn-info btn-sm" @click="activarEvento(evento.id)">
+                                            <button type="button" class="btn btn-info btn-sm" @click="activarTypeEvent(evento.id)">
                                                 <i class="icon-check"></i>
                                             </button>
                                         </template>
                                     </td>
-                                    <td v-text="evento.name_machine"></td>
                                     <td v-text="evento.name"></td>
+                                    <td v-text="evento.name_machine"></td>
                                     <td v-text="evento.id_faild"></td>
                                     <td v-text="evento.description"></td>
                                     <td v-text="evento.severity"></td>
@@ -124,18 +125,18 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
                                     <div class="col-md-9">
-                                        <input type="number" v-model="descripcion" class="form-control" placeholder="">                                        
+                                        <input type="text" v-model="description" class="form-control" placeholder="">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Gravedad</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="severity" class="form-control" placeholder="">
+                                        <input type="number" v-model="severity" class="form-control" placeholder="">
                                     </div>
                                 </div>
-                                <div v-show="errorEvento" class="form-group row div-error">
+                                <div v-show="errorTypeEvent" class="form-group row div-error">
                                     <div class="text-center text-error">
-                                        <div v-for="error in errorMostrarMsjEvento" :key="error" v-text="error">
+                                        <div v-for="error in errorMostrarMsjTypeEvent" :key="error" v-text="error">
 
                                         </div>
                                     </div>
@@ -145,8 +146,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" @click="cerrarModal()">Cerrar</button>
-                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarVariable()">Guardar</button>
-                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarVariable()">Actualizar</button>
+                            <button type="button" v-if="tipoAccion==1" class="btn btn-primary" @click="registrarTypeEvent()">Guardar</button>
+                            <button type="button" v-if="tipoAccion==2" class="btn btn-primary" @click="actualizarTypeEvent()">Actualizar</button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
@@ -169,14 +170,12 @@
                 id_faild : 0,
                 description : '',
                 severity : 0,
-                created_at : '',
-                updated_at : '',
-                arrayEvento : [],
+                arrayTypeEvent : [],
                 modal : 0,
                 tituloModal : '',
                 tipoAccion : 0,
-                errorVariable : 0,
-                errorMostrarMsjVariable : [],
+                errorTypeEvent : 0,
+                errorMostrarMsjTypeEvent : [],
                 pagination : {
                     'total' : 0,
                     'current_page' : 0,
@@ -229,7 +228,7 @@
                 var url= '/typeevent?page=' + page + '&buscar='+ buscar + '&criterio='+ criterio;
                 axios.get(url).then(function (response) {
                     var respuesta= response.data;
-                    me.arrayEvento = respuesta.variables.data;
+                    me.arrayTypeEvent = respuesta.type_events.data;
                     me.pagination= respuesta.pagination;
                 })
                 .catch(function (error) {
@@ -255,8 +254,8 @@
                 //Envia la petición para visualizar la data de esa página
                 me.listartypeevent(page,buscar,criterio);
             },
-            registrarEvento(){
-                if (this.validarEvento()){
+            registrarTypeEvent(){
+                if (this.validarTypeEvent()){
                     return;
                 }
                 
@@ -275,8 +274,8 @@
                     console.log(error);
                 });
             },
-            actualizarEvento(){
-               if (this.validarEvento()){
+            actualizarTypeEvent(){
+               if (this.validarTypeEvent()){
                     return;
                 }
                 
@@ -296,7 +295,7 @@
                     console.log(error);
                 }); 
             },
-            desactivarEvento(id){
+            desactivarTypeEvent(id){
                swal({
                 title: 'Esta seguro de desactivar esta Evento?',
                 type: 'warning',
@@ -335,7 +334,7 @@
                 }
                 }) 
             },
-            activarEvento(id){
+            activarTypeEvent(id){
                swal({
                 title: 'Esta seguro de activar esta Evento?',
                 type: 'warning',
@@ -374,19 +373,19 @@
                 }
                 }) 
             },
-            validarEvento(){
-                this.errorEvento=0;
-                this.errorMostrarMsjEvento =[];
+            validarTypeEvent(){
+                this.errorTypeEvent=0;
+                this.errorMostrarMsjTypeEvent =[];
 
-                if (this.idmachine==0) this.errorMostrarMsjEvento.push("Seleccione una maquina.");
-                if (!this.name) this.errorMostrarMsjEvento.push("El nombre de la evento no puede estar vacío.");
-                if (!this.description) this.errorMostrarMsjEvento.push("la descripcion no puede estar vacío.");
-                if (!this.id_faild) this.errorMostrarMsjEvento.push("id del evento no puede estar vacío.");
-                if (!this.severity) this.errorMostrarMsjEvento.push("Gravedad no puede estar vacío.");
+                if (this.idmachine==0) this.errorMostrarMsjTypeEvent.push("Seleccione una maquina.");
+                if (!this.name) this.errorMostrarMsjTypeEvent.push("El nombre de la evento no puede estar vacío.");
+                if (!this.description) this.errorMostrarMsjTypeEvent.push("la descripcion no puede estar vacío.");
+                if (!this.id_faild) this.errorMostrarMsjTypeEvent.push("id del evento no puede estar vacío.");
+                if (!this.severity) this.errorMostrarMsjTypeEvent.push("Gravedad no puede estar vacío.");
 
-                if (this.errorMostrarMsjEvento.length) this.errorEvento = 1;
+                if (this.errorMostrarMsjTypeEvent.length) this.errorTypeEvent = 1;
 
-                return this.errorEvento;
+                return this.errorTypeEvent;
             },
             cerrarModal(){
                 this.modal=0;
@@ -397,7 +396,7 @@
                 this.severity = 0;
                 this.description = '';
                 this.id_faild = 0;
-		        this.errorEvento=0;
+		        this.errorTypeEvent=0;
             },
             abrirModal(modelo, accion, data = []){
                 switch(modelo){
@@ -414,7 +413,7 @@
                                 this.severity = 0;
                                 this.description = '';
                                 this.id_faild = 0;
-		                        this.errorEvento=0;
+		                        this.errorTypeEvent=0;
                                 this.tipoAccion = 1;
                                 break;
                             }
