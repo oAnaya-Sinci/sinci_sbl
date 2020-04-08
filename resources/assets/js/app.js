@@ -17,6 +17,7 @@ window.Vue = require('vue');
  Vue.component('oee', require('./components/Oee.vue'));
  Vue.component('machine', require('./components/Machine.vue'));
  Vue.component('variable', require('./components/Variable.vue'));
+ Vue.component('type_event', require('./components/type_event.vue'));
  Vue.component('rol', require('./components/Rol.vue'));
  Vue.component('user', require('./components/User.vue'));
  Vue.component('graficvar', require('./components/graficvar.vue'));
