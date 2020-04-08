@@ -57745,24 +57745,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            variable_id: 0,
+            evento_id: 0,
             idmachine: 0,
             name: '',
             name_machine: '',
-            highLimit: 0,
-            lowLimit: 0,
-            eu: '',
-            arrayEvento: [],
+            id_faild: 0,
+            description: '',
+            severity: 0,
+            arrayTypeEvent: [],
             modal: 0,
             tituloModal: '',
             tipoAccion: 0,
-            errorVariable: 0,
-            errorMostrarMsjVariable: [],
+            errorTypeEvent: 0,
+            errorMostrarMsjTypeEvent: [],
             pagination: {
                 'total': 0,
                 'current_page': 0,
@@ -57812,10 +57814,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         listartypeevent: function listartypeevent(page, buscar, criterio) {
             var me = this;
-            var url = '/variable?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+            var url = '/typeevent?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
             axios.get(url).then(function (response) {
                 var respuesta = response.data;
-                me.arrayEvento = respuesta.variables.data;
+                me.arrayTypeEvent = respuesta.variables.data;
                 me.pagination = respuesta.pagination;
             }).catch(function (error) {
                 console.log(error);
@@ -57839,19 +57841,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //Envia la petición para visualizar la data de esa página
             me.listartypeevent(page, buscar, criterio);
         },
-        registrarVariable: function registrarVariable() {
-            if (this.validarVariable()) {
+        registrarTypeEvent: function registrarTypeEvent() {
+            if (this.validarTypeEvent()) {
                 return;
             }
 
             var me = this;
 
-            axios.post('/variable/registrar', {
+            axios.post('/typeevent/registrar', {
                 'idmachine': this.idmachine,
                 'name': this.name,
-                'highLimit': this.highLimit,
-                'lowLimit': this.lowLimit,
-                'eu': this.eu
+                'id_faild': this.id_faild,
+                'description': this.description,
+                'severity': this.severity
             }).then(function (response) {
                 me.cerrarModal();
                 me.listartypeevent(1, '', 'name');
@@ -57859,20 +57861,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        actualizarVariable: function actualizarVariable() {
-            if (this.validarVariable()) {
+        actualizarTypeEvent: function actualizarTypeEvent() {
+            if (this.validarTypeEvent()) {
                 return;
             }
 
             var me = this;
 
-            axios.put('/variable/actualizar', {
+            axios.put('/typeevent/actualizar', {
                 'idmachine': this.idmachine,
                 'name': this.name,
-                'highLimit': this.highLimit,
-                'lowLimit': this.lowLimit,
-                'eu': this.eu,
-                'id': this.variable_id
+                'id_faild': this.id_faild,
+                'description': this.description,
+                'severity': this.severity,
+                'id': this.evento_id
             }).then(function (response) {
                 me.cerrarModal();
                 me.listartypeevent(1, '', 'name');
@@ -57880,7 +57882,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(error);
             });
         },
-        desactivarEvento: function desactivarEvento(id) {
+        desactivarTypeEvent: function desactivarTypeEvent(id) {
             var _this = this;
 
             swal({
@@ -57899,7 +57901,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (result.value) {
                     var me = _this;
 
-                    axios.put('/variable/desactivar', {
+                    axios.put('/typeevent/desactivar', {
                         'id': id
                     }).then(function (response) {
                         me.listartypeevent(1, '', 'name');
@@ -57912,7 +57914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 result.dismiss === swal.DismissReason.cancel) {}
             });
         },
-        activarEvento: function activarEvento(id) {
+        activarTypeEvent: function activarTypeEvent(id) {
             var _this2 = this;
 
             swal({
@@ -57931,7 +57933,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (result.value) {
                     var me = _this2;
 
-                    axios.put('/variable/activar', {
+                    axios.put('/typeevent/activar', {
                         'id': id
                     }).then(function (response) {
                         me.listartypeevent(1, '', 'name');
@@ -57944,18 +57946,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 result.dismiss === swal.DismissReason.cancel) {}
             });
         },
-        validarVariable: function validarVariable() {
-            this.errorVariable = 0;
-            this.errorMostrarMsjVariable = [];
+        validarTypeEvent: function validarTypeEvent() {
+            this.errorTypeEvent = 0;
+            this.errorMostrarMsjTypeEvent = [];
 
-            if (this.idmachine == 0) this.errorMostrarMsjVariable.push("Seleccione una maquina.");
-            if (!this.name) this.errorMostrarMsjVariable.push("El nombre de la variable no puede estar vacío.");
-            if (!this.highLimit) this.errorMostrarMsjVariable.push("El limite alto no puede estar vacío.");
-            if (!this.lowLimit) this.errorMostrarMsjVariable.push("El limite bajo no puede estar vacío.");
+            if (this.idmachine == 0) this.errorMostrarMsjTypeEvent.push("Seleccione una maquina.");
+            if (!this.name) this.errorMostrarMsjTypeEvent.push("El nombre de la evento no puede estar vacío.");
+            if (!this.description) this.errorMostrarMsjTypeEvent.push("la descripcion no puede estar vacío.");
+            if (!this.id_faild) this.errorMostrarMsjTypeEvent.push("id del evento no puede estar vacío.");
+            if (!this.severity) this.errorMostrarMsjTypeEvent.push("Gravedad no puede estar vacío.");
 
-            if (this.errorMostrarMsjVariable.length) this.errorVariable = 1;
+            if (this.errorMostrarMsjTypeEvent.length) this.errorTypeEvent = 1;
 
-            return this.errorVariable;
+            return this.errorTypeEvent;
         },
         cerrarModal: function cerrarModal() {
             this.modal = 0;
@@ -57963,10 +57966,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.idmachine = 0;
             this.name = '';
             this.name_machine = '';
-            this.highLimit = 0;
-            this.lowLimit = 0;
-            this.eu = '';
-            this.errorVariable = 0;
+            this.severity = 0;
+            this.description = '';
+            this.id_faild = 0;
+            this.errorTypeEvent = 0;
         },
         abrirModal: function abrirModal(modelo, accion) {
             var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
@@ -57982,9 +57985,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.idmachine = 0;
                                     this.name = '';
                                     this.name_machine = '';
-                                    this.highLimit = 0;
-                                    this.lowLimit = 0;
-                                    this.eu = '';
+                                    this.severity = 0;
+                                    this.description = '';
+                                    this.id_faild = 0;
+                                    this.errorTypeEvent = 0;
                                     this.tipoAccion = 1;
                                     break;
                                 }
@@ -57994,12 +57998,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                                     this.modal = 1;
                                     this.tituloModal = 'Actualizar Evento';
                                     this.tipoAccion = 2;
-                                    this.variable_id = data['id'];
+                                    this.evento_id = data['id'];
                                     this.name = data['name'];
                                     this.idmachine = data['idmachine'];
-                                    this.highLimit = data['highLimit'];
-                                    this.lowLimit = data['lowLimit'];
-                                    this.eu = data['eu'];
+                                    this.description = data['description'];
+                                    this.id_faild = data['id_faild'];
+                                    this.severity = data['severity'];
                                     break;
                                 }
                         }
@@ -58140,7 +58144,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.arrayEvento, function(evento) {
+                _vm._l(_vm.arrayTypeEvent, function(evento) {
                   return _c("tr", { key: evento.id }, [
                     _c(
                       "td",
@@ -58172,7 +58176,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.desactivarEvento(evento.id)
+                                      return _vm.desactivarTypeEvent(evento.id)
                                     }
                                   }
                                 },
@@ -58187,7 +58191,7 @@ var render = function() {
                                   attrs: { type: "button" },
                                   on: {
                                     click: function($event) {
-                                      return _vm.activarEvento(evento.id)
+                                      return _vm.activarTypeEvent(evento.id)
                                     }
                                   }
                                 },
@@ -58216,6 +58220,14 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", {
                       domProps: { textContent: _vm._s(evento.severity) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(evento.created_at) }
+                    }),
+                    _vm._v(" "),
+                    _c("td", {
+                      domProps: { textContent: _vm._s(evento.updated_at) }
                     }),
                     _vm._v(" "),
                     _c("td", [
@@ -58451,7 +58463,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Nombre")]
+                        [_vm._v("Tipo de Evento")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -58467,7 +58479,7 @@ var render = function() {
                           staticClass: "form-control",
                           attrs: {
                             type: "text",
-                            placeholder: "Nombre de la variable"
+                            placeholder: "Nombre del Evento"
                           },
                           domProps: { value: _vm.name },
                           on: {
@@ -58489,7 +58501,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Limite Alto")]
+                        [_vm._v("id_fallo")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -58498,19 +58510,19 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.highLimit,
-                              expression: "highLimit"
+                              value: _vm.id_faild,
+                              expression: "id_faild"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "number", placeholder: "" },
-                          domProps: { value: _vm.highLimit },
+                          domProps: { value: _vm.id_faild },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.highLimit = $event.target.value
+                              _vm.id_faild = $event.target.value
                             }
                           }
                         })
@@ -58524,7 +58536,7 @@ var render = function() {
                           staticClass: "col-md-3 form-control-label",
                           attrs: { for: "text-input" }
                         },
-                        [_vm._v("Limite Bajo")]
+                        [_vm._v("Descripcion")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-md-9" }, [
@@ -58533,54 +58545,54 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.lowLimit,
-                              expression: "lowLimit"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "number", placeholder: "" },
-                          domProps: { value: _vm.lowLimit },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.lowLimit = $event.target.value
-                            }
-                          }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group row" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "col-md-3 form-control-label",
-                          attrs: { for: "text-input" }
-                        },
-                        [_vm._v("EU")]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-9" }, [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.eu,
-                              expression: "eu"
+                              value: _vm.description,
+                              expression: "description"
                             }
                           ],
                           staticClass: "form-control",
                           attrs: { type: "text", placeholder: "" },
-                          domProps: { value: _vm.eu },
+                          domProps: { value: _vm.description },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
                                 return
                               }
-                              _vm.eu = $event.target.value
+                              _vm.description = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-md-3 form-control-label",
+                          attrs: { for: "text-input" }
+                        },
+                        [_vm._v("Gravedad")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-9" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.severity,
+                              expression: "severity"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "number", placeholder: "" },
+                          domProps: { value: _vm.severity },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.severity = $event.target.value
                             }
                           }
                         })
@@ -58594,8 +58606,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: _vm.errorVariable,
-                            expression: "errorVariable"
+                            value: _vm.errorTypeEvent,
+                            expression: "errorTypeEvent"
                           }
                         ],
                         staticClass: "form-group row div-error"
@@ -58604,7 +58616,7 @@ var render = function() {
                         _c(
                           "div",
                           { staticClass: "text-center text-error" },
-                          _vm._l(_vm.errorMostrarMsjVariable, function(error) {
+                          _vm._l(_vm.errorMostrarMsjTypeEvent, function(error) {
                             return _c("div", {
                               key: error,
                               domProps: { textContent: _vm._s(error) }
@@ -58641,7 +58653,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.registrarVariable()
+                            return _vm.registrarTypeEvent()
                           }
                         }
                       },
@@ -58657,7 +58669,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: {
                           click: function($event) {
-                            return _vm.actualizarVariable()
+                            return _vm.actualizarTypeEvent()
                           }
                         }
                       },
@@ -60516,27 +60528,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   data: function data() {
     return {
-      datacollection: null
+      datacollection: null,
+      options: null
     };
   },
   mounted: function mounted() {
     this.fillData();
+    this.fillOption();
   },
 
   methods: {
     fillData: function fillData() {
       this.datacollection = {
-        labels: ['01', '02', '07', '15', '20', '23', '30'],
+        labels: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()],
         datasets: [{
           label: 'Consumo por Dia',
           backgroundColor: '#00c8ff',
-          data: [20, 40, 50, 20, 50, 40, 65]
+          data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
         }, {
-          label: 'Consumo por Dia',
-          backgroundColor: '#00c8ff',
-          data: [20, 40, 50, 20, 50, 40, 65]
+          label: 'Limite Bajo',
+          backgroundColor: '#e83a3a',
+          data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
+        }, {
+          label: 'Limite Alto',
+          backgroundColor: '#4e3ae8',
+          data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()]
         }]
       };
+    },
+    fillOption: function fillOption() {
+      this.options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: true,
+          labels: {
+            fontColor: '#7aff63'
+          }
+        }
+
+      };
+    },
+    getRandomInt: function getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
     }
   }
 });
@@ -77270,8 +77304,20 @@ var render = function() {
             _c("h4", [_vm._v("Temperatura 1")]),
             _vm._v(" "),
             _c("line-chart", {
-              attrs: { "chart-data": _vm.datacollection, height: 100 }
-            })
+              attrs: { "chart-data": _vm.datacollection, options: _vm.options }
+            }),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.fillData()
+                  }
+                }
+              },
+              [_vm._v("Randomize")]
+            )
           ],
           1
         )
