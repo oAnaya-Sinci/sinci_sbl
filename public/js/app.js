@@ -58698,7 +58698,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Maquina")]),
         _vm._v(" "),
-        _c("th", [_vm._v("id_fallo_plc")]),
+        _c("th", [_vm._v("N° de fallo PLC")]),
         _vm._v(" "),
         _c("th", [_vm._v("descripcion")]),
         _vm._v(" "),
@@ -60566,10 +60566,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         legend: {
           display: true,
           labels: {
-            fontColor: '#7aff63'
+            fontColor: '#000000'
           }
+        },
+        scales: {
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Hora'
+            }
+          }],
+          yAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: '°C'
+            }
+          }]
         }
-
       };
     },
     getRandomInt: function getRandomInt() {

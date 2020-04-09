@@ -28,7 +28,7 @@
                                     <th>Opciones</th>
                                     <th>Nombre</th>
                                     <th>Maquina</th>
-                                    <th>id_fallo_plc</th>
+                                    <th>N° de fallo PLC</th>
                                     <th>descripcion</th>
                                     <th>Gravedad</th>
                                     <th>Fecha creacion</th>

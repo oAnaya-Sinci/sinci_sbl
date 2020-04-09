@@ -64,10 +64,23 @@ import LineChart from './LineChart.js'
             legend: {
               display: true,
               labels: {
-                  fontColor: '#7aff63'
+                  fontColor: '#000000'
               }
-            }
-            
+            },
+            scales: { 
+                xAxes: [{ 
+                  scaleLabel: { 
+                  display: true, 
+                  labelString: 'Hora' 
+                  } 
+                }],
+                yAxes: [{ 
+                  scaleLabel: { 
+                  display: true, 
+                  labelString: '°C' 
+                  } 
+                }]  
+            } 
           }
       },
       getRandomInt () {
