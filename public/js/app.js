@@ -58551,7 +58551,10 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "" },
+                          attrs: {
+                            type: "text",
+                            placeholder: "Descripcion de evento"
+                          },
                           domProps: { value: _vm.description },
                           on: {
                             input: function($event) {
