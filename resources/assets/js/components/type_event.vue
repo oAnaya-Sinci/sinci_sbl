@@ -125,7 +125,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
                                     <div class="col-md-9">
-                                        <input type="text" v-model="description" class="form-control" placeholder="Descripcion de evento">                                        
+                                        <input type="text" v-model="description" class="form-control" placeholder="Descripcion del evento">                                        
                                     </div>
                                 </div>
                                 <div class="form-group row">
