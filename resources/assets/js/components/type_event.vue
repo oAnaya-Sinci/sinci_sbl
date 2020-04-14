@@ -28,7 +28,6 @@
                                     <th>Opciones</th>
                                     <th>Nombre</th>
                                     <th>Maquina</th>
-                                    <th>N° de fallo PLC</th>
                                     <th>descripcion</th>
                                     <th>Gravedad</th>
                                     <th>Fecha creacion</th>
@@ -55,7 +54,6 @@
                                     </td>
                                     <td v-text="evento.name"></td>
                                     <td v-text="evento.name_machine"></td>
-                                    <td v-text="evento.id_faild"></td>
                                     <td v-text="evento.description"></td>
                                     <td v-text="evento.severity"></td>
                                     <td v-text="evento.created_at"></td>
@@ -117,12 +115,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-3 form-control-label" for="text-input">id_fallo</label>
-                                    <div class="col-md-9">
-                                        <input type="number" v-model="id_faild" class="form-control" placeholder="">                                        
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label class="col-md-3 form-control-label" for="text-input">Descripcion</label>
                                     <div class="col-md-9">
                                         <input type="text" v-model="description" class="form-control" placeholder="Descripcion del evento">                                        
@@ -167,7 +159,6 @@
                 idmachine : 0,
                 name : '',
                 name_machine : '',
-                id_faild : 0,
                 description : '',
                 severity : 0,
                 arrayTypeEvent : [],
@@ -264,7 +255,6 @@
                 axios.post('/typeevent/registrar',{
                     'idmachine': this.idmachine,
                     'name': this.name,
-                    'id_faild': this.id_faild,
                     'description': this.description,
                     'severity': this.severity
                 }).then(function (response) {
@@ -284,7 +274,6 @@
                 axios.put('/typeevent/actualizar',{
                     'idmachine': this.idmachine,
                     'name': this.name,
-                    'id_faild': this.id_faild,
                     'description': this.description,
                     'severity': this.severity,
                     'id': this.evento_id
@@ -395,7 +384,6 @@
                 this.name_machine = '';
                 this.severity = 0;
                 this.description = '';
-                this.id_faild = 0;
 		        this.errorTypeEvent=0;
             },
             abrirModal(modelo, accion, data = []){
@@ -412,7 +400,6 @@
                                 this.name_machine = '';
                                 this.severity = 0;
                                 this.description = '';
-                                this.id_faild = 0;
 		                        this.errorTypeEvent=0;
                                 this.tipoAccion = 1;
                                 break;
@@ -427,7 +414,6 @@
                                 this.name = data['name'];
                                 this.idmachine=data['idmachine'];
                                 this.description=data['description'];
-                                this.id_faild=data['id_faild'];
                                 this.severity= data['severity'];
                                 break;
                             }

@@ -17,7 +17,6 @@ class CreateTypeEventsTable extends Migration
             $table->increments('id');
             $table->string('name', 30)->unique();
             $table->integer('idmachine')->unsigned();
-            $table->integer('id_faild');
             $table->string('description', 45);
             $table->integer('severity');
             $table->boolean('condicion')->default(1);
