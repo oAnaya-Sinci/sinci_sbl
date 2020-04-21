@@ -5934,8 +5934,8 @@ exports.default = function (old, replaceObj) {
 /* unused harmony export VueCharts */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_index_js__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseCharts__ = __webpack_require__(256);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__BaseCharts__["a"]; });
-/* unused harmony reexport HorizontalBar */
+/* unused harmony reexport Bar */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__BaseCharts__["d"]; });
 /* unused harmony reexport Doughnut */
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__BaseCharts__["e"]; });
 /* unused harmony reexport Pie */
@@ -77693,7 +77693,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.small {\r\n  max-width: 800px;\r\n  /* max-height: 500px; */\r\n  margin:  50px auto;\n}\r\n", ""]);
+exports.push([module.i, "\n.small {\r\n  max-width: 800px;\r\n  /* max-height: 500px; */\r\n  margin: 50px auto;\n}\r\n", ""]);
 
 // exports
 
@@ -77725,7 +77725,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     LineChart: __WEBPACK_IMPORTED_MODULE_0__horizontalBar_js__["a" /* default */]
@@ -77744,29 +77743,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     fillData: function fillData() {
       this.datacollection = {
-        labels: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt(), this.getRandomInt()],
+        labels: ["OEE", "Efectividad", "Disponibilidad", "Calidad"],
         datasets: [{
           label: "Downtime",
-          backgroundColor: "rgba(99,255,132,0.9)",
-          data: [3000, 2500],
+          backgroundColor: "green",
+          data: [50, 30, 60, 90], //ojo por estructura de chartjs se acomodan asi, la suma de dataset1[0] y dataset2[0], forman el 100 del OEE y así sucesivamente
           stack: 2
         }, {
           label: "Normaltime",
-          backgroundColor: "rgba(255,99,132,0.9)",
-          data: [3000, 3500],
+          backgroundColor: "red",
+          data: [50, 70, 40, 10],
           stack: 2
-
-        }, {
-          label: "NotYetHour",
-          backgroundColor: "rgba(20,20,0,0.8)",
-          data: [3000, 3000],
-          stack: 2
-
         }]
       };
     },
     fillOption: function fillOption() {
       this.options = {
+        title: {
+          display: true,
+          text: "Comparativa de OEE"
+        },
+        legend: {
+          display: false
+        },
         scales: {
           yAxes: [{
             ticks: {
@@ -77777,7 +77776,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           xAxes: [{
             stacked: true
           }]
-
         }
       };
     },
@@ -77798,7 +77796,7 @@ var reactiveProp = __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["c" /* mixins */].r
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  extends: __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["a" /* Bar */],
+  extends: __WEBPACK_IMPORTED_MODULE_0_vue_chartjs__["a" /* HorizontalBar */],
   mixins: [reactiveProp],
   props: ['options'],
   mounted: function mounted() {
@@ -77825,23 +77823,11 @@ var render = function() {
           "div",
           { staticClass: "small" },
           [
-            _c("h4", [_vm._v("Temperatura 1")]),
+            _c("h4", [_vm._v("OEE")]),
             _vm._v(" "),
             _c("line-chart", {
               attrs: { "chart-data": _vm.datacollection, options: _vm.options }
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                on: {
-                  click: function($event) {
-                    return _vm.fillData()
-                  }
-                }
-              },
-              [_vm._v("Randomize")]
-            )
+            })
           ],
           1
         )
@@ -77855,8 +77841,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("i", { staticClass: "fa fa-align-justify" }),
-      _vm._v(" Temperatura 1\r\n        ")
+      _c("i", { staticClass: "fa fa-align-justify" })
     ])
   }
 ]
