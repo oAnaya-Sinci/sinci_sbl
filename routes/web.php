@@ -20,12 +20,15 @@ Route::group(['middleware'=>['auth']],function(){
     
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/oee', 'OeeController');
+    Route::get('/user/listVaribles', 'UserController@listVaribles');
     Route::get('/main', function () {
         return view('contenido/contenido');
     })->name('main');
 
 
     Route::group(['middleware' => ['Usuario']], function () {
+        
+        Route::get('/user/listVaribles', 'UserController@listVaribles');
 
     });
 
@@ -43,6 +46,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/variable/actualizar', 'VariableController@update');
         Route::put('/variable/desactivar', 'VariableController@desactivar');
         Route::put('/variable/activar', 'VariableController@activar');
+       
 
         Route::get('/typeevent', 'TypeEventController@index');
         Route::post('/typeevent/registrar', 'TypeEventController@store');
@@ -59,6 +63,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/user/desactivar', 'UserController@desactivar');
         Route::put('/user/activar', 'UserController@activar');
         Route::get('/user/selectUser', 'UserController@selectUser');
+        Route::get('/user/listVaribles', 'UserController@listVaribles');
 
 
      

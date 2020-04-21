@@ -21,9 +21,10 @@ window.Vue = require('vue');
  Vue.component('rol', require('./components/Rol.vue'));
  Vue.component('user', require('./components/User.vue'));
  Vue.component('graficvar', require('./components/graficvar.vue'));
+ Vue.component('menuvar', require('./components/Menuvar.vue'));
 
 
-const app = new Vue({
+ const app = new Vue({
     el: '#app',
     data :{
         menu : 0

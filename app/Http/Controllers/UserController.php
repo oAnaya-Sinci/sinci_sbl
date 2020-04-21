@@ -109,7 +109,10 @@ class UserController extends Controller
         }
     }
 
-    public function desactivar(Request $request)
+    public function desactivar(
+        
+        
+    )
     {
         if (!$request->ajax()) return redirect('/');
         $user = User::findOrFail($request->id);
@@ -124,4 +127,12 @@ class UserController extends Controller
         $user->condicion = '1';
         $user->save();
     }
+    public function listMachinesUser(){
+        $id = auth()->user()->id; 
+        $users = User::join('machines','users.id','=','machines.iduser')
+            ->select('machines.id','machines.name as name_machine')
+            ->where('users.id','=', $id)->get();    
+        return  $users;
+    }
+    
 }
