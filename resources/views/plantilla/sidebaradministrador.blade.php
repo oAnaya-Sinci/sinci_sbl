@@ -2,7 +2,7 @@
             <nav class="sidebar-nav">
                 <ul class="nav">
                     <li @click="menu=0" class="nav-item">
-                        <a class="nav-link active" href="#"><i class="icon-speedometer"></i> OEE</a>
+                        <!--a class="nav-link active" href="#"><i class="icon-speedometer"></i> OEE no tiene caso recomiendo quitarlo</a!-->
                     </li>
                     <li class="nav-title">
                         Menu

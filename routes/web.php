@@ -18,6 +18,8 @@ Route::group(['middleware'=>['guest']],function(){
 
 Route::group(['middleware'=>['auth']],function(){
     
+    Route::get('/ProbandoConsulta', 'testDeletecontrol@show'); //abajo me da error por que no tengo usuario, solo quero ver usar eloquent
+
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
     Route::get('/oee', 'OeeController');
     Route::get('/main', function () {
@@ -26,6 +28,7 @@ Route::group(['middleware'=>['auth']],function(){
 
 
     Route::group(['middleware' => ['Usuario']], function () {
+        
 
     });
 

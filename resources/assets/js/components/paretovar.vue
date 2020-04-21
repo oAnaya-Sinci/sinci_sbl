@@ -42,7 +42,7 @@ import LineChart from './Line2Chart.js'
           datasets: [
             {
               label: 'Frecuencia  ',
-              backgroundColor: '#000000',
+              backgroundColor: 'gray',
               data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(),this.getRandomInt(), this.getRandomInt()],
                yAxisID: "y-axis1",
                type:'bar'
@@ -50,6 +50,7 @@ import LineChart from './Line2Chart.js'
               label: 'Porcnetaje invertido',
               borderColor: "black",
               data: [this.getRandomInt(), this.getRandomInt(), this.getRandomInt(),this.getRandomInt(), this.getRandomInt()],
+              type:'bar',
               fill: false
             }, 
             
