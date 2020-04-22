@@ -22,6 +22,8 @@ window.Vue = require('vue');
  Vue.component('user', require('./components/User.vue'));
  Vue.component('graficvar', require('./components/graficvar.vue'));
  Vue.component('menuvar', require('./components/Menuvar.vue'));
+ Vue.component('paretovar', require ('./components/paretovar.vue'));
+ Vue.component('oeeprom', require ('./components/OEEprom.vue'));
 
 
  const app = new Vue({

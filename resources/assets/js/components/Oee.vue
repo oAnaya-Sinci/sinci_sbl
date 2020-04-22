@@ -13,6 +13,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="ct-chart">
+                                    a ver a ver encuentrame
                                     <canvas id="oees">
                                     </canvas>
                                 </div>

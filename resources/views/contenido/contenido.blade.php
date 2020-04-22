@@ -4,8 +4,7 @@
     @if(Auth::check())
             @if (Auth::user()->idrol == 1)
             <template v-if="menu==0">
-                <h1>OEE</h1>
-                <oee></oee>
+               
             </template>
 
             <template v-if="menu==1">
@@ -30,9 +29,14 @@
             @elseif (Auth::user()->idrol == 2)
             <template v-if="menu==0">
                 <h1>OEE</h1>
+                <oeeprom></oeeprom>
             </template>
             <template v-if="menu==1">
                 <graficvar></graficvar>
+            </template>
+            <template v-if="menu==2">
+                
+                <paretovar></paretovar>
             </template>
             @else
 

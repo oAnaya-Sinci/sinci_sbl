@@ -6,9 +6,9 @@
         </div> 
         <div class="card-body">
             <div class="small">
+
                 <h4>Temperatura 1</h4>
-               <line-chart :chart-data="datacollection" :options="options"></line-chart>
-                <button @click="fillData()">Randomize</button>
+                <line-chart :chart-data="datacollection" :height="100"></line-chart>
             </div>
         </div>
    </div>
@@ -16,8 +16,6 @@
 </template>
 
 <script>
-
-
 
 import LineChart from './LineChart.js'
 

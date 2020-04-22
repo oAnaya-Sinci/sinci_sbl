@@ -18,6 +18,9 @@
                             </ul>
                         </li>
                     @endforeach
+                    <li @click="menu=2" class="nav-item">
+                        <a class="nav-link active" href="#"><i class="icon-speedometer"></i> Pareto</a>
+                    </li>
                 </ul>
             </nav>
             <button class="sidebar-minimizer brand-minimizer" type="button"></button>
