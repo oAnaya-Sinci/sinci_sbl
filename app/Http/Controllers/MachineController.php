@@ -24,7 +24,7 @@ class MachineController extends Controller
             $machines = Machine::orderBy('id', 'desc')->paginate(3);
         }
         else{
-            $machines = Machine::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(3);
+            $machines = Machine::where($criterio, 'like', '%'. $buscar . '%')->orderBy('id', 'desc')->paginate(50);
         }
         
 

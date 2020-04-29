@@ -17,13 +17,13 @@ class VariableController extends Controller
         if ($buscar==''){
             $variables = Variable::join('machines','variables.idmachine','=','machines.id')
             ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name','machines.name as name_machine','variables.eu','variables.condicion')
-            ->orderBy('variables.id', 'desc')->paginate(3);
+            ->orderBy('variables.id', 'desc')->paginate(50);
         }
         else{
             $variables = Variable::join('machines','variables.idmachine','=','machines.id')
             ->select('variables.id','variables.idmachine','variables.highLimit','variables.lowLimit','variables.name','machines.name as name_machine','variables.eu','variables.condicion')
             ->where('variables.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('variables.id', 'desc')->paginate(3);
+            ->orderBy('variables.id', 'desc')->paginate(50);
         }
         
 
@@ -87,6 +87,19 @@ class VariableController extends Controller
             ->select('id','name')
             ->orderBy('id', 'asc')->get();
         return  $variables;
+    }
+
+    public function datos_var (){
+        $anio=date('Y');
+        $oees=DB::table('oee as i')
+        ->select(DB::raw('TIMESTAMP(i.capturedTime) as mes'),
+        DB::raw('TIMESTAMP(i.capturedTime) as anio'),
+        DB::raw('SUM(i.total) as total'))
+        ->whereYear('i.capturedTime',$anio)
+        ->groupBy(DB::raw('TIMESTAMP(i.capturedTime)'),DB::raw('TIMESTAMP(i.capturedTime)'))
+        ->get();
+
+        return ['oees'=>$oees,'anio'=>$anio];  
     }
 
 

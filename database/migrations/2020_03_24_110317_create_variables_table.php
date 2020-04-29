@@ -17,7 +17,7 @@ class CreateVariablesTable extends Migration
         Schema::create('variables', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('idmachine')->unsigned();
-            $table->string('name', 30)->unique();
+            $table->string('name', 30);
             $table->decimal('highLimit', 10);
             $table->decimal('lowLimit', 10);
             $table->string('eu', 10);

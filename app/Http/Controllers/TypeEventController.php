@@ -17,13 +17,13 @@ class TypeEventController extends Controller
         if ($buscar==''){
             $typeevents = TypeEvent::join('machines','type_events.idmachine','=','machines.id')
             ->select('type_events.id','type_events.idmachine','type_events.name','machines.name as name_machine','type_events.description','type_events.severity','type_events.condicion','type_events.created_at','type_events.updated_at')
-            ->orderBy('type_events.id', 'desc')->paginate(3);
+            ->orderBy('type_events.id', 'desc')->paginate(50);
         }
         else{
             $typeevents = TypeEvent::join('machines','type_events.idmachine','=','machines.id')
             ->select('type_events.id','type_events.idmachine','type_events.name','machines.name as name_machine','type_events.description','type_events.severity','type_events.condicion','type_events.created_at','type_events.updated_at')
             ->where('type_events.'.$criterio, 'like', '%'. $buscar . '%')
-            ->orderBy('type_events.id', 'desc')->paginate(3);
+            ->orderBy('type_events.id', 'desc')->paginate(50);
         }
         
 
