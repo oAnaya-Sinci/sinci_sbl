@@ -21,7 +21,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control" name="iduser">
+                                                        <select class="form-control" name="idmachine">
                                                             <option value="0" disabled >Seleccione</option>
                                                             @foreach($machines as $machine)
                                                             <option value="{{$machine['id']}}"  @if($machine['id']=== $var['idmachine']) selected='selected' @endif>{{$machine['name']}} </option>
