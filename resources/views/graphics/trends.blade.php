@@ -12,13 +12,7 @@
     <div style="width:75%;">
         <canvas id="canvas"></canvas>
     </div>
-    <br>
-    <br>
-    <button id="randomizeData">Randomize Data</button>
-    <button id="addDataset">Add Dataset</button>
-    <button id="removeDataset">Remove Dataset</button>
-    <button id="addData">Add Data</button>
-    <button id="removeData">Remove Data</button>
+    
     
 
 
@@ -31,5 +25,8 @@
 <script src="{{ asset('vendor/chart.js/chart.min.js')}}"></script>
 <script src="{{ asset('vendor/chart.js/chart.bundle.min.js')}}"></script>
 <script src="{{ asset('vendor/chart.js/utils.js')}}"></script>
-<script src="{{ asset('js/trendsvars.js')}}"></script>
+<!--script src="{{ asset('js/trendsvars.js')}}"></script!-->
+<!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
+<script src="{{ asset('js/minutes.js')}}"></script>
+<!--script src="{{ asset('js/trendsvars.js')}}"></script!-->
 @endsection
