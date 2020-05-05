@@ -14,7 +14,8 @@ class CreateEventsTable extends Migration
     public function up()
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
+            $table->integer('idmachine')->unsigned();
             $table->datetime('startTime');
             $table->datetime('endTime');
             $table->integer('type');
@@ -22,7 +23,9 @@ class CreateEventsTable extends Migration
             $table->string('justification', 45);
             $table->integer('duration');
             $table->integer('id_plc');
-            $table->timestamps();
+            //$table->timestamps();
+
+            $table->foreign('idmachine')->references('id')->on('machines');
         });
     }
 

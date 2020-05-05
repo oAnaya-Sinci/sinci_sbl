@@ -14,12 +14,15 @@ class CreateTrendsTable extends Migration
     public function up()
     {
         Schema::create('trends', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
+            $table->integer('idvariable')->unsigned();
             $table->datetime('date');
             $table->integer('value');
             $table->decimal('highLimit', 10);
             $table->decimal('lowLimit', 10);
-            $table->timestamps();
+            //$table->timestamps();
+
+            $table->foreign('idvariable')->references('id')->on('variables');
         });
     }
 

@@ -14,7 +14,8 @@ class CreateOeeTable extends Migration
     public function up()
     {
         Schema::create('oee', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
+            $table->integer('idmachine')->unsigned();
             $table->datetime('capturedTime')->nullable();
             $table->float('oee')->nullable();
             $table->float('availability')->nullable();
@@ -31,7 +32,9 @@ class CreateOeeTable extends Migration
             $table->string('partId', 45)->nullable();
             $table->integer('idShift')->nullable();
             $table->decimal('total', 11, 2)->nullable();
-            $table->timestamps();
+            //$table->timestamps();
+
+            $table->foreign('idmachine')->references('id')->on('machines');
         });
     }
 
