@@ -18,7 +18,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">componentes:</h6>
             <a class="collapse-item" href="{{route('oee',['idmachine'=> $machine['id']])}}">Oee</a>
-            <a class="collapse-item" href="{{route('events',['idmachine'=> $machine['id']])}}">eventos</a>
+            <a class="collapse-item" href="{{route('events',['idmachine'=> $machine['id']])}}">Fallas por evento</a>
             @foreach($variables->listVaribles($machine['id']) as $var)
             <a class="collapse-item" href="{{route('trends',['idvariable'=> $var['id']])}}">{{$var['name']}}</a>
             @endforeach

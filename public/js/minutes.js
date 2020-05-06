@@ -1,49 +1,60 @@
-for (i = 0; i < 1440; i++) {
+var minutos = []
+var value=[]
+var highlimit=[]
+var lowlimit=[]
+
+var var_name = $('#var_name').val();
+var idvariable = $('#idvariable').val();
+var eu = $('#eu').val();
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+    }
+}); 
+$.ajax({
+        url:'/trends/'+idvariable+'/datos',
+        type:'GET',
+        success:function(response){
+        response.forEach(function (elemento, indice) {
             
-}
-
-var mylabels = []
-var data1=[]
-var data2=[]
-var data3=[]
-
-for (i = 0; i < 1440; i++) {
-    mylabels[i] = i
-    data1[i] =  Math.sin(i*.01 )*50
-    //data1[i] = randomScalingFactor()
-    data2[i] = 120
-    data3[i] = -120
-}
+            minutos.push(elemento['date']);
+            value.push(elemento['value']);
+            highlimit.push(elemento['highLimit']);
+            lowlimit.push(elemento['lowLimit']);
+        });
+        }
+});
 var config = {
     type: 'line',
     data: {
-        labels: mylabels,
+        labels: minutos,
         datasets: [{
-            label: "Variable",
-            backgroundColor: window.chartColors.red,
-            borderColor: window.chartColors.red,
-            data: data1,
+            label: "Consumo del Dia",
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            data: value,
             fill: false,
         }, {
             label: "Limite superior",
             fill: false,
-            backgroundColor: window.chartColors.blue,
-            borderColor: window.chartColors.blue,
-            data: data2,
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            data: highlimit,
         },
         {
             label: "Limite inferior",
             fill: false,
-            backgroundColor: window.chartColors.blue,
-            borderColor: window.chartColors.blue,
-            data: data3,
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            data: lowlimit,
         }]
     },
     options: {
         responsive: true,
         title: {
             display: true,
-            text: 'Chart.js Line Chart'
+            text: var_name
         },
         tooltips: {
             mode: 'index',
@@ -58,14 +69,14 @@ var config = {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Month'
+                    labelString: 'Minutos'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Value'
+                    labelString: eu
                 }
             }]
         }
@@ -76,14 +87,3 @@ window.onload = function () {
     var ctx = document.getElementById("canvas").getContext("2d");
     window.myLine = new Chart(ctx, config);
 };
-
-document.getElementById('randomizeData').addEventListener('click', function () {
-    config.data.datasets.forEach(function (dataset) {
-        dataset.data = dataset.data.map(function () {
-            return randomScalingFactor();
-        });
-
-    });
-
-    window.myLine.update();
-});

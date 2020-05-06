@@ -59,7 +59,6 @@ class VariableController extends Controller
     }
 
     public function listVaribles($id_maquines){
-        $id = auth()->user()->id; 
         $variables = Variable::where('idmachine', '=',$id_maquines)
             ->select('id','name')
             ->orderBy('id', 'asc')->get();

@@ -3,16 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Variable;
+use DB;
 
 class TrendsController extends Controller
 {
     public function index($idvariable)
     {
-            $trends = $idvariable;
+            
+            $date = Carbon::now();
+            $date = $date->format('Y-m-d'); 
+            $caso = 'd';
+            
+            $variables = Variable::where('variables.id', '=',$idvariable)
+            ->join('machines','variables.idmachine','=','machines.id')
+            ->select('variables.id','variables.idmachine','variables.name','variables.idmachine','machines.name as name_machine','variables.eu','variables.condicion')->get();
 
-            // $machines = Machine::where('condicion','=','1')
-            // ->select('id','name')->orderBy('name', 'asc')->get();
-     
-        return view('graphics.trends')->with(compact('trends'));
+        return view('graphics.trends')->with(compact('variables'));
+    }
+
+    public function datos($idvariable)
+    {
+            $date = Carbon::now();
+            $date = $date->format('Y-m-d'); 
+            $caso = 'd';
+            $trends = DB::select('call ConsultaTrends(?,?,?)',array($caso,$idvariable,$date));
+
+        return $trends;
     }
 }
