@@ -20,14 +20,11 @@ class TrendsController extends Controller
             ->join('machines','variables.idmachine','=','machines.id')
             ->select('variables.id','variables.idmachine','variables.name','variables.idmachine','machines.name as name_machine','variables.eu','variables.condicion')->get();
 
-        return view('graphics.trends')->with(compact('variables'));
+        return view('graphics.trends')->with(compact('variables','date'));
     }
 
-    public function datos($idvariable)
+    public function datos($idvariable,$caso,$date)
     {
-            $date = Carbon::now();
-            $date = $date->format('Y-m-d'); 
-            $caso = 'd';
             $trends = DB::select('call ConsultaTrends(?,?,?)',array($caso,$idvariable,$date));
 
         return $trends;
