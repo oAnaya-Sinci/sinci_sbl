@@ -1,7 +1,5 @@
-var minutos = []
-var value=[]
-var highlimit=[]
-var lowlimit=[]
+
+
 
 var var_name = $('#var_name').val();
 var idvariable = $('#idvariable').val();
@@ -18,36 +16,41 @@ $.ajax({
         success:function(response){
         response.forEach(function (elemento, indice) {
             
-            minutos.push(elemento['date']);
-            value.push(elemento['value']);
-            highlimit.push(elemento['highLimit']);
-            lowlimit.push(elemento['lowLimit']);
+            
+            config.data.labels.push(elemento['date']);
+            config.data.datasets[0].data.push(elemento['value'])
+            config.data.datasets[1].data.push(elemento['highLimit'])
+            config.data.datasets[2].data.push(elemento['lowLimit'])
+
         });
+        
+        
+        window.myLine.update()
         }
 });
 var config = {
     type: 'line',
     data: {
-        labels: minutos,
+        labels: [],
         datasets: [{
             label: "Consumo del Dia",
             backgroundColor: window.chartColors.blue,
             borderColor: window.chartColors.blue,
-            data: value,
+            data: [],
             fill: false,
         }, {
             label: "Limite superior",
             fill: false,
             backgroundColor: window.chartColors.red,
             borderColor: window.chartColors.red,
-            data: highlimit,
+            data: [],
         },
         {
             label: "Limite inferior",
             fill: false,
             backgroundColor: window.chartColors.red,
             borderColor: window.chartColors.red,
-            data: lowlimit,
+            data: [],
         }]
     },
     options: {
@@ -84,6 +87,6 @@ var config = {
 };
 
 window.onload = function () {
-    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx = document.getElementById("canvas").getContext("2d");
     window.myLine = new Chart(ctx, config);
 };
