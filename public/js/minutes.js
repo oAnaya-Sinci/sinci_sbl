@@ -17,8 +17,11 @@ function selectorfecha(caso){
                         url:'/trends/'+idvariable+'/d/'+date+'/datos',
                         type:'GET',
                         success:function(response){
+                            config.data.labels.length=0;
+                            config.data.datasets[0].length=0;
+                            config.data.datasets[1].length=0;
+                            config.data.datasets[2].length=0;
                         response.forEach(function (elemento, indice) {
-                            
                             
                             config.data.labels.push(elemento['date']);
                             config.data.datasets[0].data.push(elemento['value'])
@@ -45,7 +48,11 @@ function selectorfecha(caso){
                     url:'/trends/'+idvariable+'/m/'+date+'/datos',
                     type:'GET',
                     success:function(response){
-                    response.forEach(function (elemento, indice) {             
+                        config.data.labels.length=0;
+                        config.data.datasets[0].length=0;
+                        config.data.datasets[1].length=0;
+                        config.data.datasets[2].length=0;
+                    response.forEach(function (elemento, indice) {            
                         config.data.labels.push(elemento['date']);
                         config.data.datasets[0].data.push(elemento['value'])
                         config.data.datasets[1].data.push(elemento['highLimit'])
