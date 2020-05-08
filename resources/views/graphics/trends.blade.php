@@ -10,7 +10,8 @@
                     <h6 class="m-0 font-weight-bold text-primary">{{$var['name_machine']}}</h6>
                     <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$var['name']}}"> 
                     <input type="hidden" class="form-control" name="idvariable" id="idvariable" value="{{$var['id']}}"> 
-                    <input type="hidden" class="form-control" name="eu" id="eu" value="{{$var['eu']}}">   
+                    <input type="hidden" class="form-control" name="eu" id="eu" value="{{$var['eu']}}">
+                    <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">      
                 @endforeach
             </div>
                 <div class="card-body">

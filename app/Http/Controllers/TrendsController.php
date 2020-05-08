@@ -14,7 +14,6 @@ class TrendsController extends Controller
             
             $date = Carbon::now();
             $date = $date->format('Y-m-d'); 
-            $caso = 'd';
             
             $variables = Variable::where('variables.id', '=',$idvariable)
             ->join('machines','variables.idmachine','=','machines.id')

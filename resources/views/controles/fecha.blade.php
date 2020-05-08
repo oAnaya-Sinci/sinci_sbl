@@ -11,7 +11,7 @@
                     <button  class="btn btn-success btn-icon-split" id="b_mes" name="b_mes">Por Mes</button>
                     <label class="form-control-label" for="fecha">Selecciona una fecha:</label><br>
                     <div class="input-group">
-                    <input type="date" class="form-control" id="i_dia" name="dia" value="{{$date}}" >
+                    <input type="date" class="form-control" id="i_dia" name="dia" >
                     <input type="month" class="form-control" id="i_mes" name="mes" style="display: none;">
                     </div>
                     

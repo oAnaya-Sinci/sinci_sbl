@@ -1,6 +1,104 @@
+//consultas para graficar
+var var_name = $('#var_name').val();
+var idmachine = $('#idmachine').val();
+var eu = "";
+var date = $('#date').val();
+var ejex = "Dia";
+var etiq = "Consumo del Día";	 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
+        $.ajax({
+                url:'/oee/'+idmachine+'/d/'+date+'/datos',
+                type:'GET',
+                success:function(response){
+                   
+                    config.data.labels.length=0;
+                    config.data.datasets[0].length=0;
+                    config.data.datasets[1].length=0;
+                    config.data.datasets[2].length=0;
+                response.forEach(function (elemento, indice) {
+                    console.log(elemento,indice)
 
+                    config.data.labels.push(elemento[0]['date']);
+                    config.data.datasets[0].data.push(elemento['availability'])
+                    config.data.datasets[1].data.push(elemento['performance'])
+                    config.data.datasets[2].data.push(elemento['quality'])
+                    config.data.datasets[3].data.push(elemento['oee'])
 
+                });
+                               
+                window.myLine.update()
+                }
+        });
 
+$(document).ready(function()
+{  
+    $("input[name=dia]").change(function () {
+        var date = $('#i_dia').val();
+        var ejex = "Dia";
+        var etiq = "Consumo del Día";	 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
+        $.ajax({
+                url:'/trends/'+idvariable+'/d/'+date+'/datos',
+                type:'GET',
+                success:function(response){
+                    // config.data.labels.length=0;
+                    // config.data.datasets[0].length=0;
+                    // config.data.datasets[1].length=0;
+                    // config.data.datasets[2].length=0;
+                response.forEach(function (elemento, indice) {
+                    
+                    // config.data.labels.push(elemento['date']);
+                    // config.data.datasets[0].data.push(elemento['value'])
+                    // config.data.datasets[1].data.push(elemento['highLimit'])
+                    // config.data.datasets[2].data.push(elemento['lowLimit'])
+
+                });
+                               
+                window.myLine.update()
+                }
+        });
+
+    });
+    $("input[name=mes]").change(function () {	 
+        var date = $('#i_mes').val();
+        var ejex = "Mes";
+        var etiq = "Consumo del Mes";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
+        $.ajax({
+                url:'/trends/'+idvariable+'/m/'+date+'/datos',
+                type:'GET',
+                success:function(response){
+                    // config.data.labels.length=0;
+                    // config.data.datasets[0].length=0;
+                    // config.data.datasets[1].length=0;
+                    // config.data.datasets[2].length=0;
+                response.forEach(function (elemento, indice) {            
+                    // config.data.labels.push(elemento['date']);
+                    // config.data.datasets[0].data.push(elemento['value'])
+                    // config.data.datasets[1].data.push(elemento['highLimit'])
+                    // config.data.datasets[2].data.push(elemento['lowLimit'])
+
+                });
+                
+                
+                window.myLine.update()
+                }
+        });
+    });
+   
+});
 //Editables Maquina 5
 var configM1 = {
     type: 'doughnut',
@@ -317,39 +415,35 @@ window.onload = function () {
 
 
 
-var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var MONTHS = [];
 var config = {
     type: 'line',
     data: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
+        labels: [],
         datasets: [{
             label: "My First dataset",
-            backgroundColor: window.chartColors.red,
-            borderColor: window.chartColors.red,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ],
+            backgroundColor: window.chartColors.blue,
+            borderColor: window.chartColors.blue,
+            data: [],
             fill: false,
         }, {
             label: "My Second dataset",
             fill: false,
-            backgroundColor: window.chartColors.blue,
-            borderColor: window.chartColors.blue,
-            data: [
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor(),
-                randomScalingFactor()
-            ],
+            backgroundColor: window.chartColors.orange,
+            borderColor: window.chartColors.orange,
+            data: [],
+        }, {
+            label: "My Second dataset",
+            fill: false,
+            backgroundColor: window.chartColors.green,
+            borderColor: window.chartColors.green,
+            data: [],
+        }, {
+            label: "My Second dataset",
+            fill: false,
+            backgroundColor: window.chartColors.red,
+            borderColor: window.chartColors.red,
+            data: [],
         }]
     },
     options: {
@@ -428,35 +522,3 @@ Chart.pluginService.register({
         }
     }
 });
-/*
-Chart.plugins.register({
-    afterDatasetsDraw: function(chart) {
-        var ctx = chart.ctx;
-
-        chart.data.datasets.forEach(function(dataset, i) {
-            var meta = chart.getDatasetMeta(i);
-            if (!meta.hidden) {
-                meta.data.forEach(function(element, index) {
-                    // Draw the text in black, with the specified font
-                    ctx.fillStyle = 'rgb(0, 0, 0)';
-
-                    var fontSize = 16;
-                    var fontStyle = 'normal';
-                    var fontFamily = 'Helvetica Neue';
-                    ctx.font = Chart.helpers.fontString(fontSize, fontStyle, fontFamily);
-
-                    // Just naively convert to string for now
-                    var dataString = dataset.data[index].toString();
-
-                    // Make sure alignment settings are correct
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-
-                    var padding = 5;
-                    var position = element.tooltipPosition();
-                    ctx.fillText(dataString, position.x, position.y - (fontSize / 2) - padding);
-                });
-            }
-        });
-    }
-});*/
