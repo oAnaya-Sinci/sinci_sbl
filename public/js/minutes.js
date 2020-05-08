@@ -2,77 +2,67 @@ var var_name = $('#var_name').val();
 var idvariable = $('#idvariable').val();
 var eu = $('#eu').val();
 
-function selectorfecha(caso){
+$(document).ready(function()
+{  
+    $("input[name=dia]").change(function () {
+        var date = $('#i_dia').val();	 
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
+        $.ajax({
+                url:'/trends/'+idvariable+'/d/'+date+'/datos',
+                type:'GET',
+                success:function(response){
+                    config.data.labels.length=0;
+                    config.data.datasets[0].length=0;
+                    config.data.datasets[1].length=0;
+                    config.data.datasets[2].length=0;
+                response.forEach(function (elemento, indice) {
+                    
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['value'])
+                    config.data.datasets[1].data.push(elemento['highLimit'])
+                    config.data.datasets[2].data.push(elemento['lowLimit'])
 
-    switch(caso){
-        case 1:
-            var date = $('#dia').val();
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
-                    }
-                }); 
-                $.ajax({
-                        url:'/trends/'+idvariable+'/d/'+date+'/datos',
-                        type:'GET',
-                        success:function(response){
-                            config.data.labels.length=0;
-                            config.data.datasets[0].length=0;
-                            config.data.datasets[1].length=0;
-                            config.data.datasets[2].length=0;
-                        response.forEach(function (elemento, indice) {
-                            
-                            config.data.labels.push(elemento['date']);
-                            config.data.datasets[0].data.push(elemento['value'])
-                            config.data.datasets[1].data.push(elemento['highLimit'])
-                            config.data.datasets[2].data.push(elemento['lowLimit'])
-
-                        });
-                        
-                        
-                        window.myLine.update()
-                        }
                 });
-
-        break;
-        case 2:
-            var date = $('#mes').val();
-            console.log(date)
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                               
+                window.myLine.update()
                 }
-            }); 
-            $.ajax({
-                    url:'/trends/'+idvariable+'/m/'+date+'/datos',
-                    type:'GET',
-                    success:function(response){
-                        config.data.labels.length=0;
-                        config.data.datasets[0].length=0;
-                        config.data.datasets[1].length=0;
-                        config.data.datasets[2].length=0;
-                    response.forEach(function (elemento, indice) {            
-                        config.data.labels.push(elemento['date']);
-                        config.data.datasets[0].data.push(elemento['value'])
-                        config.data.datasets[1].data.push(elemento['highLimit'])
-                        config.data.datasets[2].data.push(elemento['lowLimit'])
+        });
 
-                    });
-                    
-                    
-                    window.myLine.update()
-                    }
-            });
-        break;
-        default:
-            break;
-    }
-}
+    });
+    $("input[name=mes]").change(function () {	 
+        var date = $('#i_mes').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
+        $.ajax({
+                url:'/trends/'+idvariable+'/m/'+date+'/datos',
+                type:'GET',
+                success:function(response){
+                    config.data.labels.length=0;
+                    config.data.datasets[0].length=0;
+                    config.data.datasets[1].length=0;
+                    config.data.datasets[2].length=0;
+                response.forEach(function (elemento, indice) {            
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['value'])
+                    config.data.datasets[1].data.push(elemento['highLimit'])
+                    config.data.datasets[2].data.push(elemento['lowLimit'])
 
-
-
-
+                });
+                
+                
+                window.myLine.update()
+                }
+        });
+    });
+   
+});
 var config = {
     type: 'line',
     data: {
