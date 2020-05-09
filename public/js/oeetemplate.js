@@ -4,100 +4,120 @@ var idmachine = $('#idmachine').val();
 var eu = "";
 var date = $('#date').val();
 var ejex = "Dia";
-var etiq = "Consumo del Día";	 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
-            }
-        }); 
-        $.ajax({
-                url:'/oee/'+idmachine+'/d/'+date+'/datos',
-                type:'GET',
-                success:function(response){
-                   
-                    config.data.labels.length=0;
-                    config.data.datasets[0].length=0;
-                    config.data.datasets[1].length=0;
-                    config.data.datasets[2].length=0;
-                response.forEach(function (elemento, indice) {
-                    console.log(elemento,indice)
+var etiq = "Consumo del Día";
 
-                    config.data.labels.push(elemento[0]['date']);
-                    config.data.datasets[0].data.push(elemento['availability'])
-                    config.data.datasets[1].data.push(elemento['performance'])
-                    config.data.datasets[2].data.push(elemento['quality'])
-                    config.data.datasets[3].data.push(elemento['oee'])
 
-                });
-                               
-                window.myLine.update()
-                }
+//arrays de prueba ver los valores
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+$.ajax({
+    url: '/oee/' + idmachine + '/d/' + date + '/datos',
+    type: 'GET',
+    success: function (response) {
+
+        config.data.labels.length = 0;
+        config.data.datasets[0].length = 0;
+        config.data.datasets[1].length = 0;
+        config.data.datasets[2].length = 0;
+        
+        //console.log(response[0])
+        //console.log(response[1])
+        //console.log(response)
+
+        response[1].forEach(function(elemento, indice){
+            /*solo es un row, no necesito el foreach pero quiero guardar sintaxis
+            si funciona nada mas hay que asignarle los datos al elemento de configuracion del grafico correspondiente
+            */ 
+            console.log(
+                elemento.date,
+                elemento.AvailabilityG,
+                elemento.AvailabilityR
+                )
+        })
+        
+        response[0].forEach(function (elemento, indice) {
+            
+
+            config.data.labels.push(elemento['date']);
+            config.data.datasets[0].data.push(elemento['availability'])
+            config.data.datasets[1].data.push(elemento['performance'])
+            config.data.datasets[2].data.push(elemento['quality'])
+            config.data.datasets[3].data.push(elemento['oee'])
+
         });
 
-$(document).ready(function()
-{  
+        window.myLine.update()
+    }
+});
+
+$(document).ready(function () {
     $("input[name=dia]").change(function () {
         var date = $('#i_dia').val();
         var ejex = "Dia";
-        var etiq = "Consumo del Día";	 
+        var etiq = "Consumo del Día";
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }); 
+        });
         $.ajax({
-                url:'/trends/'+idvariable+'/d/'+date+'/datos',
-                type:'GET',
-                success:function(response){
-                    // config.data.labels.length=0;
-                    // config.data.datasets[0].length=0;
-                    // config.data.datasets[1].length=0;
-                    // config.data.datasets[2].length=0;
+            url: '/trends/' + idvariable + '/d/' + date + '/datos',
+            type: 'GET',
+            success: function (response) {
+                // config.data.labels.length=0;
+                // config.data.datasets[0].length=0;
+                // config.data.datasets[1].length=0;
+                // config.data.datasets[2].length=0;
+               
                 response.forEach(function (elemento, indice) {
-                    
+
                     // config.data.labels.push(elemento['date']);
                     // config.data.datasets[0].data.push(elemento['value'])
                     // config.data.datasets[1].data.push(elemento['highLimit'])
                     // config.data.datasets[2].data.push(elemento['lowLimit'])
 
                 });
-                               
+
                 window.myLine.update()
-                }
+            }
         });
 
     });
-    $("input[name=mes]").change(function () {	 
+    $("input[name=mes]").change(function () {
         var date = $('#i_mes').val();
         var ejex = "Mes";
         var etiq = "Consumo del Mes";
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }); 
+        });
         $.ajax({
-                url:'/trends/'+idvariable+'/m/'+date+'/datos',
-                type:'GET',
-                success:function(response){
-                    // config.data.labels.length=0;
-                    // config.data.datasets[0].length=0;
-                    // config.data.datasets[1].length=0;
-                    // config.data.datasets[2].length=0;
-                response.forEach(function (elemento, indice) {            
+            url: '/trends/' + idvariable + '/m/' + date + '/datos',
+            type: 'GET',
+            success: function (response) {
+                // config.data.labels.length=0;
+                // config.data.datasets[0].length=0;
+                // config.data.datasets[1].length=0;
+                // config.data.datasets[2].length=0;
+                response.forEach(function (elemento, indice) {
                     // config.data.labels.push(elemento['date']);
                     // config.data.datasets[0].data.push(elemento['value'])
                     // config.data.datasets[1].data.push(elemento['highLimit'])
                     // config.data.datasets[2].data.push(elemento['lowLimit'])
 
                 });
-                
-                
+
+
                 window.myLine.update()
-                }
+            }
         });
     });
-   
+
 });
 //Editables Maquina 5
 var configM1 = {
