@@ -4,7 +4,6 @@ var idmachine = $('#idmachine').val();
 var eu = "";
 var date = $('#date').val();
 var ejex = "Dia";
-var etiq = "Consumo del Día";
 
 
 //arrays de prueba ver los valores
@@ -18,30 +17,33 @@ $.ajax({
     url: '/oee/' + idmachine + '/d/' + date + '/datos',
     type: 'GET',
     success: function (response) {
-
-        config.data.labels.length = 0;
-        config.data.datasets[0].length = 0;
-        config.data.datasets[1].length = 0;
-        config.data.datasets[2].length = 0;
         
-        //console.log(response[0])
-        //console.log(response[1])
-        //console.log(response)
-
+        config.data.labels.length = 0;
+        config.data.datasets[0].data.length = 0;
+        config.data.datasets[1].data.length = 0;
+        config.data.datasets[2].data.length = 0;
+        config.data.datasets[3].data.length = 0;
+        // configM1.data.datasets[0].data.length = 0;
+        // configEf.data.datasets[0].data.length = 0;
+        // configDis.data.datasets[0].data.length = 0;
+        // configQty.data.datasets[0].data.length = 0;
+        config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+        
         response[1].forEach(function(elemento, indice){
-            /*solo es un row, no necesito el foreach pero quiero guardar sintaxis
-            si funciona nada mas hay que asignarle los datos al elemento de configuracion del grafico correspondiente
-            */ 
-            console.log(
-                elemento.date,
-                elemento.AvailabilityG,
-                elemento.AvailabilityR
-                )
-        })
+
+            configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+            configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
+            configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+            configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+            configM1.options.elements.center.text = elemento.OEEG+'%';
+            configEf.options.elements.center.text = elemento.performanceG+'%';
+            configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+            configQty.options.elements.center.text = elemento.qualityG+'%';
+
+
+        });
         
         response[0].forEach(function (elemento, indice) {
-            
-
             config.data.labels.push(elemento['date']);
             config.data.datasets[0].data.push(elemento['availability'])
             config.data.datasets[1].data.push(elemento['performance'])
@@ -51,38 +53,56 @@ $.ajax({
         });
 
         window.myLine.update()
+        window.myMaq5.update()
+        window.myMaq6.update()
+        window.myMaq7.update()
+        window.myMaq8.update()
     }
 });
 
 $(document).ready(function () {
     $("input[name=dia]").change(function () {
         var date = $('#i_dia').val();
-        var ejex = "Dia";
-        var etiq = "Consumo del Día";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '/trends/' + idvariable + '/d/' + date + '/datos',
+            url: '/oee/' + idmachine + '/d/' + date + '/datos',
             type: 'GET',
             success: function (response) {
-                // config.data.labels.length=0;
-                // config.data.datasets[0].length=0;
-                // config.data.datasets[1].length=0;
-                // config.data.datasets[2].length=0;
-               
-                response.forEach(function (elemento, indice) {
+                config.data.labels.length = 0;
+                config.data.datasets[0].length = 0;
+                config.data.datasets[1].length = 0;
+                config.data.datasets[2].length = 0;
+                config.data.datasets[3].length = 0;
+                config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+                response[1].forEach(function(elemento, indice){
+                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
+                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+                    configM1.options.elements.center.text = elemento.OEEG+'%';
+                    configEf.options.elements.center.text = elemento.performanceG+'%';
+                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                    configQty.options.elements.center.text = elemento.qualityG+'%';
 
-                    // config.data.labels.push(elemento['date']);
-                    // config.data.datasets[0].data.push(elemento['value'])
-                    // config.data.datasets[1].data.push(elemento['highLimit'])
-                    // config.data.datasets[2].data.push(elemento['lowLimit'])
-
+                });
+                response[0].forEach(function (elemento, indice) {
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['availability'])
+                    config.data.datasets[1].data.push(elemento['performance'])
+                    config.data.datasets[2].data.push(elemento['quality'])
+                    config.data.datasets[3].data.push(elemento['oee'])
+        
                 });
 
                 window.myLine.update()
+                window.myMaq5.update()
+                window.myMaq6.update()
+                window.myMaq7.update()
+                window.myMaq8.update()
             }
         });
 
@@ -90,32 +110,51 @@ $(document).ready(function () {
     $("input[name=mes]").change(function () {
         var date = $('#i_mes').val();
         var ejex = "Mes";
-        var etiq = "Consumo del Mes";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '/trends/' + idvariable + '/m/' + date + '/datos',
+            url: '/oee/' + idvariable + '/m/' + date + '/datos',
             type: 'GET',
             success: function (response) {
-                // config.data.labels.length=0;
-                // config.data.datasets[0].length=0;
-                // config.data.datasets[1].length=0;
-                // config.data.datasets[2].length=0;
-                response.forEach(function (elemento, indice) {
-                    // config.data.labels.push(elemento['date']);
-                    // config.data.datasets[0].data.push(elemento['value'])
-                    // config.data.datasets[1].data.push(elemento['highLimit'])
-                    // config.data.datasets[2].data.push(elemento['lowLimit'])
+                config.data.labels.length = 0;
+                config.data.datasets[0].length = 0;
+                config.data.datasets[1].length = 0;
+                config.data.datasets[2].length = 0;
+                config.data.datasets[3].length = 0;
+               
+                response[1].forEach(function(elemento, indice){
+                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
+                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+                    configM1.options.elements.center.text = elemento.OEEG+'%';
+                    configEf.options.elements.center.text = elemento.performanceG+'%';
+                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                    configQty.options.elements.center.text = elemento.qualityG+'%';
 
                 });
-
+                response[0].forEach(function (elemento, indice) {
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['availability'])
+                    config.data.datasets[1].data.push(elemento['performance'])
+                    config.data.datasets[2].data.push(elemento['quality'])
+                    config.data.datasets[3].data.push(elemento['oee'])
+        
+                });
 
                 window.myLine.update()
+                window.myMaq5.update()
+                window.myMaq6.update()
+                window.myMaq7.update()
+                window.myMaq8.update()
             }
         });
+    });
+    $("input[name=año]").change(function() 
+    {
     });
 
 });
@@ -126,7 +165,7 @@ var configM1 = {
         labels: ["Green", "Yellow"],
 
         datasets: [{
-            data: [90, 10],
+            data: [],
             backgroundColor: [
                 'green',
                 'red'
@@ -156,7 +195,7 @@ var configM1 = {
         },
         elements: {
             center: {
-                text: '90%',
+                text: '',
                 color: 'green', // Default is #000000
                 fontStyle: 'Arial', // Default is Arial
                 sidePadding: 20 // Defualt is 20 (as a percentage)
@@ -198,7 +237,7 @@ var configEf = {
         labels: ["Green", "Yellow"],
 
         datasets: [{
-            data: [90, 10],
+            data: [],
             backgroundColor: [
                 'green',
                 'red'
@@ -231,7 +270,7 @@ var configEf = {
         },
         elements: {
             center: {
-                text: '90%',
+                text: '',
                 color: 'green', // Default is #000000
                 fontStyle: 'Arial', // Default is Arial
                 sidePadding: 20 // Defualt is 20 (as a percentage)
@@ -273,7 +312,7 @@ var configDis = {
         labels: ["Green", "Yellow"],
 
         datasets: [{
-            data: [90, 10],
+            data: [],
             backgroundColor: [
                 'green',
                 'red'
@@ -305,7 +344,7 @@ var configDis = {
         },
         elements: {
             center: {
-                text: '90%',
+                text: '',
                 color: 'green', // Default is #000000
                 fontStyle: 'Arial', // Default is Arial
                 sidePadding: 20 // Defualt is 20 (as a percentage)
@@ -346,7 +385,7 @@ var configQty = {
         labels: ["Green", "Yellow"],
 
         datasets: [{
-            data: [90, 10],
+            data: [],
             backgroundColor: [
                 'green',
                 'red'
@@ -378,7 +417,7 @@ var configQty = {
         },
         elements: {
             center: {
-                text: '90%',
+                text: '',
                 color: 'green', // Default is #000000
                 fontStyle: 'Arial', // Default is Arial
                 sidePadding: 20 // Defualt is 20 (as a percentage)
@@ -425,7 +464,7 @@ window.onload = function () {
     window.myMaq7 = new Chart(ctx3, this.configQty);
 
     var ctx4 = document.getElementById("Canvas4").getContext("2d");
-    window.myMaq7 = new Chart(ctx4, this.configQty);
+    window.myMaq8 = new Chart(ctx4, this.configQty);
 
     var ctx5 = document.getElementById("Canvas").getContext("2d");
     window.myLine = new Chart(ctx5, config);
@@ -433,33 +472,30 @@ window.onload = function () {
 };
 
 
-
-
-var MONTHS = [];
 var config = {
     type: 'line',
     data: {
         labels: [],
         datasets: [{
-            label: "My First dataset",
+            label: "Disponibilidad",
             backgroundColor: window.chartColors.blue,
             borderColor: window.chartColors.blue,
             data: [],
             fill: false,
         }, {
-            label: "My Second dataset",
+            label: "Rendimiento",
             fill: false,
             backgroundColor: window.chartColors.orange,
             borderColor: window.chartColors.orange,
             data: [],
         }, {
-            label: "My Second dataset",
+            label: "Calidad",
             fill: false,
             backgroundColor: window.chartColors.green,
             borderColor: window.chartColors.green,
             data: [],
         }, {
-            label: "My Second dataset",
+            label: "OEE",
             fill: false,
             backgroundColor: window.chartColors.red,
             borderColor: window.chartColors.red,
@@ -470,7 +506,7 @@ var config = {
         responsive: true,
         title: {
             display: true,
-            text: 'Chart.js Line Chart'
+            text: var_name
         },
         tooltips: {
             mode: 'index',
@@ -485,14 +521,14 @@ var config = {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Month'
+                    labelString: ''
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Value'
+                    labelString: ''
                 }
             }]
         }
