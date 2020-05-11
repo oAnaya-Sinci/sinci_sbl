@@ -2,8 +2,8 @@
 var var_name = $('#var_name').val();
 var idmachine = $('#idmachine').val();
 var eu = "";
-var date = $('#date').val();
-var ejex = "Dia";
+var date = $('#date').val(); 
+$('#i_dia').val(date)
 
 
 //arrays de prueba ver los valores
@@ -31,14 +31,15 @@ $.ajax({
         
         response[1].forEach(function(elemento, indice){
 
-            configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-            configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
             configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+            configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]        
             configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-            configM1.options.elements.center.text = elemento.OEEG+'%';
-            configEf.options.elements.center.text = elemento.performanceG+'%';
+            configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+            
             configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+            configEf.options.elements.center.text = elemento.performanceG+'%';
             configQty.options.elements.center.text = elemento.qualityG+'%';
+            configM1.options.elements.center.text = elemento.OEEG+'%';
 
 
         });
@@ -77,16 +78,21 @@ $(document).ready(function () {
                 config.data.datasets[1].length = 0;
                 config.data.datasets[2].length = 0;
                 config.data.datasets[3].length = 0;
+                // configM1.data.datasets[0].data.length = 0;
+                // configEf.data.datasets[0].data.length = 0;
+                // configDis.data.datasets[0].data.length = 0;
+                // configQty.data.datasets[0].data.length = 0;
                 config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
                 response[1].forEach(function(elemento, indice){
-                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
                     configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]        
                     configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-                    configM1.options.elements.center.text = elemento.OEEG+'%';
-                    configEf.options.elements.center.text = elemento.performanceG+'%';
+                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                    
                     configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                    configEf.options.elements.center.text = elemento.performanceG+'%';
                     configQty.options.elements.center.text = elemento.qualityG+'%';
+                    configM1.options.elements.center.text = elemento.OEEG+'%';
 
                 });
                 response[0].forEach(function (elemento, indice) {
@@ -109,14 +115,13 @@ $(document).ready(function () {
     });
     $("input[name=mes]").change(function () {
         var date = $('#i_mes').val();
-        var ejex = "Mes";
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '/oee/' + idvariable + '/m/' + date + '/datos',
+            url: '/oee/' + idmachine + '/m/' + date + '/datos',
             type: 'GET',
             success: function (response) {
                 config.data.labels.length = 0;
@@ -124,7 +129,11 @@ $(document).ready(function () {
                 config.data.datasets[1].length = 0;
                 config.data.datasets[2].length = 0;
                 config.data.datasets[3].length = 0;
-               
+                // configM1.data.datasets[0].data.length = 0;
+                // configEf.data.datasets[0].data.length = 0;
+                // configDis.data.datasets[0].data.length = 0;
+                // configQty.data.datasets[0].data.length = 0;
+                config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
                 response[1].forEach(function(elemento, indice){
                     configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
                     configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
@@ -187,7 +196,9 @@ var configM1 = {
         },
         title: {
             display: true,
-            text: 'Efectividad'
+            text: 'OEE',
+            fontSize: '50',
+            fontColor: 'black'
         },
         animation: {
             animateScale: true,
@@ -259,7 +270,7 @@ var configEf = {
         },
         title: {
             display: true,
-            text: 'Disponibilidad',
+            text: 'Efectividad',
             fontSize: '50',
             fontColor: 'black'
             //fontFamily:
@@ -334,7 +345,7 @@ var configDis = {
         },
         title: {
             display: true,
-            text: 'Efectividad',
+            text: 'Disponibilidad',
             fontSize: '50',
             fontColor: 'black'
         },
@@ -455,16 +466,16 @@ var configQty = {
 
 window.onload = function () {
     var ctx = document.getElementById("Canvas1").getContext("2d");
-    window.myMaq5 = new Chart(ctx, this.configEf);
+    window.myMaq5 = new Chart(ctx, this.configDis);
 
     var ctx2 = document.getElementById("Canvas2").getContext("2d");
-    window.myMaq6 = new Chart(ctx2, this.configDis);
+    window.myMaq6 = new Chart(ctx2, this.configEf);
 
     var ctx3 = document.getElementById("Canvas3").getContext("2d");
     window.myMaq7 = new Chart(ctx3, this.configQty);
 
     var ctx4 = document.getElementById("Canvas4").getContext("2d");
-    window.myMaq8 = new Chart(ctx4, this.configQty);
+    window.myMaq8 = new Chart(ctx4, this.configM1);
 
     var ctx5 = document.getElementById("Canvas").getContext("2d");
     window.myLine = new Chart(ctx5, config);
