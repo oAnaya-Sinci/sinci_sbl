@@ -3,8 +3,6 @@ var var_name = $('#var_name').val();
 var idmachine = $('#idmachine').val();
 var eu = "";
 var date = $('#date').val(); 
-$('#i_dia').val(date)
-
 
 //arrays de prueba ver los valores
 
@@ -61,112 +59,7 @@ $.ajax({
     }
 });
 
-$(document).ready(function () {
-    $("input[name=dia]").change(function () {
-        var date = $('#i_dia').val();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/oee/' + idmachine + '/d/' + date + '/datos',
-            type: 'GET',
-            success: function (response) {
-                config.data.labels.length = 0;
-                config.data.datasets[0].length = 0;
-                config.data.datasets[1].length = 0;
-                config.data.datasets[2].length = 0;
-                config.data.datasets[3].length = 0;
-                // configM1.data.datasets[0].data.length = 0;
-                // configEf.data.datasets[0].data.length = 0;
-                // configDis.data.datasets[0].data.length = 0;
-                // configQty.data.datasets[0].data.length = 0;
-                config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
-                response[1].forEach(function(elemento, indice){
-                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
-                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]        
-                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-                    
-                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
-                    configEf.options.elements.center.text = elemento.performanceG+'%';
-                    configQty.options.elements.center.text = elemento.qualityG+'%';
-                    configM1.options.elements.center.text = elemento.OEEG+'%';
 
-                });
-                response[0].forEach(function (elemento, indice) {
-                    config.data.labels.push(elemento['date']);
-                    config.data.datasets[0].data.push(elemento['availability'])
-                    config.data.datasets[1].data.push(elemento['performance'])
-                    config.data.datasets[2].data.push(elemento['quality'])
-                    config.data.datasets[3].data.push(elemento['oee'])
-        
-                });
-
-                window.myLine.update()
-                window.myMaq5.update()
-                window.myMaq6.update()
-                window.myMaq7.update()
-                window.myMaq8.update()
-            }
-        });
-
-    });
-    $("input[name=mes]").change(function () {
-        var date = $('#i_mes').val();
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            url: '/oee/' + idmachine + '/m/' + date + '/datos',
-            type: 'GET',
-            success: function (response) {
-                config.data.labels.length = 0;
-                config.data.datasets[0].length = 0;
-                config.data.datasets[1].length = 0;
-                config.data.datasets[2].length = 0;
-                config.data.datasets[3].length = 0;
-                // configM1.data.datasets[0].data.length = 0;
-                // configEf.data.datasets[0].data.length = 0;
-                // configDis.data.datasets[0].data.length = 0;
-                // configQty.data.datasets[0].data.length = 0;
-                config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
-                response[1].forEach(function(elemento, indice){
-                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
-                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
-                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-                    configM1.options.elements.center.text = elemento.OEEG+'%';
-                    configEf.options.elements.center.text = elemento.performanceG+'%';
-                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
-                    configQty.options.elements.center.text = elemento.qualityG+'%';
-
-                });
-                response[0].forEach(function (elemento, indice) {
-                    config.data.labels.push(elemento['date']);
-                    config.data.datasets[0].data.push(elemento['availability'])
-                    config.data.datasets[1].data.push(elemento['performance'])
-                    config.data.datasets[2].data.push(elemento['quality'])
-                    config.data.datasets[3].data.push(elemento['oee'])
-        
-                });
-
-                window.myLine.update()
-                window.myMaq5.update()
-                window.myMaq6.update()
-                window.myMaq7.update()
-                window.myMaq8.update()
-            }
-        });
-    });
-    $("input[name=año]").change(function() 
-    {
-    });
-
-});
 //Editables Maquina 5
 var configM1 = {
     type: 'doughnut',

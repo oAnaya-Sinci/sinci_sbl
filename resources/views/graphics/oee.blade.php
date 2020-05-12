@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    @include('controles.fecha')
+    @include('controles.fechaaño')
 </div>
 @endsection
 
@@ -52,4 +52,178 @@
 
 
 <script src="{{ asset('js/oeetemplate.js')}}"></script>
+<script>
+ $(function () {
+    $('#i_dia').datepicker({
+        format: "yyyy-mm-dd"
+        }).datepicker("setDate", new Date());
+    $('#i_mes').datepicker({
+        format: "yyyy-mm",
+        viewMode: "months", 
+        minViewMode: "months"
+        });
+    $('#i_year').datepicker({
+                format: "yyyy",
+              viewMode: "years", 
+            minViewMode: "years"
+        });
+
+    });
+
+$(document).ready(function () {
+    $("#i_dia").change(function () {
+        var date = $('#i_dia').val();
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/oee/' + idmachine + '/d/' + date + '/datos',
+            type: 'GET',
+            success: function (response) {
+                config.data.labels.length = 0;
+                config.data.datasets[0].length = 0;
+                config.data.datasets[1].length = 0;
+                config.data.datasets[2].length = 0;
+                config.data.datasets[3].length = 0;
+                // configM1.data.datasets[0].data.length = 0;
+                // configEf.data.datasets[0].data.length = 0;
+                // configDis.data.datasets[0].data.length = 0;
+                // configQty.data.datasets[0].data.length = 0;
+                config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+                response[1].forEach(function(elemento, indice){
+                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]        
+                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                    
+                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                    configEf.options.elements.center.text = elemento.performanceG+'%';
+                    configQty.options.elements.center.text = elemento.qualityG+'%';
+                    configM1.options.elements.center.text = elemento.OEEG+'%';
+
+                });
+                response[0].forEach(function (elemento, indice) {
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['availability'])
+                    config.data.datasets[1].data.push(elemento['performance'])
+                    config.data.datasets[2].data.push(elemento['quality'])
+                    config.data.datasets[3].data.push(elemento['oee'])
+        
+                });
+
+                window.myLine.update()
+                window.myMaq5.update()
+                window.myMaq6.update()
+                window.myMaq7.update()
+                window.myMaq8.update()
+            }
+        });
+
+    });
+    $("#i_mes").change(function () {
+        var date = $('#i_mes').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/oee/' + idmachine + '/m/' + date + '/datos',
+            type: 'GET',
+            success: function (response) {
+                config.data.labels.length = 0;
+                config.data.datasets[0].length = 0;
+                config.data.datasets[1].length = 0;
+                config.data.datasets[2].length = 0;
+                config.data.datasets[3].length = 0;
+                // configM1.data.datasets[0].data.length = 0;
+                // configEf.data.datasets[0].data.length = 0;
+                // configDis.data.datasets[0].data.length = 0;
+                // configQty.data.datasets[0].data.length = 0;
+                config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
+                response[1].forEach(function(elemento, indice){
+                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
+                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+                    configM1.options.elements.center.text = elemento.OEEG+'%';
+                    configEf.options.elements.center.text = elemento.performanceG+'%';
+                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                    configQty.options.elements.center.text = elemento.qualityG+'%';
+
+                });
+                response[0].forEach(function (elemento, indice) {
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['availability'])
+                    config.data.datasets[1].data.push(elemento['performance'])
+                    config.data.datasets[2].data.push(elemento['quality'])
+                    config.data.datasets[3].data.push(elemento['oee'])
+        
+                });
+
+                window.myLine.update()
+                window.myMaq5.update()
+                window.myMaq6.update()
+                window.myMaq7.update()
+                window.myMaq8.update()
+            }
+        });
+    });
+    $("#i_year").change(function () {
+        var date = $('#i_year').val();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: '/oee/' + idmachine + '/y/' + date + '/datos',
+            type: 'GET',
+            success: function (response) {
+                config.data.labels.length = 0;
+                config.data.datasets[0].length = 0;
+                config.data.datasets[1].length = 0;
+                config.data.datasets[2].length = 0;
+                config.data.datasets[3].length = 0;
+                // configM1.data.datasets[0].data.length = 0;
+                // configEf.data.datasets[0].data.length = 0;
+                // configDis.data.datasets[0].data.length = 0;
+                // configQty.data.datasets[0].data.length = 0;
+                config.options.scales.xAxes[0].scaleLabel.labelString= "Año"
+                response[1].forEach(function(elemento, indice){
+                    configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                    configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
+                    configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                    configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+                    configM1.options.elements.center.text = elemento.OEEG+'%';
+                    configEf.options.elements.center.text = elemento.performanceG+'%';
+                    configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                    configQty.options.elements.center.text = elemento.qualityG+'%';
+
+                });
+                response[0].forEach(function (elemento, indice) {
+                    config.data.labels.push(elemento['date']);
+                    config.data.datasets[0].data.push(elemento['availability'])
+                    config.data.datasets[1].data.push(elemento['performance'])
+                    config.data.datasets[2].data.push(elemento['quality'])
+                    config.data.datasets[3].data.push(elemento['oee'])
+        
+                });
+
+                window.myLine.update()
+                window.myMaq5.update()
+                window.myMaq6.update()
+                window.myMaq7.update()
+                window.myMaq8.update()
+            }
+        });
+    });
+   
+
+});
+</script>
+
 @endsection

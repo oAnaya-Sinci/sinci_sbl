@@ -9,10 +9,14 @@
                     <button  class="btn btn-primary btn-icon-split" id="b_dia" name="b_dia">Por Dia</button>
                      &nbsp; &nbsp;
                     <button  class="btn btn-success btn-icon-split" id="b_mes" name="b_mes">Por Mes</button>
+                    &nbsp; &nbsp;
+                    <button  class="btn btn-info btn-icon-split" id="b_año" name="b_maño">Por año</button>
                     <label class="form-control-label" for="fecha">Selecciona una fecha:</label><br>
+                    
                     <div class="input-group">
                         <input type="text" class="form-control" id="i_dia" name="dia" />
                         <input type="text" class="form-control" id="i_mes" name="mes" style="display: none;"/>
+                        <input type='text' class="form-control" id='i_year' name="year" style="display: none;"/>
                     </div>
                     
                 </div>
@@ -21,3 +25,4 @@
             </div>
         </div>
     </div>
+    
