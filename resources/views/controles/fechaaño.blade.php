@@ -14,9 +14,9 @@
                     <label class="form-control-label" for="fecha">Selecciona una fecha:</label><br>
                     
                     <div class="input-group">
-                        <input type="text" class="form-control" id="i_dia" name="dia" />
-                        <input type="text" class="form-control" id="i_mes" name="mes" style="display: none;"/>
-                        <input type='text' class="form-control" id='i_year' name="year" style="display: none;"/>
+                        <input type="text" class="form-control" id="i_dia" name="dia" placeholder="YYYY-MM-DD"/>
+                        <input type="text" class="form-control" id="i_mes" name="mes" placeholder="YYYY-MM" style="display: none;"/>
+                        <input type='text' class="form-control" id='i_year' name="year" placeholder="YYYY" style="display: none;"/>
                     </div>
                     
                 </div>
