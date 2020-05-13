@@ -88,10 +88,6 @@ $(document).ready(function () {
                 config.data.datasets[1].length = 0;
                 config.data.datasets[2].length = 0;
                 config.data.datasets[3].length = 0;
-                // configM1.data.datasets[0].data.length = 0;
-                // configEf.data.datasets[0].data.length = 0;
-                // configDis.data.datasets[0].data.length = 0;
-                // configQty.data.datasets[0].data.length = 0;
                 config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
                 response[1].forEach(function(elemento, indice){
                     configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
@@ -139,10 +135,6 @@ $(document).ready(function () {
                 config.data.datasets[1].length = 0;
                 config.data.datasets[2].length = 0;
                 config.data.datasets[3].length = 0;
-                // configM1.data.datasets[0].data.length = 0;
-                // configEf.data.datasets[0].data.length = 0;
-                // configDis.data.datasets[0].data.length = 0;
-                // configQty.data.datasets[0].data.length = 0;
                 config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
                 response[1].forEach(function(elemento, indice){
                     configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
