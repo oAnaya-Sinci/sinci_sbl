@@ -19,51 +19,36 @@ $.ajax({
     success: function (response) {
         
         console.log(response)
-        
+        response.forEach(function(elemento, indice){
+           
+            //console.log(elemento['descriptions'])
+            chartData.labels.push(elemento['descriptions'])
+            chartData.datasets[1].data.push(elemento['Frecuencia'])
+            chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
+        });
        
-       
+        window.myMixedChart.update()
     }
 });
 
 
 
-var chartData = {
-    /*labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],*/ //OPCION 1 CON NUMEROS Y LABELS AL LADO
-    /*labels: ["Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh", "Temperatura Bulbo HumedoHigh"],*/  //WORST CASE LOOOOONG LABELS
-    labels: ['PesoLow', 'PresiónHigh', 'Temperatura Bulbo HumedoHigh', 'Consumo de EnergíaHigh', 'Cantidad de IngredientesLow', 'PesoHigh', 'Tiempo de OperaciónLow', 'Temperatura Bulbo SecoLow',
-        'MotorXFallaElect',
-        'Cantidad de IngredientesHigh',
-        'TemperaturaHigh',
-        'PresiónLow',
-        'RitmoLow',
-        'Sincronizacion A-BLow',
-        'ValvulaXFallaAlAbrir',
-        'NivelLow',
-        'MotorXFallaCom',
-        'Tiempo de Operaci,ónHigh',
-        'Temperatura Bulbo HumedoLow',
-        'RitmoHigh',
-        'Sincronizacion A-BHigh',
-        'MotorXFallaNoRetro',
-        'NivelHigh',
-        'ValvulaXFallaAlCerrar',
-        'ValvulaXFallaGeneral',
-        'TemperaturaLow',
-        'MotorXFallaGral'
-    ],
+ chartData = {
+   
+    labels: [ ],
     datasets: [{
         type: 'line',
         label: 'Porcentaje Acumulado',
         borderColor: window.chartColors.blue,
         borderWidth: 2,
         fill: false,
-        data: [8, 16, 22, 28, 34, 40, 45, 49, 54, 58, 62, 66, 69, 73, 76, 80, 82, 85, 87, 89, 90, 92, 94, 96, 97, 99, 100], //Porcentaje acumulado
+        data: [], //Porcentaje acumulado
         yAxisID: "y-axis1"
     }, {
         type: 'bar',
         label: 'Frecuencias',
         backgroundColor: window.chartColors.green,
-        data: [9, 9, 7, 7, 7, 7, 5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 1], //Frecuencia
+        data: [], //Frecuencia
         yAxisID: "y-axis2",
     }]
 
