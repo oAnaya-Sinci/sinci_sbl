@@ -13,15 +13,17 @@ class SpCreateDatosOee extends Migration
      */
     public function up()
     {
-        DB::unprepared("CREATE  PROCEDURE `CrearDatosOEE`()
+        DB::unprepared("DROP PROCEDURE IF EXISTS dbsistemalaravel.CrearDatOSOEE;");
+        DB::unprepared("CREATE  PROCEDURE `CrearDatosOEE`(IN `fechaInicio` VARCHAR(19), IN `cuantos` int, IN `IdMaq` int)
         wholeblock:BEGIN
+          #CALL `dbsistemalaravel`.`CrearDatosOEE`('2020-05-13 00:00', 1440, 1); #Ejemplo llamada manual
           declare str VARCHAR(255) default '';
           declare x INT default 0;
-          declare dt datetime default '2020-05-01 00:00'; 
+          declare dt datetime default fechaInicio; 
           
           SET x = 1;
         
-          WHILE x <= 70560 DO
+          WHILE x <= cuantos DO
             
             insert into oee 
             (	id,
@@ -34,7 +36,7 @@ class SpCreateDatosOee extends Migration
             ) 
             
             VALUES ( 	uuid(),
-                        1,
+                        IdMaq,
                         dt,
                         abs((sin(x*.01)*50)+1) ,
                         abs((sin(x*.01)*50)+2),

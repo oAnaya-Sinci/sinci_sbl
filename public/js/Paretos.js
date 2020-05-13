@@ -55,79 +55,83 @@ $.ajax({
 };
 var canvas  = document.getElementById("canvas")
 //var canvas = $("#Canvas")
-window.myMixedChart = new Chart(canvas, {
-    type: 'bar',
-    data: chartData,
-    options: {
 
-        defaultFontSize: 20,
-
-        responsive: true,
-        legend: {
-            labels: {
-                defaultFontSize: 1,
-            }
-        },
-        title: {
-            display: true,
-            text: 'Pareto'
-        },
-
-        tooltips: {
-            mode: 'index',
-            intersect: true
-        },
-
-        scales: {
-            xAxes: [{
-                ticks: {
-                    autoSkip: false,
-                    autoSkipPadding: 0
+window.onload = function(){
+    window.myMixedChart = new Chart(canvas, {
+        type: 'bar',
+        data: chartData,
+        options: {
+    
+            defaultFontSize: 20,
+    
+            responsive: true,
+            legend: {
+                labels: {
+                    defaultFontSize: 1,
                 }
-            }],
-
-            yAxes: [{
-                id: "y-axis1",
-                position: "right",
-                ticks: {
-                    beginAtZero: true
-                },
-                gridLines: {
-                    offsetGridLines: false
-                }
-
             },
-            {
+            title: {
                 display: true,
-                id: "y-axis2",
-                ticks: {
-                    beginAtZero: true,
-                    //max: 101
+                text: 'Pareto'
+            },
+    
+            tooltips: {
+                mode: 'index',
+                intersect: true
+            },
+    
+            scales: {
+                xAxes: [{
+                    ticks: {
+                        autoSkip: false,
+                        autoSkipPadding: 0
+                    }
+                }],
+    
+                yAxes: [{
+                    id: "y-axis1",
+                    position: "right",
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    gridLines: {
+                        offsetGridLines: false
+                    }
+    
                 },
-
-                gridLines: {
-                    offsetGridLines: false,
-
+                {
+                    display: true,
+                    id: "y-axis2",
+                    ticks: {
+                        beginAtZero: true,
+                        //max: 101
+                    },
+    
+                    gridLines: {
+                        offsetGridLines: false,
+    
+                    }
                 }
-            }
-            ]
-
-        },
-        plugins: {
-            datalabels: {
-                color: 'Black',
-                anchor: 'end',
-                align: 'end',
-                offset: -5,
-
-                font: {
-                    weight: 'bold'
-                },
-                
-            }
-        },
-    }
-});
+                ]
+    
+            },
+            plugins: {
+                datalabels: {
+                    color: 'Black',
+                    anchor: 'end',
+                    align: 'end',
+                    offset: -5,
+    
+                    font: {
+                        weight: 'bold'
+                    },
+                    
+                }
+            },
+        }
+    });
+    
+}
 
    
 

@@ -13,6 +13,7 @@ class SpReturnDatosOeeDoughnut extends Migration
      */
     public function up()
     {
+        DB::unprepared("DROP PROCEDURE IF EXISTS dbsistemalaravel.ConsultaOEEDoughnut;");
         DB::unprepared("CREATE  PROCEDURE `ConsultaOEEDoughnut`(IN `_caso` VARCHAR(1), IN `_machId` INT, IN `_inpdate` varchar(10) )
             NO SQL
         IF (_caso = 'd') then    

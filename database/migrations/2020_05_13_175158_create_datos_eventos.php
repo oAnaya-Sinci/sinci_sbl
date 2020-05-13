@@ -13,6 +13,7 @@ class CreateDatosEventos extends Migration
      */
     public function up()
     {
+        DB::unprepared("DROP PROCEDURE IF EXISTS CrearDatosEventos;");
         DB::unprepared("CREATE PROCEDURE `CrearDatosEventos`(IN `fechaInicio` VARCHAR(19), IN `cuantos` int, IN `IdMaq` int, IN `tipo` int)
         wholeblock:BEGIN
         /*Este SP conjuga aleatoriamente palabras para formar eventos con descripciones de la forma: Peso-High, Temperatura-Low etc, de duracion aleatoria congruente (duracion positiva)
