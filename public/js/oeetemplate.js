@@ -60,7 +60,7 @@ $.ajax({
 });
 
 
-//Editables Maquina 5
+
 var configM1 = {
     type: 'doughnut',
     data: {
@@ -90,7 +90,7 @@ var configM1 = {
         title: {
             display: true,
             text: 'OEE',
-            fontSize: '50',
+            fontSize: '30',
             fontColor: 'black'
         },
         animation: {
@@ -164,7 +164,7 @@ var configEf = {
         title: {
             display: true,
             text: 'Efectividad',
-            fontSize: '50',
+            fontSize: '30',
             fontColor: 'black'
             //fontFamily:
         },
@@ -239,7 +239,7 @@ var configDis = {
         title: {
             display: true,
             text: 'Disponibilidad',
-            fontSize: '50',
+            fontSize: '30',
             fontColor: 'black'
         },
         animation: {
@@ -312,7 +312,7 @@ var configQty = {
         title: {
             display: true,
             text: 'Calidad',
-            fontSize: '50',
+            fontSize: '30',
             fontColor: 'black'
         },
         animation: {

@@ -20,10 +20,11 @@ $.ajax({
         
         console.log(response)
         response.forEach(function(elemento, indice){
-           
-            //console.log(elemento['descriptions'])
+            console.log(elemento)
+            
             chartData.labels.push(elemento['descriptions'])
             chartData.datasets[1].data.push(elemento['Frecuencia'])
+            //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
             chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
         });
        
@@ -101,7 +102,8 @@ window.myMixedChart = new Chart(canvas, {
                 display: true,
                 id: "y-axis2",
                 ticks: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    //max: 101
                 },
 
                 gridLines: {
