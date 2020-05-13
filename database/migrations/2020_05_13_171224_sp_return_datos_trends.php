@@ -13,7 +13,7 @@ class SpReturnDatosTrends extends Migration
      */
     public function up()
     {
-        DB::unprepared("DROP PROCEDURE IF EXISTS dbsistemalaravel.ConsultaTrends;");
+        DB::unprepared("DROP PROCEDURE IF EXISTS ConsultaTrends;");
         DB::unprepared("CREATE PROCEDURE `ConsultaTrends`(IN `_caso` VARCHAR(1), IN `_varId` INT, IN `_inpdate` varchar(10) )
             NO SQL
         IF (_caso = 'd') then    

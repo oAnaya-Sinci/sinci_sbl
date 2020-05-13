@@ -100,7 +100,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/oee/' + idmachine + '/d/' + date + '/datos',
+            url: '/Events/' + idmachine + '/d/' + date + '/datos',
             type: 'GET',
             success: function (response) {
                 config.data.labels.length = 0;
@@ -128,7 +128,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/oee/' + idmachine + '/m/' + date + '/datos',
+            url: '/Events/' + idmachine + '/m/' + date + '/datos',
             type: 'GET',
             success: function (response) {
                 config.data.labels.length = 0;
@@ -154,7 +154,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: '/oee/' + idmachine + '/y/' + date + '/datos',
+            url: '/Events/' + idmachine + '/y/' + date + '/datos',
             type: 'GET',
             success: function (response) {
                 config.data.labels.length = 0;

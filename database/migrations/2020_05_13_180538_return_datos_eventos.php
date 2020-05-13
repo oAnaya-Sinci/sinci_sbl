@@ -13,7 +13,7 @@ class ReturnDatosEventos extends Migration
      */
     public function up()
     {
-        DB::unprepared("DROP PROCEDURE IF EXISTS dbsistemalaravel.ConsultaPareto;");
+        DB::unprepared("DROP PROCEDURE IF EXISTS ConsultaPareto;");
         DB::unprepared("CREATE PROCEDURE `ConsultaPareto`(IN `_caso` VARCHAR(1), IN `_machId` INT, IN `_inpdate` varchar(10) )
         NO SQL
     IF (_caso = 'd') then    

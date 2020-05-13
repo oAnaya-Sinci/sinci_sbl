@@ -13,7 +13,7 @@ class SpCreateDatosTrends extends Migration
      */
     public function up()
     {
-        DB::unprepared("DROP PROCEDURE IF EXISTS dbsistemalaravel.CrearDatosTrends;");
+        DB::unprepared("DROP PROCEDURE IF EXISTS CrearDatosTrends;");
         DB::unprepared("CREATE PROCEDURE `CrearDatosTrends`(IN `fechaInicio` VARCHAR(19), IN `cuantos` int, IN `IdMaq` int)
         wholeblock:BEGIN
           #CALL `dbsistemalaravel`.`CrearDatosTrends`('2020-05-13 00:00', 1440, 1); #Ejemplo llamada manual
