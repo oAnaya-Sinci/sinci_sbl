@@ -12,15 +12,13 @@ $.ajaxSetup({
     }
 });
 $.ajax({
-    /*url: '/Events/' + idmachine + '/d/' + date + '/datos',*/
-    url: '/Events/' + idmachine + '/d/' + '2020-01-01' + '/datos',
+    url: '/Events/' + idmachine + '/d/' + date + '/datos',
+    // url: '/Events/' + idmachine + '/d/' + '2020-01-01' + '/datos',
     type: 'GET',
     success: function (response) {
         
-        console.log(response)
         response.forEach(function(elemento, indice){
-            console.log(elemento)
-            
+           
             chartData.labels.push(elemento['descriptions'])
             chartData.datasets[1].data.push(elemento['Frecuencia'])
             //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
