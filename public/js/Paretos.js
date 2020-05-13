@@ -1,7 +1,6 @@
 //consultas para graficar
 var var_name = $('#var_name').val();
 var idmachine = $('#idmachine').val();
-var eu = "";
 var date = $('#date').val(); 
 $('#i_dia').val(date)
 

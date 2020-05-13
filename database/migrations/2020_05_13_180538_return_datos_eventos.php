@@ -40,7 +40,7 @@ class ReturnDatosEventos extends Migration
         
         ELSEIF (_caso='m')then  /*Obtener los promedios de la medicion cada media hora*/
 		/*Primero se obtiene el total de eventos contenidos en el periodo de tiempo y filtrado por maquina*/
-		SET @Total = (SELECT count(descriptions) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(_inpdate, '%Y-%m' )  ); 
+		SET @Total = (SELECT count(descriptions) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(concat( _inpdate ,'-01'), '%Y-%m' )  ); 
 		
         /*luego se obtienen las frecuencias y se almacenan en una tabla temporal (filtrado por periodo de tiempo y por maquina)*/
 		CREATE TEMPORARY TABLE IF NOT EXISTS eventosTemporal AS (
@@ -48,7 +48,7 @@ class ReturnDatosEventos extends Migration
 				descriptions, 
                 count(descriptions) Frecuencia 
                 FROM events 
-                WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(_inpdate, '%Y-%m' )
+                WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(concat( _inpdate ,'-01'), '%Y-%m' )
                 GROUP BY descriptions ORDER BY Frecuencia DESC);
 		SET @CumulativeSum = 0;
         /*finalmente se obtienen los calculos derivados de las frecuencias*/
@@ -62,7 +62,7 @@ class ReturnDatosEventos extends Migration
         DROP TEMPORARY TABLE IF EXISTS eventosTemporal;
         ELSEIF (_caso='y')then
 		/*Primero se obtiene el total de eventos contenidos en el periodo de tiempo y filtrado por maquina*/
-		SET @Total = (SELECT count(descriptions) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(_inpdate, '%Y' )  ); 
+		SET @Total = (SELECT count(descriptions) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(concat(_inpdate ,'-01-01'), '%Y' )  ); 
 		
         /*luego se obtienen las frecuencias y se almacenan en una tabla temporal (filtrado por periodo de tiempo y por maquina)*/
 		CREATE TEMPORARY TABLE IF NOT EXISTS eventosTemporal AS (
@@ -70,7 +70,7 @@ class ReturnDatosEventos extends Migration
 				descriptions, 
                 count(descriptions) Frecuencia 
                 FROM events 
-                WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(_inpdate, '%Y' )
+                WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(concat(_inpdate ,'-01-01'), '%Y' )
                 GROUP BY descriptions ORDER BY Frecuencia DESC);
 		SET @CumulativeSum = 0;
         /*finalmente se obtienen los calculos derivados de las frecuencias*/
