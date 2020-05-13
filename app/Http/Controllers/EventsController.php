@@ -20,7 +20,7 @@ class EventsController extends Controller
 
             $events = Events::join('type_events','events.type','=','type_events.id')
            ->select('startTime','endTime','descriptions','justification','type','type_events.name as event','duration')
-           ->where('id','=', $idmachine)->get();
+           ->where('idmachine','=', $idmachine)->get();
      
         return view('graphics.event')->with(compact('machines', 'date','events'));
     }
