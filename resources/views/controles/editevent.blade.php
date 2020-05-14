@@ -15,6 +15,7 @@
                                                     <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                                     <div class="col-md-9">
                                                         <input type="hidden" class="form-control" name="id"  value="{{$var['idevent']}}" required> 
+                                                        <input type="hidden" class="form-control" name="idmachine"  value="{{$var['idmachine']}}" required> 
                                                         <input type="text" class="form-control" name="justification" placeholder="Justificación del evento" value="{{$var['justification']}}" required>
                                                     </div>
                                                 </div>

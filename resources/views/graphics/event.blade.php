@@ -23,7 +23,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Opciones</th>
+                      <th>Actualizar Justificación</th>
                       <th>Inicio evento</th>
                       <th>Fin Evento</th>
                       <th>Descripción</th>
