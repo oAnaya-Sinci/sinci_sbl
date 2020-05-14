@@ -1,7 +1,7 @@
 //consultas para graficar
 var var_name = $('#var_name').val();
 var idmachine = $('#idmachine').val();
-var date = $('#date').val(); 
+var date = $('#date').val();
 $('#i_dia').val(date)
 
 
@@ -16,24 +16,29 @@ $.ajax({
     // url: '/Events/' + idmachine + '/d/' + '2020-01-01' + '/datos',
     type: 'GET',
     success: function (response) {
+
+        chartData.labels.length = 0;
+        chartData.datasets[1].length = 0;
+        chartData.datasets[0].length = 0;
         
-        response.forEach(function(elemento, indice){
-           
+
+        response.forEach(function (elemento, indice) {
+
             chartData.labels.push(elemento['descriptions'])
             chartData.datasets[1].data.push(elemento['Frecuencia'])
             //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
             chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
         });
-       
+
         window.myMixedChart.update()
     }
 });
 
 
 
- chartData = {
-   
-    labels: [ ],
+chartData = {
+
+    labels: [],
     datasets: [{
         type: 'line',
         label: 'Porcentaje Acumulado',
@@ -51,17 +56,17 @@ $.ajax({
     }]
 
 };
-var canvas  = document.getElementById("canvas")
+var canvas = document.getElementById("canvas")
 //var canvas = $("#Canvas")
 
-window.onload = function(){
+window.onload = function () {
     window.myMixedChart = new Chart(canvas, {
         type: 'bar',
         data: chartData,
         options: {
-    
+
             defaultFontSize: 20,
-    
+
             responsive: true,
             legend: {
                 labels: {
@@ -72,12 +77,12 @@ window.onload = function(){
                 display: true,
                 text: 'Pareto'
             },
-    
+
             tooltips: {
                 mode: 'index',
                 intersect: true
             },
-    
+
             scales: {
                 xAxes: [{
                     ticks: {
@@ -85,7 +90,7 @@ window.onload = function(){
                         autoSkipPadding: 0
                     }
                 }],
-    
+
                 yAxes: [{
                     id: "y-axis1",
                     position: "right",
@@ -95,7 +100,7 @@ window.onload = function(){
                     gridLines: {
                         offsetGridLines: false
                     }
-    
+
                 },
                 {
                     display: true,
@@ -104,14 +109,14 @@ window.onload = function(){
                         beginAtZero: true,
                         //max: 101
                     },
-    
+
                     gridLines: {
                         offsetGridLines: false,
-    
+
                     }
                 }
                 ]
-    
+
             },
             plugins: {
                 datalabels: {
@@ -119,18 +124,18 @@ window.onload = function(){
                     anchor: 'end',
                     align: 'end',
                     offset: -5,
-    
+
                     font: {
                         weight: 'bold'
                     },
-                    
+
                 }
             },
         }
     });
-    
+
 }
 
-   
+
 
 
