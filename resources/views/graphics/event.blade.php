@@ -52,6 +52,7 @@
                   @endforeach
                   </tbody>
                 </table>
+                {!! $events->render() !!}
               </div>
             </div>
         </div>
@@ -68,6 +69,7 @@
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
+ 
 
 
 <script src="{{ asset('js/Paretos.js')}}"></script>
