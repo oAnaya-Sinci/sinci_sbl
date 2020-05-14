@@ -27,6 +27,7 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/trends/{idvariable}', 'TrendsController@index')->name('trends');
         Route::get('/oee/{idmachine}', 'OeeController@index')->name('oee');
         Route::get('/events/{idmachine}', 'EventsController@index')->name('events');
+        Route::put('/events/{idmachine}', 'EventsController@update')->name('e_edit');
         Route::get('/trends/{idvariable}/{caso}/{date}/datos', 'TrendsController@datos');
         Route::get('/oee/{idmachine}/{caso}/{date}/datos', 'OeeController@datos');
         Route::get('/Events/{idmachine}/{caso}/{date}/datos', 'EventsController@datos');

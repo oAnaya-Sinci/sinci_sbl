@@ -36,10 +36,10 @@
                    @foreach($events as $var)   
                     <tr>
                      <td>
-                        <button data-toggle="modal" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
+                        <button data-toggle="modal" data-target="#myModalEdit{{$var['idevent']}}" type="button" class="btn btn-primary btn-circle btn-sm">
                             <i class="fas fa-fw fa-wrench"></i>
                         </button> &nbsp;
-                        @include('machine.edit')
+                        @include('controles.editevent')
                      </td>
                      <td>{{$var['startTime']}}</td>
                      <td>{{$var['endTime']}}</td>
@@ -103,10 +103,9 @@ $(document).ready(function () {
             url: '/Events/' + idmachine + '/d/' + date + '/datos',
             type: 'GET',
             success: function (response) {
-                config.data.labels.length = 0;
-                config.data.datasets[0].length = 0;
-                config.data.datasets[1].length = 0;
-                config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+                chartData.labels.length = 0;
+                chartData.datasets[0].length = 0;
+                chartData.datasets[1].length = 0;
                 
                 response.forEach(function (elemento, indice) {
                     chartData.labels.push(elemento['descriptions'])
@@ -131,10 +130,9 @@ $(document).ready(function () {
             url: '/Events/' + idmachine + '/m/' + date + '/datos',
             type: 'GET',
             success: function (response) {
-                config.data.labels.length = 0;
-                config.data.datasets[0].length = 0;
-                config.data.datasets[1].length = 0;
-                config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
+                chartData.labels.length = 0;
+                chartData.datasets[0].length = 0;
+                chartData.datasets[1].length = 0;
                 response.forEach(function (elemento, indice) {
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Frecuencia'])
@@ -157,10 +155,9 @@ $(document).ready(function () {
             url: '/Events/' + idmachine + '/y/' + date + '/datos',
             type: 'GET',
             success: function (response) {
-                config.data.labels.length = 0;
-                config.data.datasets[0].length = 0;
-                config.data.datasets[1].length = 0;
-                config.options.scales.xAxes[0].scaleLabel.labelString= "Año"
+                chartData.labels.length = 0;
+                chartData.datasets[0].length = 0;
+                chartData.datasets[1].length = 0;
                 
                 response.forEach(function (elemento, indice) {
                     chartData.labels.push(elemento['descriptions'])

@@ -19,7 +19,7 @@ class EventsController extends Controller
            ->select('id','name')->orderBy('name', 'asc')->get();
 
             $events = Events::join('type_events','events.type','=','type_events.id')
-           ->select('startTime','endTime','descriptions','justification','type','type_events.name as event','duration')
+           ->select('events.id as idevent','events.idmachine','startTime','endTime','descriptions','justification','type','type_events.name as event','duration')
            ->where('events.idmachine','=', $idmachine)->get();
      
         return view('graphics.event')->with(compact('machines', 'date','events'));
@@ -31,5 +31,13 @@ class EventsController extends Controller
         $pareto = DB::select('call ConsultaPareto(?,?,?)',array($caso,$idmachine,$date));
             
         return  ($pareto);
+    }
+
+    public function update(Request $request)
+    {
+        $events = Events::findOrFail($request->id);
+        $events->justification = $request->justification;
+        $events->save();
+        
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Events extends Model
 {
     protected $fillable =[
-        'idmachine','starTime','endTime','Type','descriptions','justification','duration'
+        'id','idmachine','startTime','endTime','type','descriptions','justification','duration'
     ];
     public function machine(){
         return $this->belongsTo('App\Machine');
