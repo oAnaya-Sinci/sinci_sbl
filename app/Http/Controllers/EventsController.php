@@ -15,13 +15,15 @@ class EventsController extends Controller
     {
         $date = Carbon::now();
         $date = $date->format('Y-m-d');
-        
+
             $machines = Machine::where('id','=', $idmachine)
            ->select('id','name')->orderBy('name', 'asc')->get();
 
             $events = Events::join('type_events','events.type','=','type_events.id')
            ->select('events.id as idevent','events.idmachine','startTime','endTime','descriptions','justification','type','type_events.name as event','duration')
-           ->where('events.idmachine','=', $idmachine)->get();
+           ->where('events.idmachine','=', $idmachine)
+           ->where('events.startTime','>=', $date)
+           ->where('events.endTime','<=', '2020-05-15')->get();
           
      
         return view('graphics.event')->with(compact('machines', 'date','events'));
