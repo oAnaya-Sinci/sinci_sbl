@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Events extends Model
 {
+    public $timestamps = false;
     protected $fillable =[
         'id','idmachine','startTime','endTime','type','descriptions','justification','duration'
     ];

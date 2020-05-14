@@ -19,11 +19,10 @@ class CreateEventsTable extends Migration
             $table->datetime('startTime');
             $table->datetime('endTime');
             $table->integer('type');
-            $table->string('descriptions', 45);
-            $table->string('justification', 45)->nullable();
+            $table->string('descriptions', 100);
+            $table->string('justification', 100)->nullable();
             $table->integer('duration');
             $table->integer('id_plc')->nullable();
-            //$table->timestamps();
 
             $table->foreign('idmachine')->references('id')->on('machines');
         });
