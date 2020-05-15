@@ -158,12 +158,9 @@
   
     @yield('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-    <script src="{{ asset('js/controles.js') }}"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
-
-   
 
 </body>
 </html>

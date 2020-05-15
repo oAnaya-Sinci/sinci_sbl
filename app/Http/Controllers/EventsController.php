@@ -21,9 +21,7 @@ class EventsController extends Controller
 
             $events = Events::join('type_events','events.type','=','type_events.id')
            ->select('events.id as idevent','events.idmachine','startTime','endTime','descriptions','justification','type','type_events.name as event','duration')
-           ->where('events.idmachine','=', $idmachine)
-           ->where('events.startTime','>=', $date)
-           ->where('events.endTime','<=', '2020-05-15')->get();
+           ->where('events.idmachine','=', $idmachine)->paginate();
           
      
         return view('graphics.event')->with(compact('machines', 'date','events'));

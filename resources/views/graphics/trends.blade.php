@@ -38,11 +38,6 @@
     $('#i_dia').datepicker({
         format: "yyyy-mm-dd"
         }).datepicker("setDate", new Date());
-    $('#i_mes').datepicker({
-        format: "yyyy-mm",
-        viewMode: "months", 
-        minViewMode: "months"
-        });
 });
 $(document).ready(function()
 {  
@@ -76,35 +71,6 @@ $(document).ready(function()
                 }
         });
 
-    });
-    $("#i_mes").change(function () {	 
-        var date = $('#i_mes').val();
-        
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
-            }
-        }); 
-        $.ajax({
-                url:'/trends/'+idvariable+'/m/'+date+'/datos',
-                type:'GET',
-                success:function(response){
-                    config.data.labels.length=0;
-                    config.data.datasets[0].length=0;
-                    config.data.datasets[1].length=0;
-                    config.data.datasets[2].length=0;
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
-                    config.data.datasets[0].label =  "Consumo del Mes"
-                response.forEach(function (elemento, indice) {            
-                    config.data.labels.push(elemento['date']);
-                    config.data.datasets[0].data.push(elemento['value'])
-                    config.data.datasets[1].data.push(elemento['highLimit'])
-                    config.data.datasets[2].data.push(elemento['lowLimit'])
-
-                });    
-                window.myLine.update()
-                }
-        });
     });
    
 });
