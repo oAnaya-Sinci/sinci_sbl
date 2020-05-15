@@ -18,14 +18,18 @@ $.ajax({
     success: function (response) {
 
         chartData.labels.length = 0;
-        chartData.datasets[1].length = 0;
-        chartData.datasets[0].length = 0;
-        
+        chartData.datasets[1].data.length = 0; //ninguno de estos 4 funciona
+        chartData.datasets[0].data.length = 0;
+        chartData.datasets[1].data = [];
+        chartData.datasets[0].data = [];
 
+        console.log(response)
+        console.log(response.count)
         response.forEach(function (elemento, indice) {
 
+            
             chartData.labels.push(elemento['descriptions'])
-            chartData.datasets[1].data.push(elemento['Frecuencia'])
+            chartData.datasets[1].data.push(elemento['Total'])
             //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
             chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
         });
@@ -36,7 +40,7 @@ $.ajax({
 
 
 
-chartData = {
+var chartData = {
 
     labels: [],
     datasets: [{

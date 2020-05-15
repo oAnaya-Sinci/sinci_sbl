@@ -20,39 +20,40 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Actualizar Justificación</th>
-                      <th>Inicio evento</th>
-                      <th>Fin Evento</th>
-                      <th>Descripción</th>
-                      <th>Justificación</th>
-                      <th>Tipo evento</th>
-                      <th>Duración</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   @foreach($events as $var)   
-                    <tr>
-                     <td>
-                        <button data-toggle="modal" data-target="#myModalEdit{{$var['idevent']}}" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
-                        </button> &nbsp;
-                        @include('controles.editevent')
-                     </td>
-                     <td>{{$var['startTime']}}</td>
-                     <td>{{$var['endTime']}}</td>
-                     <td>{{$var['descriptions']}}</td>
-                     <td>{{$var['justification']}}</td>
-                     <td>{{$var['event']}}</td>
-                     <td>{{$var['duration']}}</td>
-                    
-                    </tr>
-                  @endforeach
-                  </tbody>
-                </table>
-              </div>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Actualizar Justificación</th>
+                                <th>Inicio evento</th>
+                                <th>Fin Evento</th>
+                                <th>Descripción</th>
+                                <th>Justificación</th>
+                                <th>Tipo evento</th>
+                                <th>Duración</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($events as $var)
+                            <tr>
+                                <td>
+                                    <button data-toggle="modal" data-target="#myModalEdit{{$var['idevent']}}"
+                                        type="button" class="btn btn-primary btn-circle btn-sm">
+                                        <i class="fas fa-fw fa-wrench"></i>
+                                    </button> &nbsp;
+                                    @include('controles.editevent')
+                                </td>
+                                <td>{{$var['startTime']}}</td>
+                                <td>{{$var['endTime']}}</td>
+                                <td>{{$var['descriptions']}}</td>
+                                <td>{{$var['justification']}}</td>
+                                <td>{{$var['event']}}</td>
+                                <td>{{$var['duration']}}</td>
+
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -73,27 +74,27 @@
 <script src="{{ asset('js/Paretos.js')}}"></script>
 
 <script>
- $(function () {
+$(function() {
     $('#i_dia').datepicker({
         format: "yyyy-mm-dd"
-        }).datepicker("setDate", new Date());
+    }).datepicker("setDate", new Date());
     $('#i_mes').datepicker({
         format: "yyyy-mm",
-        viewMode: "months", 
+        viewMode: "months",
         minViewMode: "months"
-        });
+    });
     $('#i_year').datepicker({
-                format: "yyyy",
-              viewMode: "years", 
-            minViewMode: "years"
-        });
-
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
     });
 
-$(document).ready(function () {
-    $("#i_dia").change(function () {
+});
+
+$(document).ready(function() {
+    $("#i_dia").change(function() {
         var date = $('#i_dia').val();
-        
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -102,16 +103,16 @@ $(document).ready(function () {
         $.ajax({
             url: '/Events/' + idmachine + '/d/' + date + '/datos',
             type: 'GET',
-            success: function (response) {
+            success: function(response) {
                 chartData.labels.length = 0;
                 chartData.datasets[0].length = 0;
                 chartData.datasets[1].length = 0;
-                
-                response.forEach(function (elemento, indice) {
+
+                response.forEach(function(elemento, indice) {
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Frecuencia'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
-        
+
                 });
 
                 window.myMixedChart.update()
@@ -119,7 +120,7 @@ $(document).ready(function () {
         });
 
     });
-    $("#i_mes").change(function () {
+    $("#i_mes").change(function() {
         var date = $('#i_mes').val();
         $.ajaxSetup({
             headers: {
@@ -129,22 +130,28 @@ $(document).ready(function () {
         $.ajax({
             url: '/Events/' + idmachine + '/m/' + date + '/datos',
             type: 'GET',
-            success: function (response) {
+            success: function(response) {
                 chartData.labels.length = 0;
-                chartData.datasets[0].length = 0;
-                chartData.datasets[1].length = 0;
-                response.forEach(function (elemento, indice) {
+                chartData.datasets[1].data.length = 0;
+                chartData.datasets[0].data.length = 0;
+                chartData.datasets[1].data = [];
+                chartData.datasets[0].data = [];
+                
+                console.log(response)
+                console.log(response.count)
+                response.forEach(function(elemento, indice) {
+                    
                     chartData.labels.push(elemento['descriptions'])
-                    chartData.datasets[1].data.push(elemento['Frecuencia'])
+                    chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
-        
+
                 });
 
                 window.myMixedChart.update()
             }
         });
     });
-    $("#i_year").change(function () {
+    $("#i_year").change(function() {
         var date = $('#i_year').val();
         $.ajaxSetup({
             headers: {
@@ -154,23 +161,28 @@ $(document).ready(function () {
         $.ajax({
             url: '/Events/' + idmachine + '/y/' + date + '/datos',
             type: 'GET',
-            success: function (response) {
+            success: function(response) {
                 chartData.labels.length = 0;
-                chartData.datasets[0].length = 0;
-                chartData.datasets[1].length = 0;
-                
-                response.forEach(function (elemento, indice) {
+                chartData.datasets[1].data.length = 0;
+                chartData.datasets[0].data.length = 0;
+                chartData.datasets[1].data = [];
+                chartData.datasets[0].data = [];
+
+                console.log(response)
+                console.log(response.count)
+                response.forEach(function(elemento, indice) {
+                    
                     chartData.labels.push(elemento['descriptions'])
-                    chartData.datasets[1].data.push(elemento['Frecuencia'])
+                    chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
-        
+
                 });
 
                 window.myMixedChart.update()
             }
         });
     });
-   
+
 
 });
 </script>

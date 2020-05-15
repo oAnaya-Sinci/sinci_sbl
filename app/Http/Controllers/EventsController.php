@@ -32,7 +32,7 @@ class EventsController extends Controller
     public function datos($idmachine,$caso,$date)
     {
         
-        $pareto = DB::select('call ConsultaPareto(?,?,?)',array($caso,$idmachine,$date));
+        $pareto = DB::select('call ConsultaParetoHras(?,?,?)',array($caso,$idmachine,$date));
             
         return  ($pareto);
     }
