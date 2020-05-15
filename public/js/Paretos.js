@@ -20,8 +20,6 @@ $.ajax({
         chartData.labels.length = 0;
         chartData.datasets[1].data.length = 0; //ninguno de estos 4 funciona
         chartData.datasets[0].data.length = 0;
-        chartData.datasets[1].data = [];
-        chartData.datasets[0].data = [];
 
         console.log(response)
         console.log(response.count)

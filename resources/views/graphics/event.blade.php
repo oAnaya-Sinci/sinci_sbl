@@ -52,7 +52,7 @@
                   @endforeach
                   </tbody>
                 </table>
-                {!! $events->render() !!}
+                <!-- {!! $events->render() !!} -->
               </div>
             </div>
         </div>
@@ -106,12 +106,12 @@ $(document).ready(function() {
             type: 'GET',
             success: function(response) {
                 chartData.labels.length = 0;
-                chartData.datasets[0].length = 0;
-                chartData.datasets[1].length = 0;
+                chartData.datasets[0].data.length = 0;
+                chartData.datasets[1].data.length = 0;
 
                 response.forEach(function(elemento, indice) {
                     chartData.labels.push(elemento['descriptions'])
-                    chartData.datasets[1].data.push(elemento['Frecuencia'])
+                    chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
 
                 });
@@ -135,11 +135,7 @@ $(document).ready(function() {
                 chartData.labels.length = 0;
                 chartData.datasets[1].data.length = 0;
                 chartData.datasets[0].data.length = 0;
-                chartData.datasets[1].data = [];
-                chartData.datasets[0].data = [];
                 
-                console.log(response)
-                console.log(response.count)
                 response.forEach(function(elemento, indice) {
                     
                     chartData.labels.push(elemento['descriptions'])
@@ -166,11 +162,7 @@ $(document).ready(function() {
                 chartData.labels.length = 0;
                 chartData.datasets[1].data.length = 0;
                 chartData.datasets[0].data.length = 0;
-                chartData.datasets[1].data = [];
-                chartData.datasets[0].data = [];
-
-                console.log(response)
-                console.log(response.count)
+                
                 response.forEach(function(elemento, indice) {
                     
                     chartData.labels.push(elemento['descriptions'])
