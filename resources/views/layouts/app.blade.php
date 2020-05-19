@@ -32,7 +32,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
-        <img src="img/logo_sinci.png" width="50" height="50">
+        <img src="img/Logo_Sinci_Blanco.png" height="40">
         </div>
         <div class="sidebar-brand-text mx-3">SDS</div>
     </a>
@@ -102,6 +102,10 @@
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span><img src="img/Logo_Sinci_Simplificada.png" height="20"></span>
+          </div>
+            
         </div>
     </footer>
     <!-- End of Footer -->
