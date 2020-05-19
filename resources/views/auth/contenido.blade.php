@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary2">
   <div class="container">
     @yield('login')
   </div>
