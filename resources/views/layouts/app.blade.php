@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SDS</title>
+    <title>SINCI</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -32,7 +32,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
-        <img src="img/Logo_Sinci_Blanco.png" height="40">
+        <img src="{{ asset('img/Logo_Sinci_Blanco.png')}}" height="40">
         </div>
         <div class="sidebar-brand-text mx-3">SDS</div>
     </a>
@@ -103,7 +103,7 @@
     <footer class="sticky-footer bg-white">
         <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span><img src="img/Logo_Sinci_Simplificada.png" height="20"></span>
+            <span><img src="{{ asset('img/Logo_Sinci_Simplificada.png')}}" height="20"></span>
           </div>
             
         </div>
