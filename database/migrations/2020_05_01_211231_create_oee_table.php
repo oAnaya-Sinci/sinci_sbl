@@ -29,7 +29,6 @@ class CreateOeeTable extends Migration
             $table->string('lotId', 45)->nullable();
             $table->string('partId', 45)->nullable();
             $table->integer('idShift')->nullable();
-            $table->decimal('total', 11, 2)->nullable();
             //$table->timestamps();
 
             $table->foreign('idmachine')->references('id')->on('machines');
