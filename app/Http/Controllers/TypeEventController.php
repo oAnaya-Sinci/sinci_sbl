@@ -13,7 +13,7 @@ class TypeEventController extends Controller
     {
 
             $typeevents = TypeEvent::join('machines','type_events.idmachine','=','machines.id')
-            ->select('type_events.id','type_events.idmachine','type_events.name','type_events.idmachine','machines.name as name_machine','type_events.description','type_events.severity','type_events.condicion')
+            ->select('type_events.id','type_events.id_type','type_events.idmachine','type_events.name','type_events.idmachine','machines.name as name_machine','type_events.description','type_events.condicion')
             ->orderBy('type_events.id', 'desc')->get();
 
             $machines = Machine::where('condicion','=','1')
@@ -26,9 +26,9 @@ class TypeEventController extends Controller
     {
         $typeevent = new TypeEvent();
         $typeevent->idmachine = $request->idmachine;
+        $typeevent->id_type = $request->id_type;
         $typeevent->name = $request->name;
         $typeevent->description = $request->description;
-        $typeevent->severity = $request->severity;
         $typeevent->condicion = '1';
         $typeevent->save();
         return Redirect::to('/typeevent');
@@ -39,7 +39,6 @@ class TypeEventController extends Controller
         $typeevent->idmachine = $request->idmachine;
         $typeevent->name = $request->name; 
         $typeevent->description = $request->description;
-        $typeevent->severity = $request->severity;
         $typeevent->condicion = '1';
         $typeevent->save();
         return Redirect::to('/typeevent');

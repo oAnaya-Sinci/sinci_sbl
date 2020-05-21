@@ -24,12 +24,12 @@ class CreateOeeTable extends Migration
             $table->float('performance')->nullable();
             $table->integer('ict')->nullable();
             $table->integer('totalPieces')->nullable();
-            $table->string('oeeCol')->nullable();
             $table->float('quality')->nullable();
             $table->integer('goodParts')->nullable();
             $table->string('lotId', 45)->nullable();
             $table->string('partId', 45)->nullable();
             $table->integer('idShift')->nullable();
+            $table->decimal('total', 11, 2)->nullable();
             //$table->timestamps();
 
             $table->foreign('idmachine')->references('id')->on('machines');

@@ -20,10 +20,10 @@
                   <thead>
                     <tr>
                       <th>Opciones</th>
+                      <th>id_type</th>
                       <th>Nombre</th>
                       <th>Maquina</th>
-                      <th>Descripción</th>
-                      <th>Gravedad</th>
+                      <th>Descripción</th>                  
                       <th>Estado</th>
                     </tr>
                   </thead>
@@ -49,10 +49,10 @@
                             @include('typeevent.activar')
                         @endif
                      </td>
+                     <td>{{$var['id_type']}}</td>
                      <td>{{$var['name']}}</td>
                      <td>{{$var['name_machine']}}</td>
                      <td>{{$var['description']}}</td>
-                     <td>{{$var['severity']}}</td>
                      <td>
                        @if($var['condicion']==1)
                          <div>
@@ -84,6 +84,12 @@
                     <div class="modal-body">
                         <form action="{{route('t_registrar')}}" role="form" method="post"  class="form-horizontal">
                            {{ csrf_field() }}
+                           <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">id_type</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" name="id_type" placeholder="identificador del envento" min=0 required>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                 <div class="col-md-9">
@@ -105,12 +111,6 @@
                                 <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="description" placeholder="Descripción" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Gravedad</label>
-                                <div class="col-md-9">
-                                    <input type="number" class="form-control" name="severity" placeholder="Gravedad" required>
                                 </div>
                             </div>
                             <div  class="form-group row div-error">

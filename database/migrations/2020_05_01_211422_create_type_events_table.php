@@ -15,10 +15,10 @@ class CreateTypeEventsTable extends Migration
     {
         Schema::create('type_events', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_type');
             $table->string('name', 30)->unique();
             $table->integer('idmachine')->unsigned();
             $table->string('description', 45);
-            $table->integer('severity');
             $table->boolean('condicion')->default(1);
             $table->timestamps();
 

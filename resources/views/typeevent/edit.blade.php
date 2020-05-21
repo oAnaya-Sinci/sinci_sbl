@@ -35,12 +35,6 @@
                                                         <input type="text" class="form-control" name="description" placeholder="Descripción" value="{{$var['description']}}" required>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 form-control-label" for="text-input">Gravedad</label>
-                                                    <div class="col-md-9">
-                                                        <input type="number" class="form-control" name="severity" placeholder="Gravedad" value="{{$var['severity']}}" required>
-                                                    </div>
-                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
