@@ -20,38 +20,38 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Actualizar Justificación</th>
-                      <th>Inicio evento</th>
-                      <th>Fin Evento</th>
-                      <th>Descripción</th>
-                      <th>Justificación</th>
-                      <th>Tipo evento</th>
-                      <th>Duración</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                   @foreach($events as $var)   
-                    <tr>
-                     <td>
-                        <button data-toggle="modal" data-target="#myModalEdit{{$var['idevent']}}" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
-                        </button> &nbsp;
-                        @include('controles.editevent')
-                     </td>
-                     <td>{{$var['startTime']}}</td>
-                     <td>{{$var['endTime']}}</td>
-                     <td>{{$var['descriptions']}}</td>
-                     <td>{{$var['justification']}}</td>
-                     <td>{{$var['event']}}</td>
-                     <td>{{$var['duration']}}</td>
-                    
-                    </tr>
-                  @endforeach
-                  </tbody>
-                </table>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                        <th>Actualizar Justificación</th>
+                        <th>Inicio evento</th>
+                        <th>Fin Evento</th>
+                        <th>Descripción</th>
+                        <th>Justificación</th>
+                        <th>Tipo evento</th>
+                        <th>Duración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($events as $var)   
+                        <tr>
+                        <td>
+                            <button data-toggle="modal" data-target="#myModalEdit{{$var['idevent']}}" type="button" class="btn btn-primary btn-circle btn-sm">
+                                <i class="fas fa-fw fa-wrench"></i>
+                            </button> &nbsp;
+                            @include('controles.editevent')
+                        </td>
+                        <td>{{$var['startTime']}}</td>
+                        <td>{{$var['endTime']}}</td>
+                        <td>{{$var['descriptions']}}</td>
+                        <td>{{$var['justification']}}</td>
+                        <td>{{$var['event']}}</td>
+                        <td>{{$var['duration']}}</td>
+                        
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    </table>
                 <!-- {!! $events->render() !!} -->
               </div>
             </div>

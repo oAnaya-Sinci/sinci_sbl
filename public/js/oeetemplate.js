@@ -21,10 +21,6 @@ $.ajax({
         config.data.datasets[1].data.length = 0;
         config.data.datasets[2].data.length = 0;
         config.data.datasets[3].data.length = 0;
-        // configM1.data.datasets[0].data.length = 0;
-        // configEf.data.datasets[0].data.length = 0;
-        // configDis.data.datasets[0].data.length = 0;
-        // configQty.data.datasets[0].data.length = 0;
         config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
         
         response[1].forEach(function(elemento, indice){
@@ -48,6 +44,18 @@ $.ajax({
             config.data.datasets[1].data.push(elemento['performance'])
             config.data.datasets[2].data.push(elemento['quality'])
             config.data.datasets[3].data.push(elemento['oee'])
+
+        });
+        response[2].forEach(function (elemento, indice) {
+           var tr = `<tr>
+                    <td>`+elemento['date']+`</td>
+                    <td>`+elemento['runTime']+`</td>
+                    <td>`+elemento['availableTime']+`</td>
+                    <td>`+elemento['ict']+`</td>
+                    <td>`+elemento['totalPieces']+`</td>
+                    <td>`+elemento['goodParts']+`</td>
+                </tr>`
+                $("#cuerpo").append(tr)
 
         });
 

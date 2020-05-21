@@ -59,7 +59,7 @@ class SpReturnDatosOeeDoughnut extends Migration
                 cast( 100 - avg(quality) as decimal(5,2)) qualityR, 
                 cast( avg(oee) as decimal(5,2)) OEEG, 
                 cast( 100 - avg(oee) as decimal(5,2)) OEER
-            from dbsistemalaravel.oee where date_format(capturedTime, '%Y') = date_format(concat( _inpdate ,'-01-01'),  '%Y') and idmachine = _machId ;
+            from oee where date_format(capturedTime, '%Y') = date_format(concat( _inpdate ,'-01-01'),  '%Y') and idmachine = _machId ;
         
         END IF");
     }

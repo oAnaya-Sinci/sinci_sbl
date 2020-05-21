@@ -19,19 +19,17 @@ class CreateOeeTable extends Migration
             $table->datetime('capturedTime')->nullable();
             $table->float('oee')->nullable();
             $table->float('availability')->nullable();
-            $table->integer('runnigTime')->nullable();
-            $table->string('availableTime', 45)->nullable();
+            $table->integer('runTime')->nullable();
+            $table->integer('availableTime')->nullable();
             $table->float('performance')->nullable();
             $table->integer('ict')->nullable();
             $table->integer('totalPieces')->nullable();
-            $table->integer('runTime')->nullable();
             $table->string('oeeCol')->nullable();
             $table->float('quality')->nullable();
             $table->integer('goodParts')->nullable();
             $table->string('lotId', 45)->nullable();
             $table->string('partId', 45)->nullable();
             $table->integer('idShift')->nullable();
-            $table->decimal('total', 11, 2)->nullable();
             //$table->timestamps();
 
             $table->foreign('idmachine')->references('id')->on('machines');
