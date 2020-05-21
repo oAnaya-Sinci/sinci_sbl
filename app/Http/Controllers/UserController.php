@@ -36,7 +36,8 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = bcrypt( $request->password);
-            $user->condicion = '1'; 
+            $user->condicion = '1';
+            $user->save();
             return Redirect::to('/user');
 
     }
