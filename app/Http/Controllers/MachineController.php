@@ -17,7 +17,7 @@ class MachineController extends Controller
     public function index(Request $request)
     {
         $machines = Machine::join('users','users.id','=','machines.iduser')
-        ->select('machines.id','machines.name','users.id as id_user','users.name as name_user','machines.condicion')->orderBy('name', 'asc')->get();
+        ->select('machines.id','machines.name','users.id as id_user','users.name as name_user','machines.activar_oee','machines.activar_eventos','machines.condicion')->orderBy('name', 'asc')->get();
         
         $users = User::where('condicion','=','1')
         ->select('id','name')->orderBy('name', 'asc')->get();
@@ -34,10 +34,14 @@ class MachineController extends Controller
      */
     public function store(Request $request)
     {
+        
         $machine = new Machine();
         $machine->name = $request->name;
         $machine->iduser = $request->iduser;
+        $machine->activar_oee = $request->oee ? true : false;
+        $machine->activar_eventos = $request->eventos ? true : false;
         $machine->condicion = '1';
+
         $machine->save();
         return Redirect::to('/machine');
     }
@@ -55,6 +59,8 @@ class MachineController extends Controller
         $machine = Machine::findOrFail($request->id);
         $machine->name = $request->name;
         $machine->iduser = $request->iduser;
+        $machine->activar_oee = $request->oee ? true : false;
+        $machine->activar_eventos = $request->eventos ? true : false;
         $machine->condicion = '1';
         $machine->save();
         return Redirect::to('/machine');

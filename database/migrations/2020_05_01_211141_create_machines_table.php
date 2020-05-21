@@ -17,6 +17,8 @@ class CreateMachinesTable extends Migration
             $table->increments('id');
             $table->integer('iduser')->unsigned();
             $table->string('name', 30);
+            $table->boolean('activar_oee')->default(0);
+            $table->boolean('activar_eventos')->default(0);
             $table->boolean('condicion')->default(1);
             $table->timestamps();
 

@@ -63,7 +63,7 @@ class UserController extends Controller
     public function listMachinesUser(){
         $id = auth()->user()->id; 
         $users = User::join('machines','users.id','=','machines.iduser')
-            ->select('machines.id','machines.name as name_machine')
+            ->select('machines.id','machines.name as name_machine','machines.activar_oee','machines.activar_eventos')
             ->where('users.id','=', $id)->get();    
         return  $users;
     }

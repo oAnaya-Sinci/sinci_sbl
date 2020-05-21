@@ -29,6 +29,28 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 form-control-label" for="text-input">Oee</label>
+                                                        <div class="col-md-9">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="oee" name="oee" @if($var['activar_oee']=== 1) checked @endif>
+                                                                <label class="form-check-label" for="gridCheck1">
+                                                                Mostrar graficas de oee
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                     <label class="col-md-3 form-control-label" for="text-input">Eventos</label>
+                                                        <div class="col-md-9">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" id="eventos" name="eventos" @if($var['activar_eventos']=== 1) checked @endif>
+                                                                <label class="form-check-label" for="gridCheck2">
+                                                                Mostrar graficas de eventos
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
