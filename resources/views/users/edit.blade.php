@@ -21,13 +21,13 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Email</label>
                                                     <div class="col-md-9">
-                                                        <input type="email" class="form-control" name="name" placeholder="Email del Usuario" value="{{$var['email']}}" required>
+                                                        <input type="email" class="form-control" name="email" placeholder="Email del Usuario" value="{{$var['email']}}" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Password</label>
                                                     <div class="col-md-9">
-                                                        <input type="password" class="form-control" name="name" placeholder="Contraseña del Usuario" value="{{$var['password']}}" required>
+                                                        <input type="password" class="form-control" name="password" placeholder="Contraseña del Usuario" value="{{$var['password']}}" required>
                                                     </div>
                                                 </div>
                                         </div>
