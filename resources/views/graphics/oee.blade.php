@@ -105,6 +105,8 @@
                     config.data.datasets[2].length = 0;
                     config.data.datasets[3].length = 0;
                     config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+                    
+                    $("#dataTable").dataTable().fnDestroy();
                     $("#cuerpo").empty();
                     response[1].forEach(function(elemento, indice){
                         configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
@@ -137,6 +139,9 @@
                             </tr>`
                             $("#cuerpo").append(tr)
                     });
+                    $('#dataTable').DataTable({
+                            "pageLength": 50
+                    });
 
                     window.myLine.update()
                     window.myMaq5.update()
@@ -164,6 +169,8 @@
                     config.data.datasets[2].length = 0;
                     config.data.datasets[3].length = 0;
                     config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
+                    
+                    $("#dataTable").dataTable().fnDestroy();
                     $("#cuerpo").empty();
                     response[1].forEach(function(elemento, indice){
                         configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
@@ -195,7 +202,10 @@
                             </tr>`
                         $("#cuerpo").append(tr)
 
-                });
+                });  
+                $('#dataTable').DataTable({
+                            "pageLength": 50
+                    });
 
                     window.myLine.update()
                     window.myMaq5.update()
@@ -222,6 +232,8 @@
                     config.data.datasets[2].length = 0;
                     config.data.datasets[3].length = 0;
                     config.options.scales.xAxes[0].scaleLabel.labelString= "Año"
+                    
+                    $("#dataTable").dataTable().fnDestroy();
                     $("#cuerpo").empty();
                     response[1].forEach(function(elemento, indice){
                         configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
@@ -254,6 +266,9 @@
                         $("#cuerpo").append(tr)
 
                 });
+                $('#dataTable').DataTable({
+                            "pageLength": 100
+                    });
 
                     window.myLine.update()
                     window.myMaq5.update()
