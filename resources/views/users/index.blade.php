@@ -29,19 +29,19 @@
                    @foreach($personas as $var)   
                     <tr>
                      <td>
-                        <button data-toggle="modal" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
+                        <button data-toggle="modal" title="Editar"  data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
                             <i class="fas fa-fw fa-wrench"></i>
                         </button> &nbsp;
                         @include('users.edit')
 
 
                         @if($var['condicion']==1)
-                          <button type="button" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
+                          <button type="button" title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
                                 <i class="fas fa-trash"></i>
                           </button>
                           @include('users.delete')
                         @else
-                            <button type="button" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#myModalActivar{{$var['id']}}">
+                            <button type="button"  title="Activar" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#myModalActivar{{$var['id']}}">
                                 <i class="fas fa-check"></i>
                             </button>
                             @include('users.activar')

@@ -42,9 +42,8 @@ class UserController extends Controller
 
     }
 
-    public function desactivar()
+    public function desactivar(Request $request)
     {
-        
         $user = User::findOrFail($request->id);
         $user->condicion = '0';
         $user->save();
