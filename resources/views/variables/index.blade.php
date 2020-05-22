@@ -102,7 +102,7 @@
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Eu</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="eu" placeholder="Eu" required>
+                                    <input type="text" class="form-control" name="eu" placeholder="Eu" maxlength="20" required>
                                 </div>
                             </div>
                             <div  class="form-group row div-error">
