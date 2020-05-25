@@ -100,10 +100,10 @@
                 type: 'GET',
                 success: function (response) {
                     config.data.labels.length = 0;
-                    config.data.datasets[0].length = 0;
-                    config.data.datasets[1].length = 0;
-                    config.data.datasets[2].length = 0;
-                    config.data.datasets[3].length = 0;
+                    config.data.datasets[0].data.length = 0;
+                    config.data.datasets[1].data.length = 0;
+                    config.data.datasets[2].data.length = 0;
+                    config.data.datasets[3].data.length = 0;
                     config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
                     
                     $("#dataTable").dataTable().fnDestroy();
@@ -120,6 +120,16 @@
                         configM1.options.elements.center.text = elemento.OEEG+'%';
 
                     });
+                    //response[1].length=0
+                    if (response[1][0].date == null) {
+                        
+                        configDis.options.elements.center.text = 'No Data'
+                        configEf.options.elements.center.text = 'No Data'
+                        configQty.options.elements.center.text = 'No Data'
+                        configM1.options.elements.center.text = 'No Data';
+
+                    }
+
                     response[0].forEach(function (elemento, indice) {
                         config.data.labels.push(elemento['date']);
                         config.data.datasets[0].data.push(elemento['availability'])
@@ -164,10 +174,10 @@
                 type: 'GET',
                 success: function (response) {
                     config.data.labels.length = 0;
-                    config.data.datasets[0].length = 0;
-                    config.data.datasets[1].length = 0;
-                    config.data.datasets[2].length = 0;
-                    config.data.datasets[3].length = 0;
+                    config.data.datasets[0].data.length = 0;
+                    config.data.datasets[1].data.length = 0;
+                    config.data.datasets[2].data.length = 0;
+                    config.data.datasets[3].data.length = 0;
                     config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
                     
                     $("#dataTable").dataTable().fnDestroy();
@@ -183,6 +193,14 @@
                         configQty.options.elements.center.text = elemento.qualityG+'%';
 
                     });
+                    if (response[1][0].date == null) {
+                        
+                        configDis.options.elements.center.text = 'No Data'
+                        configEf.options.elements.center.text = 'No Data'
+                        configQty.options.elements.center.text = 'No Data'
+                        configM1.options.elements.center.text = 'No Data';
+            
+                    }
                     response[0].forEach(function (elemento, indice) {
                         config.data.labels.push(elemento['date']);
                         config.data.datasets[0].data.push(elemento['availability'])
@@ -227,10 +245,10 @@
                 type: 'GET',
                 success: function (response) {
                     config.data.labels.length = 0;
-                    config.data.datasets[0].length = 0;
-                    config.data.datasets[1].length = 0;
-                    config.data.datasets[2].length = 0;
-                    config.data.datasets[3].length = 0;
+                    config.data.datasets[0].data.length = 0;
+                    config.data.datasets[1].data.length = 0;
+                    config.data.datasets[2].data.length = 0;
+                    config.data.datasets[3].data.length = 0;
                     config.options.scales.xAxes[0].scaleLabel.labelString= "Año"
                     
                     $("#dataTable").dataTable().fnDestroy();
@@ -246,6 +264,14 @@
                         configQty.options.elements.center.text = elemento.qualityG+'%';
 
                     });
+                    if (response[1][0].date == null) {
+                        
+                        configDis.options.elements.center.text = 'No Data'
+                        configEf.options.elements.center.text = 'No Data'
+                        configQty.options.elements.center.text = 'No Data'
+                        configM1.options.elements.center.text = 'No Data';
+            
+                    }
                     response[0].forEach(function (elemento, indice) {
                         config.data.labels.push(elemento['date']);
                         config.data.datasets[0].data.push(elemento['availability'])

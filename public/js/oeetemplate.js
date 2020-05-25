@@ -37,7 +37,14 @@ $.ajax({
 
 
         });
-        
+        if (response[1][0].date == null) {
+                        
+            configDis.options.elements.center.text = 'No Data'
+            configEf.options.elements.center.text = 'No Data'
+            configQty.options.elements.center.text = 'No Data'
+            configM1.options.elements.center.text = 'No Data';
+
+        }
         response[0].forEach(function (elemento, indice) {
             config.data.labels.push(elemento['date']);
             config.data.datasets[0].data.push(elemento['availability'])
@@ -171,7 +178,7 @@ var configEf = {
         },
         title: {
             display: true,
-            text: 'Efectividad',
+            text: 'Rendimiento',
             fontSize: '30',
             fontColor: 'black'
             //fontFamily:
