@@ -21,21 +21,21 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                        <th>Actualizar Justificación</th>
-                        <th>Inicio evento</th>
-                        <th>Fin Evento</th>
-                        <th>Descripción</th>
-                        <th>Justificación</th>
-                        <th>Tipo evento</th>
-                        <th>Duración</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpo">
-                    </tbody>
+                        <thead>
+                            <tr>
+                                <th>Actualizar Justificación</th>
+                                <th>Inicio evento</th>
+                                <th>Fin Evento</th>
+                                <th>Descripción</th>
+                                <th>Justificación</th>
+                                <th>Tipo evento</th>
+                                <th>Duración</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpo">
+                        </tbody>
                     </table>
-              </div>
+                </div>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
- 
+
 <script>
 $(function() {
     $('#i_dia').datepicker({
@@ -87,7 +87,7 @@ $(document).ready(function() {
                 chartData.labels.length = 0;
                 chartData.datasets[0].data.length = 0;
                 chartData.datasets[1].data.length = 0;
-                
+
                 //para limpiar el grid
                 $("#dataTable").dataTable().fnDestroy();
                 $("#cuerpo").empty();
@@ -96,29 +96,31 @@ $(document).ready(function() {
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
+                    maxy = elemento['Acumulado']
 
                 });
-                response[1].forEach(function (elemento, indice) {
+                response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                             <td>  
-                            <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <button data-toggle="modal" data-target="#myModalEdit` + elemento['idevent'] + `" type="button" class="btn btn-primary btn-circle btn-sm">
                                 <i class="fas fa-fw fa-wrench"></i>
                             </button> &nbsp; 
                             </td>
-                            <td>`+elemento['startTime']+`</td>
-                            <td>`+elemento['endTime']+`</td>
-                            <td>`+elemento['descriptions']+`</td>
-                            <td>`+elemento['justification']+`</td>
-                            <td>`+elemento['event']+`</td>
-                            <td>`+elemento['duration']+`</td>
+                            <td>` + elemento['startTime'] + `</td>
+                            <td>` + elemento['endTime'] + `</td>
+                            <td>` + elemento['descriptions'] + `</td>
+                            <td>` + elemento['justification'] + `</td>
+                            <td>` + elemento['event'] + `</td>
+                            <td>` + elemento['duration'] + `</td>
                         </tr>`
-                        $("#cuerpo").append(tr)
+                    $("#cuerpo").append(tr)
 
-                    });
-                    $('#dataTable').DataTable({
-                            "pageLength": 100
-                    });
+                });
+                $('#dataTable').DataTable({
+                    "pageLength": 100
+                });
 
+                options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
                 window.myMixedChart.update()
             }
         });
@@ -138,38 +140,39 @@ $(document).ready(function() {
                 chartData.labels.length = 0;
                 chartData.datasets[1].data.length = 0;
                 chartData.datasets[0].data.length = 0;
-                
+
                 response[0].forEach(function(elemento, indice) {
-                    
+
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
+                    maxy = elemento['Acumulado']
 
                 });
                 //para limpiar el grid
                 $("#dataTable").dataTable().fnDestroy();
                 $("#cuerpo").empty();
-                response[1].forEach(function (elemento, indice) {
+                response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                             <td>  
-                            <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <button data-toggle="modal" data-target="#myModalEdit` + elemento['idevent'] + `" type="button" class="btn btn-primary btn-circle btn-sm">
                                 <i class="fas fa-fw fa-wrench"></i>
                             </button> &nbsp; 
                             </td>
-                            <td>`+elemento['startTime']+`</td>
-                            <td>`+elemento['endTime']+`</td>
-                            <td>`+elemento['descriptions']+`</td>
-                            <td>`+elemento['justification']+`</td>
-                            <td>`+elemento['event']+`</td>
-                            <td>`+elemento['duration']+`</td>
+                            <td>` + elemento['startTime'] + `</td>
+                            <td>` + elemento['endTime'] + `</td>
+                            <td>` + elemento['descriptions'] + `</td>
+                            <td>` + elemento['justification'] + `</td>
+                            <td>` + elemento['event'] + `</td>
+                            <td>` + elemento['duration'] + `</td>
                         </tr>`
-                        $("#cuerpo").append(tr)
+                    $("#cuerpo").append(tr)
 
-                    });
-                    $('#dataTable').DataTable({
-                            "pageLength": 100
-                    });
-
+                });
+                $('#dataTable').DataTable({
+                    "pageLength": 100
+                });
+                options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
                 window.myMixedChart.update()
             }
         });
@@ -188,39 +191,40 @@ $(document).ready(function() {
                 chartData.labels.length = 0;
                 chartData.datasets[1].data.length = 0;
                 chartData.datasets[0].data.length = 0;
-                
+
                 //para limpiar el grid
                 $("#dataTable").dataTable().fnDestroy();
                 $("#cuerpo").empty();
-                
+
                 response[0].forEach(function(elemento, indice) {
-                    
+
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
+                    maxy = elemento['Acumulado']
 
                 });
-                response[1].forEach(function (elemento, indice) {
+                response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                             <td>  
-                            <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <button data-toggle="modal" data-target="#myModalEdit` + elemento['idevent'] + `" type="button" class="btn btn-primary btn-circle btn-sm">
                                 <i class="fas fa-fw fa-wrench"></i>
                             </button> &nbsp; 
                             </td>
-                            <td>`+elemento['startTime']+`</td>
-                            <td>`+elemento['endTime']+`</td>
-                            <td>`+elemento['descriptions']+`</td>
-                            <td>`+elemento['justification']+`</td>
-                            <td>`+elemento['event']+`</td>
-                            <td>`+elemento['duration']+`</td>
+                            <td>` + elemento['startTime'] + `</td>
+                            <td>` + elemento['endTime'] + `</td>
+                            <td>` + elemento['descriptions'] + `</td>
+                            <td>` + elemento['justification'] + `</td>
+                            <td>` + elemento['event'] + `</td>
+                            <td>` + elemento['duration'] + `</td>
                         </tr>`
-                        $("#cuerpo").append(tr)
+                    $("#cuerpo").append(tr)
 
-                    });
-                    $('#dataTable').DataTable({
-                            "pageLength": 100
-                    });
-
+                });
+                $('#dataTable').DataTable({
+                    "pageLength": 100
+                });
+                options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
                 window.myMixedChart.update()
             }
         });

@@ -21,8 +21,7 @@ $.ajax({
         chartData.datasets[1].data.length = 0; 
         chartData.datasets[0].data.length = 0;
 
-        console.log(response)
-        console.log(response.count)
+        
         response[0].forEach(function (elemento, indice) {
 
             chartData.labels.push(elemento['descriptions'])
@@ -30,7 +29,7 @@ $.ajax({
             //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
             chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
             maxy = elemento['Acumulado']
-            //Acumulado.push(elemento['Acumulado'])
+            
         });
         response[1].forEach(function (elemento, indice) {
 
@@ -50,7 +49,7 @@ $.ajax({
                  $("#cuerpo").append(tr)
  
          });
-        console.log(typeof(maxy))
+        
         options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
         window.myMixedChart.update()
     }
