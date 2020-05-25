@@ -14,54 +14,67 @@ class SpReturnDatosOeeDoughnut extends Migration
     public function up()
     {
         DB::unprepared("DROP PROCEDURE IF EXISTS ConsultaOEEDoughnut;");
-        DB::unprepared("CREATE  PROCEDURE `ConsultaOEEDoughnut`(IN `_caso` VARCHAR(1), IN `_machId` INT, IN `_inpdate` varchar(10) )
-            NO SQL
+        DB::unprepared("CREATE PROCEDURE `ConsultaOEEDoughnut`(IN `_caso` VARCHAR(1), IN `_machId` INT, IN `_inpdate` varchar(10) )
+        NO SQL
         IF (_caso = 'd') then    
+                    
+                    /*Segundo retornamos los promedios de ese dia*/
+                    select 
+                        min(date_format(capturedTime, '%Y-%m-%d'))date,  
+                        cast( avg(availability)as decimal(5,2)) AvailabilityG,
+                        cast( 100 - avg(availability) as decimal(5,2)) AvailabilityR,
+                        cast( avg(performance)as decimal (5,2)) performanceG,
+                        cast( 100 - avg(performance) as decimal(5,2)) performanceR,
+                        cast( avg(quality) as decimal(5,2)) qualityG, 
+                        cast( 100 - avg(quality) as decimal(5,2)) qualityR, 
+                        cast( avg(oee) as decimal(5,2)) OEEG, 
+                        cast( 100 - avg(oee) as decimal(5,2)) OEER
+                    from oee where date_format(capturedTime, '%Y-%m-%d') = _inpdate and idmachine = _machId ;
+                
+                ELSEIF (_caso='m')then  /*Obtener los promedios de la medicion cada media hora*/
+                    
+                    /*Segundo retornamos los promedios de todo el mes*/
+                    select 
+                        min(date_format(capturedTime, '%Y-%m'))date,  
+                        cast( avg(availability)as decimal(5,2)) AvailabilityG,
+                        cast( 100 - avg(availability) as decimal(5,2)) AvailabilityR,
+                        cast( avg(performance)as decimal (5,2)) performanceG,
+                        cast( 100 - avg(performance) as decimal(5,2)) performanceR,
+                        cast( avg(quality) as decimal(5,2)) qualityG, 
+                        cast( 100 - avg(quality) as decimal(5,2)) qualityR, 
+                        cast( avg(oee) as decimal(5,2)) OEEG, 
+                        cast( 100 - avg(oee) as decimal(5,2)) OEER
+                    from oee where date_format(capturedTime, '%Y-%m') = date_format(concat( _inpdate ,'-01'),  '%Y-%m') and idmachine = _machId ;
+                
+                ELSEIF (_caso='y')then
+                
+                /*Segundo retornamos los promedios de todo el año como una subquery por que es por mes*/
+                    /*Primero retornamos las tendencias, como los promedios mensuales del año*/
+                SELECT 
+                    min(date) as date ,
+                    cast( avg(availability) as decimal(5,2)) as AvailabilityG,
+                    cast( 100 - avg(availability) as decimal(5,2)) AvailabilityR,
+                    cast( avg(performance) as decimal(5,2))  as performanceG,
+                    cast( 100 - avg(performance) as decimal(5,2)) performanceR,
+                    cast( avg(quality) as decimal(5,2))  as qualityG,
+                    cast( 100 - avg(quality) as decimal(5,2)) qualityR,
+                    cast( avg(oee) as decimal(5,2))  OEEG, 
+                    cast( 100 - avg(oee) as decimal(5,2)) OEER FROM 
             
-            /*Segundo retornamos los promedios de ese dia*/
-            select 
-                min(date_format(capturedTime, '%Y-%m-%d'))date,  
-                cast( avg(availability)as decimal(5,2)) AvailabilityG,
-                cast( 100 - avg(availability) as decimal(5,2)) AvailabilityR,
-                cast( avg(performance)as decimal (5,2)) performanceG,
-                cast( 100 - avg(performance) as decimal(5,2)) performanceR,
-                cast( avg(quality) as decimal(5,2)) qualityG, 
-                cast( 100 - avg(quality) as decimal(5,2)) qualityR, 
-                cast( avg(oee) as decimal(5,2)) OEEG, 
-                cast( 100 - avg(oee) as decimal(5,2)) OEER
-            from oee where date_format(capturedTime, '%Y-%m-%d') = _inpdate and idmachine = _machId ;
+                        (select 
+                            min(date_format (capturedTime, '%Y-%m')) date,
+                            cast( avg(availability) as decimal(5,2)) availability,
+                            cast( avg(performance) as decimal(5,2)) performance,
+                            cast( avg(quality) as decimal(5,2)) quality,
+                            cast( avg(oee) as decimal(5,2)) oee
+                        from oee 
+                        where date_format(capturedTime, '%Y' ) = date_format(concat( _inpdate ,'-01-01'),  '%Y') and idmachine = _machId
+                        group by date_format(capturedTime, '%Y-%m')
+                        order by date asc) 
+                AS Subquery;
         
-        ELSEIF (_caso='m')then  /*Obtener los promedios de la medicion cada media hora*/
-            
-            /*Segundo retornamos los promedios de todo el mes*/
-            select 
-                min(date_format(capturedTime, '%Y-%m'))date,  
-                cast( avg(availability)as decimal(5,2)) AvailabilityG,
-                cast( 100 - avg(availability) as decimal(5,2)) AvailabilityR,
-                cast( avg(performance)as decimal (5,2)) performanceG,
-                cast( 100 - avg(performance) as decimal(5,2)) performanceR,
-                cast( avg(quality) as decimal(5,2)) qualityG, 
-                cast( 100 - avg(quality) as decimal(5,2)) qualityR, 
-                cast( avg(oee) as decimal(5,2)) OEEG, 
-                cast( 100 - avg(oee) as decimal(5,2)) OEER
-            from oee where date_format(capturedTime, '%Y-%m') = date_format(concat( _inpdate ,'-01'),  '%Y-%m') and idmachine = _machId ;
-        
-        ELSEIF (_caso='y')then
-        
-        /*Segundo retornamos los promedios de todo el año*/
-            select 
-                min(date_format(capturedTime, '%Y'))date,  
-                cast( avg(availability)as decimal(5,2)) AvailabilityG,
-                cast( 100 - avg(availability) as decimal(5,2)) AvailabilityR,
-                cast( avg(performance)as decimal (5,2)) performanceG,
-                cast( 100 - avg(performance) as decimal(5,2)) performanceR,
-                cast( avg(quality) as decimal(5,2)) qualityG, 
-                cast( 100 - avg(quality) as decimal(5,2)) qualityR, 
-                cast( avg(oee) as decimal(5,2)) OEEG, 
-                cast( 100 - avg(oee) as decimal(5,2)) OEER
-            from oee where date_format(capturedTime, '%Y') = date_format(concat( _inpdate ,'-01-01'),  '%Y') and idmachine = _machId ;
-        
-        END IF");
+                
+                END IF");
     }
 
     /**

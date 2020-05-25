@@ -32,27 +32,9 @@
                         <th>Duración</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    @foreach($events as $var)   
-                        <tr>
-                        <td>
-                            <button data-toggle="modal" data-target="#myModalEdit{{$var['idevent']}}" type="button" class="btn btn-primary btn-circle btn-sm">
-                                <i class="fas fa-fw fa-wrench"></i>
-                            </button> &nbsp;
-                            @include('controles.editevent')
-                        </td>
-                        <td>{{$var['startTime']}}</td>
-                        <td>{{$var['endTime']}}</td>
-                        <td>{{$var['descriptions']}}</td>
-                        <td>{{$var['justification']}}</td>
-                        <td>{{$var['event']}}</td>
-                        <td>{{$var['duration']}}</td>
-                        
-                        </tr>
-                    @endforeach
+                    <tbody id="cuerpo">
                     </tbody>
                     </table>
-                <!-- {!! $events->render() !!} -->
               </div>
             </div>
         </div>
@@ -65,15 +47,12 @@
 <script src="{{ asset('vendor/chart.js/chart.min.js')}}"></script>
 <script src="{{ asset('vendor/chart.js/chart.bundle.min.js')}}"></script>
 <script src="{{ asset('vendor/chart.js/utils.js')}}"></script>
+<script src="{{ asset('js/Paretos.js')}}"></script>
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
  
-
-
-<script src="{{ asset('js/Paretos.js')}}"></script>
-
 <script>
 $(function() {
     $('#i_dia').datepicker({
@@ -108,13 +87,37 @@ $(document).ready(function() {
                 chartData.labels.length = 0;
                 chartData.datasets[0].data.length = 0;
                 chartData.datasets[1].data.length = 0;
+                
+                //para limpiar el grid
+                $("#dataTable").dataTable().fnDestroy();
+                $("#cuerpo").empty();
 
-                response.forEach(function(elemento, indice) {
+                response[0].forEach(function(elemento, indice) {
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
 
                 });
+                response[1].forEach(function (elemento, indice) {
+                    var tr = `<tr>
+                            <td>  
+                            <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                                <i class="fas fa-fw fa-wrench"></i>
+                            </button> &nbsp; 
+                            </td>
+                            <td>`+elemento['startTime']+`</td>
+                            <td>`+elemento['endTime']+`</td>
+                            <td>`+elemento['descriptions']+`</td>
+                            <td>`+elemento['justification']+`</td>
+                            <td>`+elemento['event']+`</td>
+                            <td>`+elemento['duration']+`</td>
+                        </tr>`
+                        $("#cuerpo").append(tr)
+
+                    });
+                    $('#dataTable').DataTable({
+                            "pageLength": 100
+                    });
 
                 window.myMixedChart.update()
             }
@@ -136,13 +139,36 @@ $(document).ready(function() {
                 chartData.datasets[1].data.length = 0;
                 chartData.datasets[0].data.length = 0;
                 
-                response.forEach(function(elemento, indice) {
+                response[0].forEach(function(elemento, indice) {
                     
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
 
                 });
+                //para limpiar el grid
+                $("#dataTable").dataTable().fnDestroy();
+                $("#cuerpo").empty();
+                response[1].forEach(function (elemento, indice) {
+                    var tr = `<tr>
+                            <td>  
+                            <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                                <i class="fas fa-fw fa-wrench"></i>
+                            </button> &nbsp; 
+                            </td>
+                            <td>`+elemento['startTime']+`</td>
+                            <td>`+elemento['endTime']+`</td>
+                            <td>`+elemento['descriptions']+`</td>
+                            <td>`+elemento['justification']+`</td>
+                            <td>`+elemento['event']+`</td>
+                            <td>`+elemento['duration']+`</td>
+                        </tr>`
+                        $("#cuerpo").append(tr)
+
+                    });
+                    $('#dataTable').DataTable({
+                            "pageLength": 100
+                    });
 
                 window.myMixedChart.update()
             }
@@ -163,13 +189,37 @@ $(document).ready(function() {
                 chartData.datasets[1].data.length = 0;
                 chartData.datasets[0].data.length = 0;
                 
-                response.forEach(function(elemento, indice) {
+                //para limpiar el grid
+                $("#dataTable").dataTable().fnDestroy();
+                $("#cuerpo").empty();
+                
+                response[0].forEach(function(elemento, indice) {
                     
                     chartData.labels.push(elemento['descriptions'])
                     chartData.datasets[1].data.push(elemento['Total'])
                     chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
 
                 });
+                response[1].forEach(function (elemento, indice) {
+                    var tr = `<tr>
+                            <td>  
+                            <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                                <i class="fas fa-fw fa-wrench"></i>
+                            </button> &nbsp; 
+                            </td>
+                            <td>`+elemento['startTime']+`</td>
+                            <td>`+elemento['endTime']+`</td>
+                            <td>`+elemento['descriptions']+`</td>
+                            <td>`+elemento['justification']+`</td>
+                            <td>`+elemento['event']+`</td>
+                            <td>`+elemento['duration']+`</td>
+                        </tr>`
+                        $("#cuerpo").append(tr)
+
+                    });
+                    $('#dataTable').DataTable({
+                            "pageLength": 100
+                    });
 
                 window.myMixedChart.update()
             }

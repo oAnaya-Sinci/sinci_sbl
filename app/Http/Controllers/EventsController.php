@@ -18,21 +18,17 @@ class EventsController extends Controller
 
             $machines = Machine::where('id','=', $idmachine)
            ->select('id','name')->orderBy('name', 'asc')->get();
-
-            $events = Events::join('type_events','events.type','=','type_events.id')
-           ->select('events.id as idevent','events.idmachine','startTime','endTime','descriptions','justification','type','type_events.name as event','duration')
-           ->where('events.idmachine','=', $idmachine)->paginate();
           
      
-        return view('graphics.event')->with(compact('machines', 'date','events'));
+        return view('graphics.event')->with(compact('machines', 'date'));
     }
 
     public function datos($idmachine,$caso,$date)
-    {
-        
+    {  
         $pareto = DB::select('call ConsultaParetoHras(?,?,?)',array($caso,$idmachine,$date));
+        $paretoGrid = DB::select('call ConsultaParetoGrid(?,?,?)',array($caso,$idmachine,$date));
             
-        return  ($pareto);
+        return array ($pareto,$paretoGrid);
     }
 
 

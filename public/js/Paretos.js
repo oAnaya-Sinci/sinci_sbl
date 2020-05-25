@@ -14,19 +14,17 @@ $.ajaxSetup({
 });
 $.ajax({
     url: '/Events/' + idmachine + '/d/' + date + '/datos',
-    // url: '/Events/' + idmachine + '/d/' + '2020-01-01' + '/datos',
     type: 'GET',
     success: function (response) {
 
         chartData.labels.length = 0;
-        chartData.datasets[1].data.length = 0; //ninguno de estos 4 funciona
+        chartData.datasets[1].data.length = 0; 
         chartData.datasets[0].data.length = 0;
 
         console.log(response)
         console.log(response.count)
-        response.forEach(function (elemento, indice) {
+        response[0].forEach(function (elemento, indice) {
 
-            
             chartData.labels.push(elemento['descriptions'])
             chartData.datasets[1].data.push(elemento['Total'])
             //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
@@ -34,6 +32,24 @@ $.ajax({
             maxy = elemento['Acumulado']
             //Acumulado.push(elemento['Acumulado'])
         });
+        response[1].forEach(function (elemento, indice) {
+
+            var tr = `<tr>
+                     <td>  
+                     <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                        <i class="fas fa-fw fa-wrench"></i>
+                     </button> &nbsp; 
+                     </td>
+                     <td>`+elemento['startTime']+`</td>
+                     <td>`+elemento['endTime']+`</td>
+                     <td>`+elemento['descriptions']+`</td>
+                     <td>`+elemento['justification']+`</td>
+                     <td>`+elemento['event']+`</td>
+                     <td>`+elemento['duration']+`</td>
+                 </tr>`
+                 $("#cuerpo").append(tr)
+ 
+         });
         console.log(typeof(maxy))
         options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
         window.myMixedChart.update()
