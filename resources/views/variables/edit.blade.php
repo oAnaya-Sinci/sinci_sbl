@@ -32,7 +32,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Eu</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="eu" placeholder="Eu" value="{{$var['eu']}}" required>
+                                                        <input type="text" class="form-control" name="eu" maxlength="20" placeholder="Eu" value="{{$var['eu']}}" required>
                                                     </div>
                                                 </div>
                                         </div>

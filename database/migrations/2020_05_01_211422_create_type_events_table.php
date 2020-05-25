@@ -18,7 +18,7 @@ class CreateTypeEventsTable extends Migration
             $table->integer('id_type');
             $table->string('name', 30)->unique();
             $table->integer('idmachine')->unsigned();
-            $table->string('description', 45);
+            $table->string('description', 100);
             $table->boolean('condicion')->default(1);
             $table->timestamps();
 
