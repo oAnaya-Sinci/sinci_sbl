@@ -27,7 +27,7 @@ class EventsController extends Controller
     {  
         $iduser = auth()->user()->id;
         $pareto = DB::select('call ConsultaParetoHras(?,?,?)',array($caso,$idmachine,$date));
-        $paretoGrid = DB::select('call ConsultaParetoGrid(?,?,?)',array($caso,$iduser,$date));
+        $paretoGrid = DB::select('call ConsultaParetoGrid(?,?,?,?)',array($caso,$iduser,$idmachine,$date));
             
         return array ($pareto,$paretoGrid);
     }
