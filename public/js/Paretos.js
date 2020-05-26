@@ -32,21 +32,26 @@ $.ajax({
             
         });
         response[1].forEach(function (elemento, indice) {
-
+            
             var tr = `<tr>
                      <td>  
                      <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
                         <i class="fas fa-fw fa-wrench"></i>
-                     </button> &nbsp; 
+                     </button> &nbsp;
+                    
                      </td>
                      <td>`+elemento['startTime']+`</td>
                      <td>`+elemento['endTime']+`</td>
-                     <td>`+elemento['descriptions']+`</td>
-                     
-                     <td>`+elemento['justification']+`</td>
-                     <td>`+elemento['event']+`</td>
-                     <td>`+elemento['duration']+`</td>
-                 </tr>`
+                     <td>`+elemento['descriptions']+`</td>`;
+
+                    if (elemento['justification'] != null){
+                       tr = tr + `<td>`+elemento['justification']+`</td>`
+                    }else{
+                        tr = tr + `<td></td>`
+                    }
+                    tr = tr +`<td>`+elemento['event']+`</td>
+                              <td>`+elemento['duration']+`</td>
+                    </tr>`
                  $("#cuerpo").append(tr)
  
          });
