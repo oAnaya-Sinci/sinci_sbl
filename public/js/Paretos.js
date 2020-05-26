@@ -42,6 +42,7 @@ $.ajax({
                      <td>`+elemento['startTime']+`</td>
                      <td>`+elemento['endTime']+`</td>
                      <td>`+elemento['descriptions']+`</td>
+                     
                      <td>`+elemento['justification']+`</td>
                      <td>`+elemento['event']+`</td>
                      <td>`+elemento['duration']+`</td>

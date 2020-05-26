@@ -18,21 +18,22 @@
                                                         <input type="text" class="form-control" name="name" placeholder="Nombre de la maquina" value="{{$var['name']}}" required>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
-                                                    <div class="col-md-9">
-                                                        <select class="form-control" name="idmachine">
-                                                            <option value="0" disabled >Seleccione</option>
-                                                            @foreach($machines as $machine)
-                                                            <option value="{{$machine['id']}}"  @if($machine['id']=== $var['idmachine']) selected='selected' @endif>{{$machine['name']}} </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
                                                     <div class="col-md-9">
                                                         <input type="text" class="form-control" name="description" maxlength="100" placeholder="Descripción" value="{{$var['description']}}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control" name="iduser">
+                                                            <option value="0" disabled >Seleccione</option>
+                                                            @foreach($users as $user)
+                                                            <option value="{{$user['id']}}"  @if($user['id']=== $var['iduser']) selected='selected' @endif>{{$user['name']}} </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                         </div>

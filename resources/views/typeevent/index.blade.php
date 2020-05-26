@@ -21,9 +21,9 @@
                     <tr>
                       <th>Opciones</th>
                       <th>id_type</th>
-                      <th>Nombre</th>
-                      <th>Maquina</th>
-                      <th>Descripción</th>                  
+                      <th>Nombre</th>        
+                      <th>Descripción</th> 
+                      <th>Usuario</th>                 
                       <th>Estado</th>
                     </tr>
                   </thead>
@@ -50,9 +50,9 @@
                         @endif
                      </td>
                      <td>{{$var['id_type']}}</td>
-                     <td>{{$var['name']}}</td>
-                     <td>{{$var['name_machine']}}</td>
+                     <td>{{$var['name']}}</td>    
                      <td>{{$var['description']}}</td>
+                     <td>{{$var['name_user']}}</td>
                      <td>
                        @if($var['condicion']==1)
                          <div>
@@ -95,22 +95,22 @@
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="name" placeholder="Nombre del evento" required>
                                 </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Maquina</label>
-                                <div class="col-md-9">
-                                    <select class="form-control" name="idmachine">
-                                        <option value="0" disabled selected>Seleccione</option>
-                                        @foreach($machines as $machine)
-                                        <option value="{{$machine['id']}}">{{$machine['name']}} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                            </div>          
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="description" maxlength="100" placeholder="Descripción" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                                <div class="col-md-9">
+                                    <select class="form-control" name="iduser">
+                                            <option value="0" disabled selected>Seleccione</option>
+                                            @foreach($users as $user)
+                                            <option value="{{$user['id']}}">{{$user['name']}} </option>
+                                            @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div  class="form-group row div-error">
