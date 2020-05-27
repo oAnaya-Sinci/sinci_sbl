@@ -40,4 +40,10 @@ class EventsController extends Controller
         $events->save();
         return Redirect()->route('events',['idmachine'=> $request->idmachine]);  
     }
+
+    public function editm($id)
+    {
+        $events = Events::find($id);
+        return response()->json($events);
+    }
 }

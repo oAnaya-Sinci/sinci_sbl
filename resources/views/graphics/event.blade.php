@@ -10,7 +10,7 @@
                 <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$machine['name']}}">
                 <input type="hidden" class="form-control" name="idmachine" id="idmachine" value="{{$machine['id']}}">
                 <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">
-
+                @include('controles.editevent')
                 @endforeach
             </div>
             <div class="card-body">
@@ -35,6 +35,7 @@
                         <tbody id="cuerpo">
                         </tbody>
                     </table>
+                   
                 </div>
             </div>
         </div>
@@ -102,18 +103,23 @@ $(document).ready(function() {
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                             <td>  
-                            <button data-toggle="modal" data-target="#myModalEdit` + elemento['idevent'] + `" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
                                 <i class="fas fa-fw fa-wrench"></i>
-                            </button> &nbsp; 
+                            </button> &nbsp;
                             </td>
-                            <td>` + elemento['startTime'] + `</td>
-                            <td>` + elemento['endTime'] + `</td>
-                            <td>` + elemento['descriptions'] + `</td>
-                            <td>` + elemento['justification'] + `</td>
-                            <td>` + elemento['event'] + `</td>
-                            <td>` + elemento['duration'] + `</td>
-                        </tr>`
-                    $("#cuerpo").append(tr)
+                            <td>`+elemento['startTime']+`</td>
+                            <td>`+elemento['endTime']+`</td>
+                            <td>`+elemento['descriptions']+`</td>`;
+
+                            if (elemento['justification'] != null){
+                            tr = tr + `<td>`+elemento['justification']+`</td>`
+                            }else{
+                                tr = tr + `<td></td>`
+                            }
+                            tr = tr +`<td>`+elemento['event']+`</td>
+                                    <td>`+elemento['duration']+`</td>
+                            </tr>`
+                        $("#cuerpo").append(tr)
 
                 });
                 $('#dataTable').DataTable({
@@ -154,17 +160,22 @@ $(document).ready(function() {
                 $("#cuerpo").empty();
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
-                            <td>  
-                            <button data-toggle="modal" data-target="#myModalEdit` + elemento['idevent'] + `" type="button" class="btn btn-primary btn-circle btn-sm">
-                                <i class="fas fa-fw fa-wrench"></i>
-                            </button> &nbsp; 
-                            </td>
-                            <td>` + elemento['startTime'] + `</td>
-                            <td>` + elemento['endTime'] + `</td>
-                            <td>` + elemento['descriptions'] + `</td>
-                            <td>` + elemento['justification'] + `</td>
-                            <td>` + elemento['event'] + `</td>
-                            <td>` + elemento['duration'] + `</td>
+                        <td>  
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <i class="fas fa-fw fa-wrench"></i>
+                        </button> &nbsp;
+                        </td>
+                        <td>`+elemento['startTime']+`</td>
+                        <td>`+elemento['endTime']+`</td>
+                        <td>`+elemento['descriptions']+`</td>`;
+
+                        if (elemento['justification'] != null){
+                        tr = tr + `<td>`+elemento['justification']+`</td>`
+                        }else{
+                            tr = tr + `<td></td>`
+                        }
+                        tr = tr +`<td>`+elemento['event']+`</td>
+                                <td>`+elemento['duration']+`</td>
                         </tr>`
                     $("#cuerpo").append(tr)
 
@@ -207,18 +218,23 @@ $(document).ready(function() {
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                             <td>  
-                            <button data-toggle="modal" data-target="#myModalEdit` + elemento['idevent'] + `" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
                                 <i class="fas fa-fw fa-wrench"></i>
-                            </button> &nbsp; 
+                            </button> &nbsp;
                             </td>
-                            <td>` + elemento['startTime'] + `</td>
-                            <td>` + elemento['endTime'] + `</td>
-                            <td>` + elemento['descriptions'] + `</td>
-                            <td>` + elemento['justification'] + `</td>
-                            <td>` + elemento['event'] + `</td>
-                            <td>` + elemento['duration'] + `</td>
-                        </tr>`
-                    $("#cuerpo").append(tr)
+                            <td>`+elemento['startTime']+`</td>
+                            <td>`+elemento['endTime']+`</td>
+                            <td>`+elemento['descriptions']+`</td>`;
+
+                            if (elemento['justification'] != null){
+                            tr = tr + `<td>`+elemento['justification']+`</td>`
+                            }else{
+                                tr = tr + `<td></td>`
+                            }
+                            tr = tr +`<td>`+elemento['event']+`</td>
+                                    <td>`+elemento['duration']+`</td>
+                            </tr>`
+                        $("#cuerpo").append(tr)
 
                 });
                 $('#dataTable').DataTable({
@@ -230,7 +246,15 @@ $(document).ready(function() {
         });
     });
 
+    // function Mostrar(btn){
+    //     console.log(btn.value);
+    //     // var route = "http://localhost:8000/genero/"+btn.value+"/edit";
 
+    //     // $.get(route, function(res){
+    //     //     $("#genre").val(res.genre);
+    //     //     $("#id").val(res.id);
+    //     // });
+    // }
 });
 </script>
 @endsection

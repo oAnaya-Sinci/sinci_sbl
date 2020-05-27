@@ -35,10 +35,9 @@ $.ajax({
             
             var tr = `<tr>
                      <td>  
-                     <button data-toggle="modal" data-target="#myModalEdit`+elemento['idevent']+`" type="button" class="btn btn-primary btn-circle btn-sm">
+                     <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
                         <i class="fas fa-fw fa-wrench"></i>
                      </button> &nbsp;
-                    
                      </td>
                      <td>`+elemento['startTime']+`</td>
                      <td>`+elemento['endTime']+`</td>
@@ -60,7 +59,17 @@ $.ajax({
         window.myMixedChart.update()
     }
 });
+function Mostrar(btn){
+    var route = "/events/"+btn.value+"/editm";
 
+    $.get(route, function(res){
+        console.log(res);
+        console.log(res.justification);
+        $("#id").val(btn.value);
+        $("#idmachines").val(res.idmachine);
+        $("#just").val(res.justification);
+    });
+}
 
 
 var chartData = {
