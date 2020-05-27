@@ -17,7 +17,7 @@ class CreateTrendsTable extends Migration
             $table->uuid('id');
             $table->integer('idvariable')->unsigned();
             $table->datetime('date');
-            $table->integer('value');
+            $table->decimal('value',10);
             $table->decimal('highLimit', 10);
             $table->decimal('lowLimit', 10);
             //$table->timestamps();
