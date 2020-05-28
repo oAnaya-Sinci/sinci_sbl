@@ -17,13 +17,6 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <canvas id="Canvas1" data-toggle="modal" data-target="#myModalDis" style="cursor: pointer;"></canvas>
-                            <!-- <div align="center">
-                            <button data-toggle="modal" data-target="#myModalDis" type="button" class="btn btn-info btn-circle">
-                                <i class="fas fa-info-circle"></i>
-                            </button> 
-                            </div>-->
-                            
-
                         </div>
                         <div class="col-sm-3">
                          <canvas id="Canvas2" data-toggle="modal" data-target="#myModalRen" style="cursor: pointer;"></canvas>
