@@ -28,6 +28,7 @@ class OeeController extends Controller
             $oee = DB::select('call ConsultaOEETrends(?,?,?)',array($caso,$idmachine,$date));
             $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?)',array($caso,$idmachine,$date));
             $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?)',array($caso,$idmachine,$date));
-        return array ($oee,$oeepro,$oeeGrid);
+            $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?)',array($caso,$idmachine,$date));
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet);
     }
 }

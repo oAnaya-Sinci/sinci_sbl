@@ -27,20 +27,9 @@
                         </div>
                         <div class="col-sm-3">
                          <canvas id="Canvas2" data-toggle="modal" data-target="#myModalRen" style="cursor: pointer;"></canvas>
-                            <!-- <div align="center">
-                                <button data-toggle="modal" data-target="#myModalRen" type="button" class="btn btn-info btn-circle">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                            </div> -->
-                         
                         </div>
                         <div class="col-sm-3">
                            <canvas id="Canvas3" data-toggle="modal" data-target="#myModalCal" style="cursor: pointer;"></canvas>
-                            <!-- <div align="center">
-                                <button data-toggle="modal" data-target="#myModalCal" type="button" class="btn btn-info btn-circle">
-                                    <i class="fas fa-info-circle"></i>
-                                </button>
-                            </div> -->
                         </div>
                         <div class="col-sm-3">
                             <canvas id="Canvas4"></canvas>
@@ -83,6 +72,7 @@
 <script src="{{ asset('js/oeetemplate.js')}}"></script>
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
 
@@ -171,6 +161,23 @@
                     $('#dataTable').DataTable({
                             "pageLength": 50
                     });
+                    response[3].forEach(function (elemento, indice) {
+                        $("#RunningTime").html(elemento['RunningTime']);
+                        $("#AvailableTime").html(elemento['AvailableTime']);
+                        var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
+                        $("#resAvailability").html(resAvailability);
+
+                        $("#TotalParts").html(elemento['TotalParts']);
+                        $("#IdealCycleTime").html(elemento['ICT']);
+                        $("#RunningTime2").html(elemento['RunningTime']);
+                        var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
+                        $("#resThroghput").html(resThroghput);
+
+                        $("#GoodParts").html(elemento['GoodParts']);
+                        $("#TotalParts2").html(elemento['TotalParts']);
+                        var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
+                        $("#resQuality").html(resQuality);
+                    });
 
                     window.myLine.update()
                     window.myMaq5.update()
@@ -243,6 +250,23 @@
                 $('#dataTable').DataTable({
                             "pageLength": 50
                     });
+                    response[3].forEach(function (elemento, indice) {
+                        $("#RunningTime").html(elemento['RunningTime']);
+                        $("#AvailableTime").html(elemento['AvailableTime']);
+                        var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
+                        $("#resAvailability").html(resAvailability);
+
+                        $("#TotalParts").html(elemento['TotalParts']);
+                        $("#IdealCycleTime").html(elemento['ICT']);
+                        $("#RunningTime2").html(elemento['RunningTime']);
+                        var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
+                        $("#resThroghput").html(resThroghput);
+
+                        $("#GoodParts").html(elemento['GoodParts']);
+                        $("#TotalParts2").html(elemento['TotalParts']);
+                        var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
+                        $("#resQuality").html(resQuality);
+                    });
 
                     window.myLine.update()
                     window.myMaq5.update()
@@ -313,6 +337,23 @@
                 });
                 $('#dataTable').DataTable({
                             "pageLength": 100
+                    });
+                    response[3].forEach(function (elemento, indice) {
+                        $("#RunningTime").html(elemento['RunningTime']);
+                        $("#AvailableTime").html(elemento['AvailableTime']);
+                        var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
+                        $("#resAvailability").html(resAvailability);
+
+                        $("#TotalParts").html(elemento['TotalParts']);
+                        $("#IdealCycleTime").html(elemento['ICT']);
+                        $("#RunningTime2").html(elemento['RunningTime']);
+                        var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
+                        $("#resThroghput").html(resThroghput);
+
+                        $("#GoodParts").html(elemento['GoodParts']);
+                        $("#TotalParts2").html(elemento['TotalParts']);
+                        var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
+                        $("#resQuality").html(resQuality);
                     });
 
                     window.myLine.update()

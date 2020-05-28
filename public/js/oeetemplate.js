@@ -65,6 +65,23 @@ $.ajax({
                 $("#cuerpo").append(tr)
 
         });
+        response[3].forEach(function (elemento, indice) {
+            $("#RunningTime").html(elemento['RunningTime']);
+            $("#AvailableTime").html(elemento['AvailableTime']);
+            var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
+            $("#resAvailability").html(resAvailability);
+
+            $("#TotalParts").html(elemento['TotalParts']);
+            $("#IdealCycleTime").html(elemento['ICT']);
+            $("#RunningTime2").html(elemento['RunningTime']);
+            var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
+            $("#resThroghput").html(resThroghput);
+
+            $("#GoodParts").html(elemento['GoodParts']);
+            $("#TotalParts2").html(elemento['TotalParts']);
+            var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
+            $("#resQuality").html(resQuality);
+         });
 
         window.myLine.update()
         window.myMaq5.update()
