@@ -16,13 +16,31 @@
                 <div class="table-responsive" style="overflow-x: unset;height:70%">
                     <div class="row">
                         <div class="col-sm-3">
-                            <canvas id="Canvas1"></canvas>
+                            <canvas id="Canvas1" data-toggle="modal" data-target="#myModalDis" style="cursor: pointer;"></canvas>
+                            <!-- <div align="center">
+                            <button data-toggle="modal" data-target="#myModalDis" type="button" class="btn btn-info btn-circle">
+                                <i class="fas fa-info-circle"></i>
+                            </button> 
+                            </div>-->
+                            
+
                         </div>
                         <div class="col-sm-3">
-                         <canvas id="Canvas2"></canvas>
+                         <canvas id="Canvas2" data-toggle="modal" data-target="#myModalRen" style="cursor: pointer;"></canvas>
+                            <!-- <div align="center">
+                                <button data-toggle="modal" data-target="#myModalRen" type="button" class="btn btn-info btn-circle">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div> -->
+                         
                         </div>
                         <div class="col-sm-3">
-                           <canvas id="Canvas3"></canvas>
+                           <canvas id="Canvas3" data-toggle="modal" data-target="#myModalCal" style="cursor: pointer;"></canvas>
+                            <!-- <div align="center">
+                                <button data-toggle="modal" data-target="#myModalCal" type="button" class="btn btn-info btn-circle">
+                                    <i class="fas fa-info-circle"></i>
+                                </button>
+                            </div> -->
                         </div>
                         <div class="col-sm-3">
                             <canvas id="Canvas4"></canvas>
@@ -34,6 +52,7 @@
                         </div>
                     </div>
                 </div>
+                @include('controles.comoee')
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
