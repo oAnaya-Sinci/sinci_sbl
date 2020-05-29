@@ -28,8 +28,8 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control" name="iduser">
-                                                            <option value="0" disabled >Seleccione</option>
+                                                        <select class="form-control" name="iduser" required>
+                                                            <option value="" disabled >Seleccione</option>
                                                             @foreach($users as $user)
                                                             <option value="{{$user['id']}}"  @if($user['id']=== $var['iduser']) selected='selected' @endif>{{$user['name']}} </option>
                                                             @endforeach

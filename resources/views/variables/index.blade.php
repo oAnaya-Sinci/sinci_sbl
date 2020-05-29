@@ -91,8 +91,8 @@
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Maquina</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="idmachine">
-                                        <option value="0" disabled selected>Seleccione</option>
+                                    <select class="form-control" name="idmachine" required>
+                                        <option value="" disabled selected>Seleccione</option>
                                         @foreach($machines as $machine)
                                         <option value="{{$machine['id']}}">{{$machine['name']}} </option>
                                         @endforeach
