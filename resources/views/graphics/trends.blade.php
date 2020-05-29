@@ -57,8 +57,8 @@ $(document).ready(function()
                     config.data.datasets[0].data.length=0;
                     config.data.datasets[1].data.length=0;
                     config.data.datasets[2].data.length=0;
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Día"
-                    config.data.datasets[0].label =  "Consumo del Día"
+                    config.options.scales.xAxes[0].scaleLabel.labelString= "Horas del día"
+                    config.data.datasets[0].label =  "Valor"
                 response.forEach(function (elemento, indice) {
                     
                     config.data.labels.push(elemento['date']);

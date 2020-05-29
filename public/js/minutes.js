@@ -16,8 +16,8 @@ var date = $('#date').val();
                     config.data.datasets[0].data.length=0;
                     config.data.datasets[1].data.length=0;
                     config.data.datasets[2].data.length=0; 
-                    config.data.datasets[0].label =  "Consumo del Dia"
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+                    config.data.datasets[0].label =  "Valor"
+                    config.options.scales.xAxes[0].scaleLabel.labelString= "Horas del día"
                 response.forEach(function (elemento, indice) {
                     
                     config.data.labels.push(elemento['date']);
