@@ -16,7 +16,7 @@
                         <div class="col-md-9">
                             <input type="hidden" class="form-control" name="id"  id="id"  required> 
                             <input type="hidden" class="form-control" name="idmachine"  id="idmachines"  required> 
-                            <input type="text" class="form-control" name="justification" id="just" placeholder="Justificación del evento" required>
+                            <input type="text" class="form-control" name="justification" id="just" placeholder="Justificación del evento" maxlength="100" required>
                         </div>
                     </div>
             </div>
