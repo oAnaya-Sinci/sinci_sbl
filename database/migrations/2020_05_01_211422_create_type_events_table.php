@@ -16,7 +16,7 @@ class CreateTypeEventsTable extends Migration
         Schema::create('type_events', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_type');
-            $table->string('name', 30)->unsigned();
+            $table->string('name', 30);
             $table->integer('iduser')->unsigned();
             $table->string('description', 100);
             $table->boolean('condicion')->default(1);
