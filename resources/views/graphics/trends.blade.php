@@ -28,8 +28,8 @@
           <!--     -->
 @endsection
 @section('scripts')
-<script src="{{ asset('vendor/chart.js/chart.min.js')}}"></script>
-<script src="{{ asset('vendor/chart.js/chart.bundle.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <script src="{{ asset('vendor/chart.js/utils.js')}}"></script>
 <!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
 <script src="{{ asset('js/minutes.js')}}"></script>
