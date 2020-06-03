@@ -18,8 +18,8 @@ class ReturnDatosEventos extends Migration
         NO SQL
         IF (_caso = 'd') then    
             /*Primero se obtiene el total de eventos contenidos en el periodo de tiempo y filtrado por maquina*/
-            SET @Total = (select sum(duration) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y-%m-%d' ) = date_format(_inpdate, '%Y-%m-%d' ) AND type >= 1 );
-			SET @TotalHras = (select sum(duration)/3600 FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y-%m-%d' ) = date_format(_inpdate, '%Y-%m-%d')AND type >= 1);  # /3600 para obtener hras
+            SET @Total = (select sum(duration) FROM events WHERE idmachine = _machId AND date_format(startTime, '%Y-%m-%d' ) = date_format(_inpdate, '%Y-%m-%d' ) AND type >= 1 );
+			SET @TotalHras = (select sum(duration)/3600 FROM events WHERE idmachine = _machId AND date_format(startTime, '%Y-%m-%d' ) = date_format(_inpdate, '%Y-%m-%d')AND type >= 1);  # /3600 para obtener hras
 
             /*luego se obtienen las duraciones Totales de los eventos y se almacenan en una tabla temporal (filtrado por periodo de tiempo y por maquina)*/
             CREATE TEMPORARY TABLE IF NOT EXISTS eventosTemporal AS (
@@ -53,8 +53,8 @@ class ReturnDatosEventos extends Migration
     
         ELSEIF (_caso='m')then  /*Obtener los promedios del dia*/
 			/*Primero se obtiene el total de segundos de duracion de los eventos en el periodo de tiempo y filtrado por maquina*/
-            SET @Total = (select sum(duration) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(concat( _inpdate ,'-01'),  '%Y-%m') AND type >= 1 );	      
-			SET @TotalHras = (select sum(duration)/3600 FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(concat( _inpdate ,'-01'),  '%Y-%m') AND type >= 1 );  # /3600 para obtener hras
+            SET @Total = (select sum(duration) FROM events WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(concat( _inpdate ,'-01'),  '%Y-%m') AND type >= 1 );	      
+			SET @TotalHras = (select sum(duration)/3600 FROM events WHERE idmachine = _machId AND date_format(startTime, '%Y-%m' ) = date_format(concat( _inpdate ,'-01'),  '%Y-%m') AND type >= 1 );  # /3600 para obtener hras
 
             /*luego se obtienen las duraciones Totales de los eventos y se almacenan en una tabla temporal (filtrado por periodo de tiempo y por maquina)*/
             CREATE TEMPORARY TABLE IF NOT EXISTS eventosTemporal AS (
@@ -89,8 +89,8 @@ class ReturnDatosEventos extends Migration
 
         ELSEIF (_caso='y')then
 		    /*Primero se obtiene el total de segundos de duracion de los eventos en el periodo de tiempo y filtrado por maquina*/
-            SET @Total = (select sum(duration) FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(concat( _inpdate ,'-01-01'),  '%Y') AND type >= 1);
-			SET @TotalHras = (select sum(duration)/3600 FROM EVENTS WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(concat( _inpdate ,'-01-01'),  '%Y') AND type >= 1 );  # /3600 para obtener hras
+            SET @Total = (select sum(duration) FROM events WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(concat( _inpdate ,'-01-01'),  '%Y') AND type >= 1);
+			SET @TotalHras = (select sum(duration)/3600 FROM events WHERE idmachine = _machId AND date_format(startTime, '%Y' ) = date_format(concat( _inpdate ,'-01-01'),  '%Y') AND type >= 1 );  # /3600 para obtener hras
 			
             /*luego se obtienen las duraciones Totales de los eventos y se almacenan en una tabla temporal (filtrado por periodo de tiempo y por maquina)*/
             CREATE TEMPORARY TABLE IF NOT EXISTS eventosTemporal AS (
