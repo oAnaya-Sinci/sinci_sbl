@@ -102,7 +102,7 @@ var chartData = {
         yAxisID: "y-axis1"
     }, {
         type: 'bar',
-        label: 'Frecuencias',
+        label: 'Tiempo Acumulado de falla',
         backgroundColor: window.chartColors.green,
         data: [], //Frecuencia
         yAxisID: "y-axis2",
@@ -145,6 +145,10 @@ var options = {
             yAxes: [{
                 id: "y-axis1",
                 position: "right",
+                scaleLabel:{
+                    labelString:"Porcentaje",
+                    display:true
+                },
                 ticks: {
                     beginAtZero: true
                 },
@@ -156,6 +160,10 @@ var options = {
             {
                 display: true,
                 id: "y-axis2",
+                scaleLabel:{
+                    labelString:"Tiempo Acumulado (Hras)",
+                    display:true
+                },
                 ticks: {
                     beginAtZero: true,
                     //max: 101
