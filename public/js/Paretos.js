@@ -5,59 +5,76 @@ var date = $('#date').val();
 $('#i_dia').val(date)
 var maxy = 0
 //var Acumulado= []
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: '/Events/' + idmachine + '/d/' + date + '/datos',
+        type: 'GET',
+        success: function (response) {
 
-
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-$.ajax({
-    url: '/Events/' + idmachine + '/d/' + date + '/datos',
-    type: 'GET',
-    success: function (response) {
-
-        chartData.labels.length = 0;
-        chartData.datasets[1].data.length = 0; 
-        chartData.datasets[0].data.length = 0;
+            chartData.labels.length = 0;
+            chartData.datasets[1].data.length = 0; 
+            chartData.datasets[0].data.length = 0;
 
         
-        response[0].forEach(function (elemento, indice) {
-
-            chartData.labels.push(elemento['descriptions'])
-            chartData.datasets[1].data.push(elemento['Total'])
-            //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
-            chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
-            maxy = elemento['Acumulado']
-            
-        });
-        response[1].forEach(function (elemento, indice) {
-            
-            var tr = `<tr>
-                     <td>  
-                     <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
-                        <i class="fas fa-fw fa-wrench"></i>
-                     </button> &nbsp;
-                     </td>
-                     <td>`+elemento['startTime']+`</td>
-                     <td>`+elemento['endTime']+`</td>
-                     <td>`+elemento['descriptions']+`</td>`;
-
-                    if (elemento['justification'] != null){
-                       tr = tr + `<td>`+elemento['justification']+`</td>`
-                    }else{
-                        tr = tr + `<td></td>`
-                    }
-                    tr = tr +`<td>`+elemento['event']+`</td>
-                              <td>`+elemento['duration']+`</td>
-                    </tr>`
-                 $("#cuerpo").append(tr)
- 
-         });
+                //para limpiar el grid
+                $("#dataTable").dataTable().fnDestroy();
+                $("#cuerpo").empty();
         
-        options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
-        window.myMixedChart.update()
-    }
+            
+            response[0].forEach(function (elemento, indice) {
+
+                chartData.labels.push(elemento['descriptions'])
+                chartData.datasets[1].data.push(elemento['Total'])
+                //chartData.datasets[1].data.push(elemento['Porc']) //opcional sustituir por porcentajes
+                chartData.datasets[0].data.push(elemento['PorcentajeAcumulado'])
+                maxy = elemento['Acumulado']
+                
+            });
+            response[1].forEach(function (elemento, indice) {
+                
+                var tr = `<tr>
+                        <td>  
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <i class="fas fa-fw fa-wrench"></i>
+                        </button> &nbsp;
+                        </td>
+                        <td>`+elemento['startTime']+`</td>`;
+                        if (elemento['endTime'] != null){
+                            tr = tr + `<td>`+elemento['endTime']+`</td>`
+                            }else{
+                                tr = tr + `<td></td>`
+                            }
+                        tr = tr + `<td>`+elemento['descriptions']+`</td>`;
+
+                        if (elemento['justification'] != null){
+                        tr = tr + `<td>`+elemento['justification']+`</td>`
+                        }else{
+                            tr = tr + `<td></td>`
+                        }
+                        tr = tr +`<td>`+elemento['event']+`</td>`;
+
+                        if (elemento['duration'] != null){
+                            tr = tr + `<td>`+elemento['duration']+`</td>`
+                        }else{
+                            tr = tr + `<td></td>`
+                        }
+                        tr = tr + `</tr>`
+                    $("#cuerpo").append(tr)
+    
+            });
+            $('#dataTable').DataTable({
+                    "pageLength": 100
+                });
+            
+            options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
+            window.myMixedChart.update()
+        }
+    });
 });
 function Mostrar(btn){
     var route = "/events/"+btn.value+"/editm";
@@ -164,7 +181,7 @@ var options = {
                 },
 
             }
-        },
+        }
     }
 }
 

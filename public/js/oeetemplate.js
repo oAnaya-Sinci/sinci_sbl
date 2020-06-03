@@ -5,92 +5,98 @@ var eu = "";
 var date = $('#date').val(); 
 
 //arrays de prueba ver los valores
-
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
-$.ajax({
-    url: '/oee/' + idmachine + '/d/' + date + '/datos',
-    type: 'GET',
-    success: function (response) {
-        
-        config.data.labels.length = 0;
-        config.data.datasets[0].data.length = 0;
-        config.data.datasets[1].data.length = 0;
-        config.data.datasets[2].data.length = 0;
-        config.data.datasets[3].data.length = 0;
-        config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
-        
-        response[1].forEach(function(elemento, indice){
-
-            configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
-            configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]        
-            configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-            configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-            
-            configDis.options.elements.center.text = elemento.AvailabilityG+'%';
-            configEf.options.elements.center.text = elemento.performanceG+'%';
-            configQty.options.elements.center.text = elemento.qualityG+'%';
-            configM1.options.elements.center.text = elemento.OEEG+'%';
-
-
-        });
-        if (response[1][0].date == null) {
-                        
-            configDis.options.elements.center.text = 'No Data'
-            configEf.options.elements.center.text = 'No Data'
-            configQty.options.elements.center.text = 'No Data'
-            configM1.options.elements.center.text = 'No Data';
-
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
-        response[0].forEach(function (elemento, indice) {
-            config.data.labels.push(elemento['date']);
-            config.data.datasets[0].data.push(elemento['availability'])
-            config.data.datasets[1].data.push(elemento['performance'])
-            config.data.datasets[2].data.push(elemento['quality'])
-            config.data.datasets[3].data.push(elemento['oee'])
+    });
+    $.ajax({
+        url: '/oee/' + idmachine + '/d/' + date + '/datos',
+        type: 'GET',
+        success: function (response) {
+            
+            config.data.labels.length = 0;
+            config.data.datasets[0].data.length = 0;
+            config.data.datasets[1].data.length = 0;
+            config.data.datasets[2].data.length = 0;
+            config.data.datasets[3].data.length = 0;
+            config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
+            //para limpiar el grid
+            $("#dataTable").dataTable().fnDestroy();
+            $("#cuerpo").empty();
+            
+            response[1].forEach(function(elemento, indice){
 
-        });
-        response[2].forEach(function (elemento, indice) {
-           var tr = `<tr>
-                    <td>`+elemento['date']+`</td>
-                    <td>`+elemento['runTime']+`</td>
-                    <td>`+elemento['availableTime']+`</td>
-                    <td>`+elemento['ict']+`</td>
-                    <td>`+elemento['totalPieces']+`</td>
-                    <td>`+elemento['goodParts']+`</td>
-                </tr>`
-                $("#cuerpo").append(tr)
+                configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
+                configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]        
+                configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
+                configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
+                
+                configDis.options.elements.center.text = elemento.AvailabilityG+'%';
+                configEf.options.elements.center.text = elemento.performanceG+'%';
+                configQty.options.elements.center.text = elemento.qualityG+'%';
+                configM1.options.elements.center.text = elemento.OEEG+'%';
 
-        });
-        response[3].forEach(function (elemento, indice) {
-            $("#RunningTime").html(elemento['RunningTime']);
-            $("#AvailableTime").html(elemento['AvailableTime']);
-            var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
-            $("#resAvailability").html(resAvailability);
 
-            $("#TotalParts").html(elemento['TotalParts']);
-            $("#IdealCycleTime").html(elemento['ICT']);
-            $("#RunningTime2").html(elemento['RunningTime']);
-            var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
-            $("#resThroghput").html(resThroghput);
+            });
+            if (response[1][0].date == null) {
+                            
+                configDis.options.elements.center.text = 'No Data'
+                configEf.options.elements.center.text = 'No Data'
+                configQty.options.elements.center.text = 'No Data'
+                configM1.options.elements.center.text = 'No Data';
 
-            $("#GoodParts").html(elemento['GoodParts']);
-            $("#TotalParts2").html(elemento['TotalParts']);
-            var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
-            $("#resQuality").html(resQuality);
-         });
+            }
+            response[0].forEach(function (elemento, indice) {
+                config.data.labels.push(elemento['date']);
+                config.data.datasets[0].data.push(elemento['availability'])
+                config.data.datasets[1].data.push(elemento['performance'])
+                config.data.datasets[2].data.push(elemento['quality'])
+                config.data.datasets[3].data.push(elemento['oee'])
 
-        window.myLine.update()
-        window.myMaq5.update()
-        window.myMaq6.update()
-        window.myMaq7.update()
-        window.myMaq8.update()
-    }
+            });
+            response[2].forEach(function (elemento, indice) {
+            var tr = `<tr>
+                        <td>`+elemento['date']+`</td>
+                        <td>`+elemento['runTime']+`</td>
+                        <td>`+elemento['availableTime']+`</td>
+                        <td>`+elemento['ict']+`</td>
+                        <td>`+elemento['totalPieces']+`</td>
+                        <td>`+elemento['goodParts']+`</td>
+                    </tr>`
+                    $("#cuerpo").append(tr)
+
+            });
+            $('#dataTable').DataTable({
+                "pageLength": 50
+            });
+            response[3].forEach(function (elemento, indice) {
+                $("#RunningTime").html(elemento['RunningTime']);
+                $("#AvailableTime").html(elemento['AvailableTime']);
+                var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
+                $("#resAvailability").html(resAvailability);
+
+                $("#TotalParts").html(elemento['TotalParts']);
+                $("#IdealCycleTime").html(elemento['ICT']);
+                $("#RunningTime2").html(elemento['RunningTime']);
+                var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
+                $("#resThroghput").html(resThroghput);
+
+                $("#GoodParts").html(elemento['GoodParts']);
+                $("#TotalParts2").html(elemento['TotalParts']);
+                var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
+                $("#resQuality").html(resQuality);
+            });
+
+            window.myLine.update()
+            window.myMaq5.update()
+            window.myMaq6.update()
+            window.myMaq7.update()
+            window.myMaq8.update()
+        }
+    });
 });
-
 
 
 var configM1 = {
