@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Machine;
-use App\User;
-
+use App\Groups;
 class MachineController extends Controller
 {
      /**
@@ -16,13 +15,14 @@ class MachineController extends Controller
      */
     public function index(Request $request)
     {
-        $machines = Machine::join('users','users.id','=','machines.iduser')
-        ->select('machines.id','machines.name','users.id as id_user','users.name as name_user','machines.activar_oee','machines.activar_eventos','machines.condicion')->orderBy('name', 'asc')->get();
+        $machines = Machine::join('groups','groups.id','=','machines.idgroup')
+        ->select('machines.id','machines.name','groups.id as id_group','groups.name as name_group','machines.activar_oee','machines.activar_eventos','machines.condicion')->orderBy('name', 'asc')->get();
         
-        $users = User::where('condicion','=','1')
-        ->select('id','name')->orderBy('name', 'asc')->get();
+        $groups = Groups::where('condicion','=','1')
+            ->where('id','>','1')
+            ->select('id','name')->orderBy('name', 'asc')->get();
 
-        return view('machine.index')->with(compact('machines','users'));
+        return view('machine.index')->with(compact('machines','groups'));
     } 
     
 
@@ -37,7 +37,7 @@ class MachineController extends Controller
         
         $machine = new Machine();
         $machine->name = $request->name;
-        $machine->iduser = $request->iduser;
+        $machine->idgroup = $request->idgroup;
         $machine->activar_oee = $request->oee ? true : false;
         $machine->activar_eventos = $request->eventos ? true : false;
         $machine->condicion = '1';
@@ -58,7 +58,7 @@ class MachineController extends Controller
     {
         $machine = Machine::findOrFail($request->id);
         $machine->name = $request->name;
-        $machine->iduser = $request->iduser;
+        $machine->idgroup = $request->idgroup;
         $machine->activar_oee = $request->oee ? true : false;
         $machine->activar_eventos = $request->eventos ? true : false;
         $machine->condicion = '1';

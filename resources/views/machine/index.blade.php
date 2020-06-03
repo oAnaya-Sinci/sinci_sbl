@@ -21,7 +21,7 @@
                     <tr>
                       <th>Opciones</th>
                       <th>Nombre</th>
-                      <th>Usuario</th>
+                      <th>Grupo</th>
                       <th>Oee</th>
                       <th>Eventos</th>
                       <th>Estado</th>
@@ -51,7 +51,7 @@
                         @endif
                      </td>
                      <td>{{$var['name']}}</td>
-                     <td>{{$var['name_user']}}</td>
+                     <td>{{$var['name_group']}}</td>
                      <td>
                        @if($var['activar_oee']==1)
                          <div>
@@ -112,12 +112,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="iduser" required>
+                                    <select class="form-control" name="idgroup" required>
                                         <option value="" disabled selected>Seleccione</option>
-                                        @foreach($users as $user)
-                                        <option value="{{$user['id']}}">{{$user['name']}} </option>
+                                        @foreach($groups as $group)
+                                        <option value="{{$group['id']}}">{{$group['name']}} </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -175,5 +175,6 @@
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
+
 
 @endsection

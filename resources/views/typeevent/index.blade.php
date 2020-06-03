@@ -23,7 +23,7 @@
                       <th>id_type</th>
                       <th>Nombre</th>        
                       <th>Descripción</th> 
-                      <th>Usuario</th>                 
+                      <th>Grupo</th>                 
                       <th>Estado</th>
                     </tr>
                   </thead>
@@ -52,7 +52,7 @@
                      <td>{{$var['id_type']}}</td>
                      <td>{{$var['name']}}</td>    
                      <td>{{$var['description']}}</td>
-                     <td>{{$var['name_user']}}</td>
+                     <td>{{$var['name_group']}}</td>
                      <td>
                        @if($var['condicion']==1)
                          <div>
@@ -103,13 +103,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="iduser" required>
-                                            <option value="" disabled selected>Seleccione</option>
-                                            @foreach($users as $user)
-                                            <option value="{{$user['id']}}">{{$user['name']}} </option>
-                                            @endforeach
+                                    <select class="form-control" name="idgroup" required>
+                                        <option value="" disabled selected>Seleccione</option>
+                                        @foreach($groups as $group)
+                                        <option value="{{$group['id']}}">{{$group['name']}} </option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>

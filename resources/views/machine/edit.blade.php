@@ -19,12 +19,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 form-control-label" for="text-input">Usuario</label>
+                                                    <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control" name="iduser" required>
+                                                        <select class="form-control" name="idgroup" required>
                                                             <option value="" disabled >Seleccione</option>
-                                                            @foreach($users as $user)
-                                                            <option value="{{$user['id']}}"  @if($user['id']=== $var['id_user']) selected='selected' @endif>{{$user['name']}} </option>
+                                                            @foreach($groups as $group)
+                                                            <option value="{{$group['id']}}"  @if($group['id']=== $var['id_group']) selected='selected' @endif>{{$group['name']}} </option>
                                                             @endforeach
                                                         </select>
                                                     </div>

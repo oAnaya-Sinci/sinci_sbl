@@ -27,7 +27,18 @@
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Password</label>
                                                     <div class="col-md-9">
-                                                        <input type="password" class="form-control" name="password" placeholder="Contraseña del Usuario" value="{{$var['password']}}" required>
+                                                        <input type="password" class="form-control" name="password" placeholder="Password del Usuario" value="{{$var['password']}}" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
+                                                    <div class="col-md-9">
+                                                        <select class="form-control" name="idgroup" required>
+                                                            <option value="">Seleccione</option>
+                                                            @foreach($groups as $group)
+                                                            <option value="{{$group['id']}}"  @if($group['id']=== $var['idgroup']) selected='selected' @endif>{{$group['name']}} </option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                         </div>

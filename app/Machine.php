@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Machine extends Model
 {
     protected $fillable=[
-        'name','iduser','activar_oee','activar_eventos', 'condicion'
+        'name','idgroup','activar_oee','activar_eventos', 'condicion'
     ];
 
     public function variables()

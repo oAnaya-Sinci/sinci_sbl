@@ -15,14 +15,14 @@ class CreateTypeEventsTable extends Migration
     {
         Schema::create('type_events', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_type');
+            $table->integer('id_type')->unsigned();
             $table->string('name', 30);
-            $table->integer('iduser')->unsigned();
+            $table->integer('idgroup')->unsigned();
             $table->string('description', 100);
             $table->boolean('condicion')->default(1);
             $table->timestamps();
 
-            $table->foreign('iduser')->references('id')->on('users');
+            $table->foreign('idgroup')->references('id')->on('groups');
         });
     }
 

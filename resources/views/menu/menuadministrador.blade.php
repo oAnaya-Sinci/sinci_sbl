@@ -40,6 +40,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">componentes:</h6>
+            <a class="collapse-item" href="{{route('group')}}">Grupos</a>
             <a class="collapse-item" href="{{route('user')}}">Usuarios</a>
         </div>
         </div>

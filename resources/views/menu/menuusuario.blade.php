@@ -1,4 +1,4 @@
-@inject('users','App\Http\Controllers\UserController')
+@inject('groups','App\Http\Controllers\GroupController')
 @inject('variables','App\Http\Controllers\VariableController')
  <!-- Nav Item - Dashboard -->
    
@@ -7,7 +7,7 @@
         Menu
     </div>
 
-    @foreach($users->listMachinesUser() as $machine)
+    @foreach($groups->listMachinesGroup() as $machine)
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">    
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse{{$machine['id']}}" aria-expanded="true" aria-controls="collapseTwo">

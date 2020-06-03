@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
         $user->name = 'User';
         $user->email = 'user@sinci.com';
         $user->password = bcrypt('secret');
+        $user->idgroup = 1;
         $user->save();
         $user->roles()->attach($role_user);
 
@@ -26,6 +27,7 @@ class UserTableSeeder extends Seeder
         $user->name = 'Admin';
         $user->email = 'admin@sinci.com';
         $user->password = bcrypt('secret');
+        $user->idgroup = 1;
         $user->save();
         $user->roles()->attach($role_admin);
      }

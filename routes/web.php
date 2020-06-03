@@ -64,7 +64,12 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/user/actualizar', 'UserController@update')->name('u_edit');
         Route::put('/user/desactivar', 'UserController@desactivar')->name('u_desactivar');
         Route::put('/user/activar', 'UserController@activar')->name('u_activar');
-        Route::get('/user/listVaribles', 'UserController@listVaribles');
+
+        Route::get('/groups', 'GroupController@index')->name('group');
+        Route::post('/groups/registrar', 'GroupController@store')->name('g_registrar');
+        Route::put('/groups/actualizar', 'GroupController@update')->name('g_edit');
+        Route::put('/groups/desactivar', 'GroupController@desactivar')->name('g_desactivar');
+        Route::put('/groups/activar', 'GroupController@activar')->name('g_activar');
 
     });
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMachinesTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateMachinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('machines', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('idgroup')->unsigned();
             $table->string('name', 30);
-            $table->boolean('activar_oee')->default(0);
-            $table->boolean('activar_eventos')->default(0);
             $table->boolean('condicion')->default(1);
             $table->timestamps();
-
-            $table->foreign('idgroup')->references('id')->on('groups');
         });
     }
 
@@ -33,6 +28,6 @@ class CreateMachinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('machines');
+        Schema::dropIfExists('groups');
     }
 }

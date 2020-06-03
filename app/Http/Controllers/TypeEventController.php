@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TypeEvent;
-use App\User;
+use App\Groups;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -12,22 +12,23 @@ class TypeEventController extends Controller
     public function index(Request $request)
     {
 
-            $typeevents = TypeEvent::join('users','type_events.iduser','=','users.id')
-            ->select('type_events.id','type_events.id_type','type_events.iduser','type_events.name','type_events.iduser','users.name as name_user','type_events.description','type_events.condicion')
+            $typeevents = TypeEvent::join('groups','groups.id','=','type_events.idgroup')
+            ->select('type_events.id','type_events.id_type','type_events.idgroup','type_events.name','groups.name as name_group','type_events.description','type_events.condicion')
             ->orderBy('type_events.id', 'desc')->get();
 
-            $users = User::where('condicion','=','1')
-                ->select('id','name')->orderBy('name', 'asc')->get();
+            $groups = Groups::where('condicion','=','1')
+            ->where('id','>','1')
+            ->select('id','name')->orderBy('name', 'asc')->get();
      
-        return view('typeevent.index')->with(compact('typeevents','users'));
+        return view('typeevent.index')->with(compact('typeevents','groups'));
     }
     
     public function store(Request $request)
     {
         $typeevent = new TypeEvent();
-        $typeevent->iduser = $request->iduser;
         $typeevent->id_type = $request->id_type;
         $typeevent->name = $request->name;
+        $typeevent->idgroup = $request->idgroup;
         $typeevent->description = $request->description;
         $typeevent->condicion = '1';
         $typeevent->save();
@@ -36,8 +37,8 @@ class TypeEventController extends Controller
     public function update(Request $request)
     {
         $typeevent = TypeEvent::findOrFail($request->id);
-        $typeevent->iduser = $request->iduser;
-        $typeevent->name = $request->name; 
+        $typeevent->name = $request->name;
+        $typeevent->idgroup = $request->idgroup; 
         $typeevent->description = $request->description;
         $typeevent->condicion = '1';
         $typeevent->save();

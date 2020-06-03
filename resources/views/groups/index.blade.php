@@ -5,7 +5,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Usuarios
+              <h6 class="m-0 font-weight-bold text-primary">Grupos
               <button  data-toggle="modal" data-target="#myModalNuevo" class="btn btn-success btn-icon-split btn-sm">
                 <span class="icon text-white-50">
                       <i class="fas fa-arrow-right"></i>
@@ -21,36 +21,32 @@
                     <tr>
                       <th>Opciones</th>
                       <th>Nombre</th>
-                      <th>email</th>
-                      <th>Grupo</th>
                       <th>Estado</th>
                     </tr>
                   </thead>
                   <tbody>
-                   @foreach($personas as $var)   
+                   @foreach($groups as $var)   
                     <tr>
                      <td>
                         <button data-toggle="modal" title="Editar"  data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
                             <i class="fas fa-fw fa-wrench"></i>
                         </button> &nbsp;
-                        @include('users.edit')
+                        @include('groups.edit')
 
 
                         @if($var['condicion']==1)
                           <button type="button" title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
                                 <i class="fas fa-trash"></i>
                           </button>
-                          @include('users.delete')
+                          @include('groups.delete')
                         @else
                             <button type="button"  title="Activar" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#myModalActivar{{$var['id']}}">
                                 <i class="fas fa-check"></i>
                             </button>
-                            @include('users.activar')
+                            @include('groups.activar')
                         @endif
                      </td>
                      <td>{{$var['name']}}</td>
-                     <td>{{$var['email']}}</td>
-                     <td>{{$var['name_group']}}</td>
                      <td>
                        @if($var['condicion']==1)
                          <div>
@@ -74,41 +70,18 @@
             <div class="modal-dialog modal-primary modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" >Nuevo Usuario</h4>
+                        <h4 class="modal-title" >Nuevo Grupo</h4>
                         <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{route('u_registrar')}}" role="form" method="post"  class="form-horizontal">
+                        <form action="{{route('g_registrar')}}" role="form" method="post"  class="form-horizontal">
                            {{ csrf_field() }}
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Nombre del Grupo</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="name" placeholder="Nombre del Usuario" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Email</label>
-                                <div class="col-md-9">
-                                    <input type="email" class="form-control" name="email" placeholder="Email del Usuario" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Password</label>
-                                <div class="col-md-9">
-                                    <input type="password" class="form-control" name="password" placeholder="Password del Usuario" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
-                                <div class="col-md-9">
-                                    <select class="form-control" name="idgroup" required>
-                                        <option value="" disabled selected>Seleccione</option>
-                                        @foreach($groups as $group)
-                                        <option value="{{$group['id']}}">{{$group['name']}} </option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" class="form-control" name="name" placeholder="Nombre del Grupo" required>
                                 </div>
                             </div>
                             <div  class="form-group row div-error">

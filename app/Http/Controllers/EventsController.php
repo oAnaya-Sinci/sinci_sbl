@@ -25,9 +25,9 @@ class EventsController extends Controller
 
     public function datos($idmachine,$caso,$date)
     {  
-        $iduser = auth()->user()->id;
+        $idgroup = auth()->user()->idgroup;
         $pareto = DB::select('call ConsultaParetoHras(?,?,?)',array($caso,$idmachine,$date));
-        $paretoGrid = DB::select('call ConsultaParetoGrid(?,?,?,?)',array($caso,$iduser,$idmachine,$date));
+        $paretoGrid = DB::select('call ConsultaParetoGrid(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
             
         return array ($pareto,$paretoGrid);
     }
