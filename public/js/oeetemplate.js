@@ -482,6 +482,12 @@ var config = {
             mode: 'nearest',
             intersect: true
         },
+        elements:{
+            point:{
+                radius:0,
+                pointHoverRadius:10,
+            }
+        },
         scales: {
             xAxes: [{
                 display: true,
