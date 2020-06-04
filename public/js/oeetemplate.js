@@ -71,7 +71,6 @@ $(document).ready(function() {
 
             });
             response[2].forEach(function (elemento, indice) {
-                console.log(elemento['date']);
             var tr = `<tr>
                         <td>`+elemento['date']+`</td>
                         <td>`+elemento['runTime']+`</td>
@@ -84,7 +83,8 @@ $(document).ready(function() {
 
             });
             $('#dataTable').DataTable({
-                "pageLength": 50
+                "pageLength": 50,
+                "order": [[ 1, "desc" ]]
             });
             response[3].forEach(function (elemento, indice) {
                 $("#RunningTime").html(elemento['RunningTime']);

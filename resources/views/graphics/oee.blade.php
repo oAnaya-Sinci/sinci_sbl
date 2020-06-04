@@ -164,7 +164,8 @@
                             $("#cuerpo").append(tr)
                     });
                     $('#dataTable').DataTable({
-                            "pageLength": 50
+                            "pageLength": 50,
+                            "order": [[ 1, "desc" ]]
                     });
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);
@@ -274,7 +275,8 @@
 
                 });  
                 $('#dataTable').DataTable({
-                            "pageLength": 50
+                            "pageLength": 50,
+                            "order": [[ 1, "desc" ]]
                     });
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);
@@ -381,7 +383,8 @@
 
                 });
                 $('#dataTable').DataTable({
-                            "pageLength": 100
+                            "pageLength": 100,
+                            "order": [[ 1, "desc" ]]
                     });
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);
