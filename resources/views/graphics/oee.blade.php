@@ -173,7 +173,7 @@
 
                         $("#TotalParts").html(elemento['TotalParts']);
                         $("#IdealCycleTime").html(elemento['ICT']);
-                        $("#RunningTime2").html(elemento['AvailableTime']);
+                        $("#RunningTime2").html(elemento['RunningTime']);
 
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
@@ -284,7 +284,7 @@
 
                         $("#TotalParts").html(elemento['TotalParts']);
                         $("#IdealCycleTime").html(elemento['ICT']);
-                        $("#RunningTime2").html(elemento['AvailableTime']);
+                        $("#RunningTime2").html(elemento['RunningTime']);
 
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
@@ -392,7 +392,7 @@
 
                         $("#TotalParts").html(elemento['TotalParts']);
                         $("#IdealCycleTime").html(elemento['ICT']);
-                        $("#RunningTime2").html(elemento['AvailableTime']);
+                        $("#RunningTime2").html(elemento['RunningTime']);
 
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
