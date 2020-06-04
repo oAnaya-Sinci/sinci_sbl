@@ -92,7 +92,7 @@ $(document).ready(function() {
 
                 $("#TotalParts").html(elemento['TotalParts']);
                 $("#IdealCycleTime").html(elemento['ICT']);
-                $("#RunningTime2").html(elemento['RunningTime']);
+                $("#RunningTime2").html(elemento['AvailableTime']);
                 
 
                 $("#GoodParts").html(elemento['GoodParts']);
