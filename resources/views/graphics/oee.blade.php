@@ -138,6 +138,9 @@
                         configEf.options.elements.center.text = 'No Data'
                         configQty.options.elements.center.text = 'No Data'
                         configM1.options.elements.center.text = 'No Data';
+                        $("#resAvailability").html('No Data');
+                        $("#resThroghput").html('No Data');
+                        $("#resQuality").html('No Data');
 
                     }
 
@@ -173,7 +176,22 @@
 
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
+
+                        
                     });
+                    if (response[3][0].date == null) {
+                            
+                            $("#RunningTime").html('No Data');
+                            $("#AvailableTime").html('No Data');
+
+                            $("#TotalParts").html('No Data');
+                            $("#IdealCycleTime").html('No Data');
+                            $("#RunningTime2").html('No Data');
+
+                            $("#GoodParts").html('No Data');
+                            $("#TotalParts2").html('No Data');
+                
+                    }
 
                     window.myLine.update()
                     window.myMaq5.update()
@@ -230,6 +248,9 @@
                         configEf.options.elements.center.text = 'No Data'
                         configQty.options.elements.center.text = 'No Data'
                         configM1.options.elements.center.text = 'No Data';
+                        $("#resAvailability").html('No Data');
+                        $("#resThroghput").html('No Data');
+                        $("#resQuality").html('No Data');
             
                     }
                     response[0].forEach(function (elemento, indice) {
@@ -266,6 +287,19 @@
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
                     });
+                    if (response[3][0].date == null) {
+                            
+                            $("#RunningTime").html('No Data');
+                            $("#AvailableTime").html('No Data');
+
+                            $("#TotalParts").html('No Data');
+                            $("#IdealCycleTime").html('No Data');
+                            $("#RunningTime2").html('No Data');
+
+                            $("#GoodParts").html('No Data');
+                            $("#TotalParts2").html('No Data');
+                
+                    }
 
                     window.myLine.update()
                     window.myMaq5.update()
@@ -321,6 +355,9 @@
                         configEf.options.elements.center.text = 'No Data'
                         configQty.options.elements.center.text = 'No Data'
                         configM1.options.elements.center.text = 'No Data';
+                        $("#resAvailability").html('No Data');
+                        $("#resThroghput").html('No Data');
+                        $("#resQuality").html('No Data');
             
                     }
                     response[0].forEach(function (elemento, indice) {
@@ -357,6 +394,19 @@
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
                     });
+                    if (response[3][0].date == null) {
+                        
+                        $("#RunningTime").html('No Data');
+                        $("#AvailableTime").html('No Data');
+
+                        $("#TotalParts").html('No Data');
+                        $("#IdealCycleTime").html('No Data');
+                        $("#RunningTime2").html('No Data');
+
+                        $("#GoodParts").html('No Data');
+                        $("#TotalParts2").html('No Data');
+            
+                    }
 
                     window.myLine.update()
                     window.myMaq5.update()
