@@ -38,6 +38,15 @@ $(document).ready(function() {
                 configQty.options.elements.center.text = elemento.qualityG+'%';
                 configM1.options.elements.center.text = elemento.OEEG+'%';
 
+                var resAvailability = elemento.AvailabilityG+'%';
+                $("#resAvailability").html(resAvailability);
+
+                var resThroghput = elemento.performanceG+'%';
+                $("#resThroghput").html(resThroghput);
+
+                var resQuality = elemento.qualityG+'%';
+                $("#resQuality").html(resQuality);
+
 
             });
             if (response[1][0].date == null) {
@@ -74,19 +83,15 @@ $(document).ready(function() {
             response[3].forEach(function (elemento, indice) {
                 $("#RunningTime").html(elemento['RunningTime']);
                 $("#AvailableTime").html(elemento['AvailableTime']);
-                var resAvailability = Math.floor(elemento['RunningTime'] / elemento['AvailableTime'])/100
-                $("#resAvailability").html(resAvailability);
 
                 $("#TotalParts").html(elemento['TotalParts']);
                 $("#IdealCycleTime").html(elemento['ICT']);
                 $("#RunningTime2").html(elemento['RunningTime']);
-                var resThroghput = Math.floor((elemento['TotalParts'] * elemento['ICT']) / elemento['RunningTime'])/100
-                $("#resThroghput").html(resThroghput);
+                
 
                 $("#GoodParts").html(elemento['GoodParts']);
                 $("#TotalParts2").html(elemento['TotalParts']);
-                var resQuality = Math.floor(elemento['GoodParts'] / elemento['TotalParts'])/100
-                $("#resQuality").html(resQuality);
+                
             });
 
             window.myLine.update()
