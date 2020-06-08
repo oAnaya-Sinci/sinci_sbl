@@ -54,10 +54,21 @@ option = {
         show:true,
         feature: {
             dataZoom: {
-                yAxisIndex: 'none'
+                yAxisIndex: 'none',
+                title: 'Ver datos'
+
             },
-            restore: {},
-            dataView: {readOnly: false}
+            restore: {
+               title: 'Restaurar' 
+            },
+            saveAsImage: {
+                title: 'Descargar',
+            },
+            dataView: {
+                readOnly: false,
+                title: 'Ver datos',
+                lang: ['Datos','Cerrar','Actualizar']
+            }
         }
     },
     legend: {
@@ -134,9 +145,3 @@ option = {
         }
     ]
 };
-
-
-// window.onload = function () {
-//     var chart = document.getElementById('chart');
-//     window.myChart = echarts.init(chart);
-// };

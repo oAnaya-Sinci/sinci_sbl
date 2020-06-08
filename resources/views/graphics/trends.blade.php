@@ -22,16 +22,11 @@
     </div>
     @include('controles.fecha')
 </div>
-          
 
-          <!--     -->
 @endsection
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
              
-<script src="{{ asset('vendor/chart.js/utils.js')}}"></script>
 <!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
 <script src="{{ asset('js/minutes.js')}}"></script>
 
