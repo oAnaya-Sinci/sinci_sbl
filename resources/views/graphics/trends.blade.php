@@ -14,10 +14,9 @@
                     <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">      
                 @endforeach
             </div>
+               
                 <div class="card-body">
-                    <div style="width:75%;">
-                        <canvas id="canvas"></canvas>
-                    </div>
+                    <div id="chart" style="width: 1000px; height: 390px;"></div>
                 </div>
         </div>
     </div>
@@ -30,9 +29,12 @@
 @section('scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
+             
 <script src="{{ asset('vendor/chart.js/utils.js')}}"></script>
 <!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
 <script src="{{ asset('js/minutes.js')}}"></script>
+
 <script>
  $(function () {
     $('#i_dia').datepicker({
@@ -53,21 +55,22 @@ $(document).ready(function()
                 url:'/trends/'+idvariable+'/d/'+date+'/datos',
                 type:'GET',
                 success:function(response){
-                    config.data.labels.length=0;
-                    config.data.datasets[0].data.length=0;
-                    config.data.datasets[1].data.length=0;
-                    config.data.datasets[2].data.length=0;
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Horas del día"
-                    config.data.datasets[0].label =  "Valor"
+                    option.xAxis.data.length = 0;
+                    option.series[0].data.length = 0; 
+                    option.series[1].data.length = 0;
+                    option.series[2].data.length = 0;
                 response.forEach(function (elemento, indice) {
                     
-                    config.data.labels.push(elemento['date']);
-                    config.data.datasets[0].data.push(elemento['value'])
-                    config.data.datasets[1].data.push(elemento['highLimit'])
-                    config.data.datasets[2].data.push(elemento['lowLimit'])
+                    option.xAxis.data.push(elemento['date'])
+                    var valor = parseInt(elemento['value'])
+                    option.series[0].data.push(valor);
+                    var LH = parseInt(elemento['highLimit'])
+                    option.series[1].data.push(LH);
+                    var LL = parseInt(elemento['lowLimit'])
+                    option.series[2].data.push(LL);
 
                 });	            
-                window.myLine.update()
+                myChart.setOption(option);
                 }
         });
 
