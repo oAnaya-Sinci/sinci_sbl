@@ -14,7 +14,7 @@
     <title>SINCI</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    
     
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
@@ -163,6 +163,7 @@
   
     @yield('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->

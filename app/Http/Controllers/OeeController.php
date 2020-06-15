@@ -18,16 +18,16 @@ class OeeController extends Controller
         $machines = Machine::where('id','=', $idmachine)
            ->select('id','name')->orderBy('name', 'asc')->get();
         
-        $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?)',array($caso,$idmachine,$date));
-     
-        return view('graphics.oee')->with(compact('machines','date','oeeGrid'));
+       
+        return view('graphics.oee')->with(compact('machines','date'));
     }
 
     public function datos($idmachine,$caso,$date)
     {    
+            $idgroup = auth()->user()->idgroup;
             $oee = DB::select('call ConsultaOEETrends(?,?,?)',array($caso,$idmachine,$date));
             $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?)',array($caso,$idmachine,$date));
-            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?)',array($caso,$idmachine,$date));
+            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
             $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?)',array($caso,$idmachine,$date));
         return array ($oee,$oeepro,$oeeGrid,$oeeComponet);
     }

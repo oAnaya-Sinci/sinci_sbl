@@ -71,20 +71,29 @@ $(document).ready(function() {
 
             });
             response[2].forEach(function (elemento, indice) {
+                
             var tr = `<tr>
-                        <td>`+elemento['date']+`</td>
-                        <td>`+elemento['runTime']+`</td>
-                        <td>`+elemento['availableTime']+`</td>
-                        <td>`+elemento['ict']+`</td>
-                        <td>`+elemento['totalPieces']+`</td>
-                        <td>`+elemento['goodParts']+`</td>
+                        <td style="font-size:90%;">`+elemento['date']+`</td>
+                        <td style="font-size:90%;">`+elemento['oee']+`</td>
+                        <td style="font-size:90%;">`+elemento['availability']+`</td>
+                        <td style="font-size:90%;">`+elemento['performance']+`</td>
+                        <td style="font-size:90%;">`+elemento['quality']+`</td>
+                        <td style="font-size:90%;">`+elemento['runTime']+`</td>
+                        <td style="font-size:90%;">`+elemento['availableTime']+`</td>
+                        <td style="font-size:90%;">`+elemento['ict']+`</td>
+                        <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
+                        <td style="font-size:90%;">`+elemento['goodParts']+`</td>
+                        <td style="font-size:90%;">`+elemento['lotId']+`</td>
+                        <td style="font-size:90%;">`+elemento['partId']+`</td>
+                        <td style="font-size:90%;">`+elemento['turno']+`</td>
                     </tr>`
                     $("#cuerpo").append(tr)
 
             });
             $('#dataTable').DataTable({
                 "pageLength": 50,
-                "order": [[ 1, "desc" ]]
+                "order": [[ 1, "desc" ]],
+                "searching": false
             });
             response[3].forEach(function (elemento, indice) {
                 $("#RunningTime").html(elemento['RunningTime']);
@@ -495,12 +504,17 @@ var config = {
                     display: true,
                     labelString: ''
                 }
+
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
                     labelString: ''
+                },
+                ticks: {
+                    min: 0,
+                    max: 100
                 }
             }]
         }

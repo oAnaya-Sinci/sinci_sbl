@@ -5,12 +5,12 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Variables
+              <h6 class="m-0 font-weight-bold text-primary">Catalogo de Turnos
               <button  data-toggle="modal" data-target="#myModalNuevo" class="btn btn-success btn-icon-split btn-sm">
                 <span class="icon text-white-50">
                       <i class="fas fa-arrow-right"></i>
                 </span>
-                    <span class="text">Nueva</span>
+                    <span class="text">Nuevo</span>
               </button>
               </h6>
             </div>
@@ -20,39 +20,37 @@
                   <thead>
                     <tr>
                       <th>Opciones</th>
-                      <th>Id</th>
+                      <th>id_shift</th>
                       <th>Nombre</th>
-                      <th>Maquina</th>
-                      <th>Eu</th>
+                      <th>Grupo</th>                 
                       <th>Estado</th>
                     </tr>
                   </thead>
                   <tbody>
-                   @foreach($variables as $var)   
+                   @foreach($shift as $var)   
                     <tr>
                      <td>
-                        <button data-toggle="modal"  title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
+                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
                             <i class="fas fa-fw fa-wrench"></i>
                         </button> &nbsp;
-                        @include('variables.edit')
+                        @include('shift.edit')
 
 
                         @if($var['condicion']==1)
                           <button type="button"  title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
                                 <i class="fas fa-trash"></i>
                           </button>
-                          @include('variables.delete')
+                          @include('shift.delete')
                         @else
                             <button type="button"  title="Activar" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#myModalActivar{{$var['id']}}">
                                 <i class="fas fa-check"></i>
                             </button>
-                            @include('variables.activar')
+                            @include('shift.activar')
                         @endif
                      </td>
-                     <td>{{$var['id']}}</td>
+                     <td>{{$var['id_shift']}}</td>
                      <td>{{$var['name']}}</td>
-                     <td>{{$var['idmachine'].'.- '.$var['name_machine']}}</td>
-                     <td>{{$var['eu']}}</td>
+                     <td>{{$var['name_group']}}</td>
                      <td>
                        @if($var['condicion']==1)
                          <div>
@@ -82,29 +80,29 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{route('v_registrar')}}" role="form" method="post"  class="form-horizontal">
+                        <form action="{{route('s_registrar')}}" role="form" method="post"  class="form-horizontal">
                            {{ csrf_field() }}
+                           <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">id_shift</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" name="id_shift" placeholder="identificador del turno" min=1 required>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="name" placeholder="Nombre de la Variable" maxlength="30" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Nombre del turno" maxlength="30" required>
                                 </div>
-                            </div>
+                            </div> 
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Maquina</label>
+                                <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
                                 <div class="col-md-9">
-                                    <select class="form-control" name="idmachine" required>
+                                    <select class="form-control" name="idgroup" required>
                                         <option value="" disabled selected>Seleccione</option>
-                                        @foreach($machines as $machine)
-                                        <option value="{{$machine['id']}}">{{$machine['name']}} </option>
+                                        @foreach($groups as $group)
+                                        <option value="{{$group['id']}}">{{$group['name']}} </option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Eu</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="eu" placeholder="Eu" maxlength="20" required>
                                 </div>
                             </div>
                             <div  class="form-group row div-error">

@@ -71,5 +71,11 @@ Route::group(['middleware'=>['auth']],function(){
         Route::put('/groups/desactivar', 'GroupController@desactivar')->name('g_desactivar');
         Route::put('/groups/activar', 'GroupController@activar')->name('g_activar');
 
+        Route::get('/shift', 'ShiftController@index')->name('shift');
+        Route::post('/shift/registrar', 'ShiftController@store')->name('s_registrar');
+        Route::put('/shift/actualizar', 'ShiftController@update')->name('s_edit');
+        Route::put('/shift/desactivar', 'ShiftController@desactivar')->name('s_desactivar');
+        Route::put('/shift/activar', 'ShiftController@activar')->name('s_activar');
+
     });
 });

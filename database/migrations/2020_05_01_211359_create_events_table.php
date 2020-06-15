@@ -15,7 +15,7 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('ideventoPLC', 20)->nullable();
+            $table->string('ideventoPLC', 82)->nullable();
             $table->integer('idmachine')->unsigned();
             $table->datetime('startTime');
             $table->datetime('endTime')->nullable();

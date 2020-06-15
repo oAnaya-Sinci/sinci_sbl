@@ -35,16 +35,24 @@
                     </div>
                 </div>
                 @include('controles.comoee')
+                
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                     <thead>
                         <tr>
-                        <th>Fecha</th>
-                        <th>Tiempo de ejecución</th>
-                        <th>Tiempo disponible</th>
-                        <th>Tiempo de ciclo ideal</th>
-                        <th>Total de Piezas</th>
-                        <th>Piezas Buenas</th>
+                        <th style="font-size:90%;">Date</th>
+                        <th style="font-size:90%;">OEE</th>
+                        <th style="font-size:90%;">Availability</th>
+                        <th style="font-size:90%;">Performance</th>
+                        <th style="font-size:90%;">Quality</th>
+                        <th style="font-size:90%;">RunTime</th>
+                        <th style="font-size:90%;">AvailableTime</th>
+                        <th style="font-size:90%;">ICT</th>
+                        <th style="font-size:90%;">TotalParts</th>
+                        <th style="font-size:90%;">GoodParts</th>
+                        <th style="font-size:90%;">lotId</th>
+                        <th style="font-size:90%;">partId</th>
+                        <th style="font-size:90%;">Shift</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo">
@@ -65,7 +73,7 @@
 <script src="{{ asset('js/oeetemplate.js')}}"></script>
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
+
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
 
@@ -87,7 +95,6 @@
             });
 
         });
-
     $(document).ready(function () {
         $("#i_dia").change(function () {
             var date = $('#i_dia').val();
@@ -154,18 +161,27 @@
                     });
                     response[2].forEach(function (elemento, indice) {
                         var tr = `<tr>
-                                <td>`+elemento['date']+`</td>
-                                <td>`+elemento['runTime']+`</td>
-                                <td>`+elemento['availableTime']+`</td>
-                                <td>`+elemento['ict']+`</td>
-                                <td>`+elemento['totalPieces']+`</td>
-                                <td>`+elemento['goodParts']+`</td>
-                            </tr>`
+                            <td style="font-size:90%;">`+elemento['date']+`</td>
+                            <td style="font-size:90%;">`+elemento['oee']+`</td>
+                            <td style="font-size:90%;">`+elemento['availability']+`</td>
+                            <td style="font-size:90%;">`+elemento['performance']+`</td>
+                            <td style="font-size:90%;">`+elemento['quality']+`</td>
+                            <td style="font-size:90%;">`+elemento['runTime']+`</td>
+                            <td style="font-size:90%;">`+elemento['availableTime']+`</td>
+                            <td style="font-size:90%;">`+elemento['ict']+`</td>
+                            <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
+                            <td style="font-size:90%;">`+elemento['goodParts']+`</td>
+                            <td style="font-size:90%;">`+elemento['lotId']+`</td>
+                            <td style="font-size:90%;">`+elemento['partId']+`</td>
+                            <td style="font-size:90%;">`+elemento['turno']+`</td>
+                        </tr>`
                             $("#cuerpo").append(tr)
+
                     });
                     $('#dataTable').DataTable({
                             "pageLength": 50,
-                            "order": [[ 1, "desc" ]]
+                            "order": [[ 1, "desc" ]],
+                            "searching": false
                     });
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);
@@ -264,19 +280,27 @@
                     });
                     response[2].forEach(function (elemento, indice) {
                         var tr = `<tr>
-                                <td>`+elemento['date']+`</td>
-                                <td>`+elemento['runTime']+`</td>
-                                <td>`+elemento['availableTime']+`</td>
-                                <td>`+elemento['ict']+`</td>
-                                <td>`+elemento['totalPieces']+`</td>
-                                <td>`+elemento['goodParts']+`</td>
-                            </tr>`
-                        $("#cuerpo").append(tr)
+                            <td style="font-size:90%;">`+elemento['date']+`</td>
+                            <td style="font-size:90%;">`+elemento['oee']+`</td>
+                            <td style="font-size:90%;">`+elemento['availability']+`</td>
+                            <td style="font-size:90%;">`+elemento['performance']+`</td>
+                            <td style="font-size:90%;">`+elemento['quality']+`</td>
+                            <td style="font-size:90%;">`+elemento['runTime']+`</td>
+                            <td style="font-size:90%;">`+elemento['availableTime']+`</td>
+                            <td style="font-size:90%;">`+elemento['ict']+`</td>
+                            <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
+                            <td style="font-size:90%;">`+elemento['goodParts']+`</td>
+                            <td style="font-size:90%;">`+elemento['lotId']+`</td>
+                            <td style="font-size:90%;">`+elemento['partId']+`</td>
+                            <td style="font-size:90%;">`+elemento['turno']+`</td>
+                        </tr>`
+                            $("#cuerpo").append(tr)
 
-                });  
+                    });
                 $('#dataTable').DataTable({
                             "pageLength": 50,
-                            "order": [[ 1, "desc" ]]
+                            "order": [[ 1, "desc" ]],
+                            "searching": false
                     });
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);
@@ -372,19 +396,27 @@
                     });
                     response[2].forEach(function (elemento, indice) {
                         var tr = `<tr>
-                                <td>`+elemento['date']+`</td>
-                                <td>`+elemento['runTime']+`</td>
-                                <td>`+elemento['availableTime']+`</td>
-                                <td>`+elemento['ict']+`</td>
-                                <td>`+elemento['totalPieces']+`</td>
-                                <td>`+elemento['goodParts']+`</td>
-                            </tr>`
-                        $("#cuerpo").append(tr)
+                            <td style="font-size:90%;">`+elemento['date']+`</td>
+                            <td style="font-size:90%;">`+elemento['oee']+`</td>
+                            <td style="font-size:90%;">`+elemento['availability']+`</td>
+                            <td style="font-size:90%;">`+elemento['performance']+`</td>
+                            <td style="font-size:90%;">`+elemento['quality']+`</td>
+                            <td style="font-size:90%;">`+elemento['runTime']+`</td>
+                            <td style="font-size:90%;">`+elemento['availableTime']+`</td>
+                            <td style="font-size:90%;">`+elemento['ict']+`</td>
+                            <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
+                            <td style="font-size:90%;">`+elemento['goodParts']+`</td>
+                            <td style="font-size:90%;">`+elemento['lotId']+`</td>
+                            <td style="font-size:90%;">`+elemento['partId']+`</td>
+                            <td style="font-size:90%;">`+elemento['turno']+`</td>
+                        </tr>`
+                            $("#cuerpo").append(tr)
 
-                });
+                    });
                 $('#dataTable').DataTable({
                             "pageLength": 100,
-                            "order": [[ 1, "desc" ]]
+                            "order": [[ 1, "desc" ]],
+                            "searching": false
                     });
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);

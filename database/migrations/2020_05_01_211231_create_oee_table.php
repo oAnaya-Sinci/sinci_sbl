@@ -22,7 +22,7 @@ class CreateOeeTable extends Migration
             $table->integer('runTime')->nullable();
             $table->integer('availableTime')->nullable();
             $table->float('performance')->nullable();
-            $table->integer('ict')->nullable();
+            $table->float('ict')->nullable();
             $table->integer('totalPieces')->nullable();
             $table->float('quality')->nullable();
             $table->integer('goodParts')->nullable();

@@ -20,6 +20,7 @@
                   <thead>
                     <tr>
                       <th>Opciones</th>
+                      <th>Id</th>
                       <th>Nombre</th>
                       <th>Grupo</th>
                       <th>Oee</th>
@@ -50,6 +51,7 @@
                             @include('machine.activar')
                         @endif
                      </td>
+                     <td>{{$var['id']}}</td>
                      <td>{{$var['name']}}</td>
                      <td>{{$var['name_group']}}</td>
                      <td>

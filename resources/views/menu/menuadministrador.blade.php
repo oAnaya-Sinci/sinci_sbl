@@ -17,6 +17,7 @@
             <a class="collapse-item" href="{{route('machine')}}">Maquinas</a>
             <a class="collapse-item" href="{{route('variable')}}">Variables</a>
             <a class="collapse-item" href="{{route('typeevent')}}">Catalogo de eventos</a>
+            <a class="collapse-item" href="{{route('shift')}}">Catalogo de turnos</a>
         </div>
         </div>
     </li>

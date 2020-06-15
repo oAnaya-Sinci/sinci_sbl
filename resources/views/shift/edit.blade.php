@@ -3,36 +3,31 @@
                                 <div class="modal-dialog modal-primary modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" >Actualizar Variable</h4>
+                                            <h4 class="modal-title" >Actualizar Turno</h4>
                                             <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{route('v_edit')}}" role="form" method="post"  class="form-horizontal">
+                                            <form action="{{route('s_edit')}}" role="form" method="post"  class="form-horizontal">
                                             {{ csrf_field() }} {{method_field('PUT')}}
                                                 <div class="form-group row">
                                                     <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                                     <div class="col-md-9">
                                                         <input type="hidden" class="form-control" name="id"  value="{{$var['id']}}" required> 
-                                                        <input type="text" class="form-control" name="name" placeholder="Nombre de la maquina" value="{{$var['name']}}" maxlength="30" required>
+                                                        <input type="text" class="form-control" name="name" placeholder="Nombre del turno" value="{{$var['name']}}" maxlength="30" required>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="form-group row">
-                                                    <label class="col-md-3 form-control-label" for="text-input">Maquina</label>
+                                                    <label class="col-md-3 form-control-label" for="text-input">Grupo</label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control" name="idmachine" required>
-                                                            <option value="">Seleccione</option>
-                                                            @foreach($machines as $machine)
-                                                            <option value="{{$machine['id']}}"  @if($machine['id']=== $var['idmachine']) selected='selected' @endif>{{$machine['name']}} </option>
+                                                        <select class="form-control" name="idgroup" required>
+                                                            <option value="" disabled >Seleccione</option>
+                                                            @foreach($groups as $group)
+                                                            <option value="{{$group['id']}}"  @if($group['id']=== $var['idgroup']) selected='selected' @endif>{{$group['name']}} </option>
                                                             @endforeach
                                                         </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-md-3 form-control-label" for="text-input">Eu</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="eu" maxlength="20" placeholder="Eu" value="{{$var['eu']}}" required>
                                                     </div>
                                                 </div>
                                         </div>

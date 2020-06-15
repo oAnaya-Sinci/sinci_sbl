@@ -15,7 +15,7 @@
                                                     <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                                     <div class="col-md-9">
                                                         <input type="hidden" class="form-control" name="id"  value="{{$var['id']}}" required> 
-                                                        <input type="text" class="form-control" name="name" placeholder="Nombre de la maquina" value="{{$var['name']}}" maxlength="30" required>
+                                                        <input type="text" class="form-control" name="name" placeholder="Nombre del evento" value="{{$var['name']}}" maxlength="30" required>
                                                     </div>
                                                 </div>
                                                 
