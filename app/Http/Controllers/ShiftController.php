@@ -15,7 +15,7 @@ class ShiftController extends Controller
 
             $shift = Shifts::join('groups','groups.id','=','shifts.idgroup')
             ->select('shifts.id','shifts.idgroup','shifts.name','groups.name as name_group','shifts.condicion')
-            ->orderBy('shifts.id', 'desc')->get();
+            ->orderBy('shifts.id', 'asc')->get();
 
             $groups = Groups::where('condicion','=','1')
             ->where('id','>','1')

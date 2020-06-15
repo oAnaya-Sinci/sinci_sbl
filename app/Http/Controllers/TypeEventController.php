@@ -14,7 +14,7 @@ class TypeEventController extends Controller
 
             $typeevents = TypeEvent::join('groups','groups.id','=','type_events.idgroup')
             ->select('type_events.id','type_events.id_type','type_events.idgroup','type_events.name','groups.name as name_group','type_events.description','type_events.condicion')
-            ->orderBy('type_events.id', 'desc')->get();
+            ->orderBy('type_events.id', 'asc')->get();
 
             $groups = Groups::where('condicion','=','1')
             ->where('id','>','1')
