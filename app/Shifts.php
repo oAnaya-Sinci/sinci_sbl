@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shifts extends Model
 {
     protected $fillable =[
-        'id','id_shift','name','idgroup','condicion'
+        'id','name','idgroup','condicion'
     ];
     public function user()
     {

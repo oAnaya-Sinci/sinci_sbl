@@ -20,7 +20,6 @@
                   <thead>
                     <tr>
                       <th>Opciones</th>
-                      <th>id_shift</th>
                       <th>Nombre</th>
                       <th>Grupo</th>                 
                       <th>Estado</th>
@@ -48,7 +47,6 @@
                             @include('shift.activar')
                         @endif
                      </td>
-                     <td>{{$var['id_shift']}}</td>
                      <td>{{$var['name']}}</td>
                      <td>{{$var['name_group']}}</td>
                      <td>
@@ -82,12 +80,6 @@
                     <div class="modal-body">
                         <form action="{{route('s_registrar')}}" role="form" method="post"  class="form-horizontal">
                            {{ csrf_field() }}
-                           <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">id_shift</label>
-                                <div class="col-md-9">
-                                    <input type="number" class="form-control" name="id_shift" placeholder="identificador del turno" min=1 required>
-                                </div>
-                            </div>
                             <div class="form-group row">
                                 <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                 <div class="col-md-9">

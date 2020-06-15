@@ -15,7 +15,6 @@ class CreateShiftTable extends Migration
     {
         Schema::create('shifts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_shift')->unsigned();
             $table->string('name', 30);
             $table->integer('idgroup')->unsigned();
             $table->boolean('condicion')->default(1);
