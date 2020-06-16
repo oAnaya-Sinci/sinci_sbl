@@ -13,7 +13,7 @@ class VariableController extends Controller
     {
      
          $variables = Variable::join('machines','variables.idmachine','=','machines.id')
-            ->select('variables.id','variables.idmachine','variables.name','variables.idmachine','machines.name as name_machine','variables.eu','variables.condicion')->get();
+            ->select('variables.id','variables.idmachine','variables.name','variables.description','variables.idmachine','machines.name as name_machine','variables.eu','variables.condicion')->get();
        
          $machines = Machine::where('condicion','=','1')
             ->select('id','name')->orderBy('name', 'asc')->get();
@@ -26,6 +26,7 @@ class VariableController extends Controller
         $variable = new Variable();
         $variable->idmachine = $request->idmachine;
         $variable->name = $request->name;
+        $variable->description = $request->description;
         $variable->eu = $request->eu;
         $variable->condicion = '1';
         $variable->save();
@@ -36,6 +37,7 @@ class VariableController extends Controller
         $variable = Variable::findOrFail($request->id);
         $variable->idmachine = $request->idmachine;
         $variable->name = $request->name;
+        $variable->description = $request->description;
         $variable->eu = $request->eu;
         $variable->condicion = '1';
         $variable->save();

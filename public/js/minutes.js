@@ -1,4 +1,4 @@
-var var_name = $('#var_name').val();
+var var_name = $('#var_name').val() + '(' + $('#description').val() +')' ;
 $('#nom_var').val(var_name);
 var idvariable = $('#idvariable').val();
 var eu = $('#eu').val();
@@ -67,7 +67,7 @@ option = {
             dataView: {
                 readOnly: false,
                 title: 'Ver datos',
-                lang: ['Datos','Cerrar','Actualizar']
+                lang: [var_name,'Cerrar','Actualizar']
             }
         }
     },

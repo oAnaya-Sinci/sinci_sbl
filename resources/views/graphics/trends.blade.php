@@ -11,7 +11,8 @@
                     <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$var['name']}}"> 
                     <input type="hidden" class="form-control" name="idvariable" id="idvariable" value="{{$var['id']}}"> 
                     <input type="hidden" class="form-control" name="eu" id="eu" value="{{$var['eu']}}">
-                    <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">      
+                    <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">
+                    <input type="hidden" class="form-control" name="description" id="description" value="{{$var['description']}}">       
                 @endforeach
             </div>
                

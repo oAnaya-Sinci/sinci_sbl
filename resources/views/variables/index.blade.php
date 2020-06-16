@@ -22,6 +22,7 @@
                       <th>Opciones</th>
                       <th>Id</th>
                       <th>Nombre</th>
+                      <th>Descripción</th>
                       <th>Maquina</th>
                       <th>Eu</th>
                       <th>Estado</th>
@@ -51,6 +52,7 @@
                      </td>
                      <td>{{$var['id']}}</td>
                      <td>{{$var['name']}}</td>
+                     <td>{{$var['description']}}</td>
                      <td>{{$var['idmachine'].'.- '.$var['name_machine']}}</td>
                      <td>{{$var['eu']}}</td>
                      <td>
@@ -88,6 +90,12 @@
                                 <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" name="name" placeholder="Nombre de la Variable" maxlength="30" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-3 form-control-label" for="text-input">Descripción</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="description" placeholder="Descripción" maxlength="100" required>
                                 </div>
                             </div>
                             <div class="form-group row">

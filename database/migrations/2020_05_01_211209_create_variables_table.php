@@ -17,6 +17,7 @@ class CreateVariablesTable extends Migration
             $table->increments('id');
             $table->integer('idmachine')->unsigned();
             $table->string('name', 30);
+            $table->string('description', 100);
             $table->string('eu', 20);
             $table->boolean('condicion')->default(1);
             $table->timestamps();
