@@ -59,12 +59,9 @@ $(document).ready(function()
                 response.forEach(function (elemento, indice) {
                     
                     option.xAxis.data.push(elemento['date'])
-                    var valor = parseInt(elemento['value'])
-                    option.series[0].data.push(valor);
-                    var LH = parseInt(elemento['highLimit'])
-                    option.series[1].data.push(LH);
-                    var LL = parseInt(elemento['lowLimit'])
-                    option.series[2].data.push(LL);
+                    option.series[0].data.push(elemento['value']);
+                    option.series[1].data.push(elemento['highLimit']);
+                    option.series[2].data.push(elemento['lowLimit']);
 
                 });	            
                 myChart.setOption(option);
