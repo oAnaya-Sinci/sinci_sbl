@@ -26,12 +26,11 @@
 
 @endsection
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
+<script src="{{ asset('vendor/echarts/echarts.min.js')}}"></script>
 
              
 <!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
 <script src="{{ asset('js/minutes.js')}}"></script>
-
 <script>
  $(function () {
     $('#i_dia').datepicker({

@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" type="text/css" />
     
 </head>
 <body id="page-top">
@@ -162,7 +162,7 @@
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
   
     @yield('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <script src="{{ asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
     <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
     <!-- Scripts -->

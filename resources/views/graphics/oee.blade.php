@@ -67,8 +67,8 @@
 @endsection
 
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<script src="{{ asset('vendor/chart.js/Chart.min.js')}}"></script>
+<script src="{{ asset('vendor/chart.js/Chart.bundle.min.js')}}"></script>
 <script src="{{ asset('vendor/chart.js/utils.js')}}"></script>
 <script src="{{ asset('js/oeetemplate.js')}}"></script>
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
