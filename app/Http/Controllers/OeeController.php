@@ -22,13 +22,59 @@ class OeeController extends Controller
         return view('graphics.oee')->with(compact('machines','date'));
     }
 
-    public function datos($idmachine,$caso,$date)
+    public function datos($idmachine,$caso,$date,$casoS)
+    {    
+            $partId = '0';
+            $lotId ='0';
+            $idShift = 1; 
+            $idgroup = auth()->user()->idgroup;
+            $oee = DB::select('call ConsultaOEETrends(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+
+            $partId = DB::select('call ConsultaSelectpartId(?,?,?)',array($caso,$idmachine,$date));
+
+            
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$partId);
+    }
+
+    public function datospartid($idmachine,$caso,$date,$casoS,$partId)
+    {    
+            $lotId ='0';
+            $idShift = 1; 
+            $idgroup = auth()->user()->idgroup;
+            $oee = DB::select('call ConsultaOEETrends(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+
+            $lotId = DB::select('call ConsultaSelectlotId(?,?,?,?)',array($caso,$idmachine,$partId,$date));
+ 
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$lotId);
+    }
+
+    public function datoslotid($idmachine,$caso,$date,$casoS,$partId,$lotId)
+    {    
+            $idShift = 1; 
+            $idgroup = auth()->user()->idgroup;
+            $oee = DB::select('call ConsultaOEETrends(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+
+            $Shift = DB::select('call ConsultaSelectidShift(?,?,?,?,?)',array($caso,$idgroup,$idmachine,$lotId,$date));
+ 
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$Shift);
+    }
+    public function datosidshift($idmachine,$caso,$date,$casoS,$partId,$lotId,$idShift)
     {    
             $idgroup = auth()->user()->idgroup;
-            $oee = DB::select('call ConsultaOEETrends(?,?,?)',array($caso,$idmachine,$date));
-            $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?)',array($caso,$idmachine,$date));
-            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
-            $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?)',array($caso,$idmachine,$date));
+            $oee = DB::select('call ConsultaOEETrends(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+ 
         return array ($oee,$oeepro,$oeeGrid,$oeeComponet);
     }
 }

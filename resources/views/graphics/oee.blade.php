@@ -40,19 +40,19 @@
                     <table class="table table-bordered" id="dataTable" width="80%" cellspacing="0">
                     <thead>
                         <tr>
-                        <th style="font-size:90%;">Date</th>
-                        <th style="font-size:90%;">OEE</th>
-                        <th style="font-size:90%;">Availability</th>
-                        <th style="font-size:90%;">Performance</th>
-                        <th style="font-size:90%;">Quality</th>
-                        <th style="font-size:90%;">RunTime</th>
-                        <th style="font-size:90%;">AvailableTime</th>
-                        <th style="font-size:90%;">ICT</th>
-                        <th style="font-size:90%;">TotalParts</th>
-                        <th style="font-size:90%;">GoodParts</th>
-                        <th style="font-size:90%;">lotId</th>
-                        <th style="font-size:90%;">partId</th>
-                        <th style="font-size:90%;">Shift</th>
+                        <th style="font-size:85%;">Date</th>
+                        <th style="font-size:85%;">OEE</th>
+                        <th style="font-size:85%;">Availability</th>
+                        <th style="font-size:85%;">Performance</th>
+                        <th style="font-size:85%;">Quality</th>
+                        <th style="font-size:85%;">RunTime</th>
+                        <th style="font-size:85%;">AvailableTime</th>
+                        <th style="font-size:85%;">ICT</th>
+                        <th style="font-size:85%;">TotalParts</th>
+                        <th style="font-size:85%;">GoodParts</th>
+                        <th style="font-size:85%;">partId</th>
+                        <th style="font-size:85%;">lotId</th>
+                        <th style="font-size:85%;">Shift</th>
                         </tr>
                     </thead>
                     <tbody id="cuerpo">
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    @include('controles.fechaaño')
+    @include('controles.fechaaño2')
 </div>
 @endsection
 
@@ -76,8 +76,6 @@
 
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
-
-
 <script>
     $(function () {
         $('#i_dia').datepicker({
@@ -94,366 +92,22 @@
                 minViewMode: "years"
             });
 
-        });
-    $(document).ready(function () {
-        $("#i_dia").change(function () {
-            var date = $('#i_dia').val();
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: '/oee/' + idmachine + '/d/' + date + '/datos',
-                type: 'GET',
-                success: function (response) {
-                    config.data.labels.length = 0;
-                    config.data.datasets[0].data.length = 0;
-                    config.data.datasets[1].data.length = 0;
-                    config.data.datasets[2].data.length = 0;
-                    config.data.datasets[3].data.length = 0;
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Dia"
-                    
-                    $("#dataTable").dataTable().fnDestroy();
-                    $("#cuerpo").empty();
-                    response[1].forEach(function(elemento, indice){
-                        configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
-                        configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
-                        configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-                        configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-
-                        configDis.options.elements.center.text = elemento.AvailabilityG+'%';
-                        configEf.options.elements.center.text = elemento.performanceG+'%';
-                        configQty.options.elements.center.text = elemento.qualityG+'%';
-                        configM1.options.elements.center.text = elemento.OEEG+'%';
-
-                        var resAvailability = elemento.AvailabilityG+'%';
-                        $("#resAvailability").html(resAvailability);
-
-                        var resThroghput = elemento.performanceG+'%';
-                        $("#resThroghput").html(resThroghput);
-
-                        var resQuality = elemento.qualityG+'%';
-                        $("#resQuality").html(resQuality);
-
-                    });
-                    //response[1].length=0
-                    if (response[1][0].date == null) {
-                        
-                        configDis.options.elements.center.text = 'No Data'
-                        configEf.options.elements.center.text = 'No Data'
-                        configQty.options.elements.center.text = 'No Data'
-                        configM1.options.elements.center.text = 'No Data';
-                        $("#resAvailability").html('No Data');
-                        $("#resThroghput").html('No Data');
-                        $("#resQuality").html('No Data');
-
-                    }
-
-                    response[0].forEach(function (elemento, indice) {
-                        config.data.labels.push(elemento['date']);
-                        config.data.datasets[0].data.push(elemento['availability'])
-                        config.data.datasets[1].data.push(elemento['performance'])
-                        config.data.datasets[2].data.push(elemento['quality'])
-                        config.data.datasets[3].data.push(elemento['oee'])
-
-                    });
-                    response[2].forEach(function (elemento, indice) {
-                        var tr = `<tr>
-                            <td style="font-size:90%;">`+elemento['date']+`</td>
-                            <td style="font-size:90%;">`+elemento['oee']+`</td>
-                            <td style="font-size:90%;">`+elemento['availability']+`</td>
-                            <td style="font-size:90%;">`+elemento['performance']+`</td>
-                            <td style="font-size:90%;">`+elemento['quality']+`</td>
-                            <td style="font-size:90%;">`+elemento['runTime']+`</td>
-                            <td style="font-size:90%;">`+elemento['availableTime']+`</td>
-                            <td style="font-size:90%;">`+elemento['ict']+`</td>
-                            <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
-                            <td style="font-size:90%;">`+elemento['goodParts']+`</td>
-                            <td style="font-size:90%;">`+elemento['lotId']+`</td>
-                            <td style="font-size:90%;">`+elemento['partId']+`</td>
-                            <td style="font-size:90%;">`+elemento['turno']+`</td>
-                        </tr>`
-                            $("#cuerpo").append(tr)
-
-                    });
-                    $('#dataTable').DataTable({
-                            "pageLength": 50,
-                            "order": [[ 1, "desc" ]],
-                            "searching": false
-                    });
-                    response[3].forEach(function (elemento, indice) {
-                        $("#RunningTime").html(elemento['RunningTime']);
-                        $("#AvailableTime").html(elemento['AvailableTime']);
-
-                        $("#TotalParts").html(elemento['TotalParts']);
-                        $("#IdealCycleTime").html(elemento['ICT']);
-                        $("#RunningTime2").html(elemento['RunningTime']);
-
-                        $("#GoodParts").html(elemento['GoodParts']);
-                        $("#TotalParts2").html(elemento['TotalParts']);
-
-                        
-                    });
-                    if (response[3][0].date == null) {
-                            
-                            $("#RunningTime").html('No Data');
-                            $("#AvailableTime").html('No Data');
-
-                            $("#TotalParts").html('No Data');
-                            $("#IdealCycleTime").html('No Data');
-                            $("#RunningTime2").html('No Data');
-
-                            $("#GoodParts").html('No Data');
-                            $("#TotalParts2").html('No Data');
-                
-                    }
-
-                    window.myLine.update()
-                    window.myMaq5.update()
-                    window.myMaq6.update()
-                    window.myMaq7.update()
-                    window.myMaq8.update()
-                }
-            });
-
-        });
-        $("#i_mes").change(function () {
-            var date = $('#i_mes').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: '/oee/' + idmachine + '/m/' + date + '/datos',
-                type: 'GET',
-                success: function (response) {
-                    config.data.labels.length = 0;
-                    config.data.datasets[0].data.length = 0;
-                    config.data.datasets[1].data.length = 0;
-                    config.data.datasets[2].data.length = 0;
-                    config.data.datasets[3].data.length = 0;
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Mes"
-                    
-                    $("#dataTable").dataTable().fnDestroy();
-                    $("#cuerpo").empty();
-                    response[1].forEach(function(elemento, indice){
-                        configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-                        configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
-                        configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
-                        configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-                        configM1.options.elements.center.text = elemento.OEEG+'%';
-                        configEf.options.elements.center.text = elemento.performanceG+'%';
-                        configDis.options.elements.center.text = elemento.AvailabilityG+'%';
-                        configQty.options.elements.center.text = elemento.qualityG+'%';
-
-                        var resAvailability = elemento.AvailabilityG+'%';
-                        $("#resAvailability").html(resAvailability);
-
-                        var resThroghput = elemento.performanceG+'%';
-                        $("#resThroghput").html(resThroghput);
-
-                        var resQuality = elemento.qualityG+'%';
-                        $("#resQuality").html(resQuality);
-
-                    });
-                    if (response[1][0].date == null) {
-                        
-                        configDis.options.elements.center.text = 'No Data'
-                        configEf.options.elements.center.text = 'No Data'
-                        configQty.options.elements.center.text = 'No Data'
-                        configM1.options.elements.center.text = 'No Data';
-                        $("#resAvailability").html('No Data');
-                        $("#resThroghput").html('No Data');
-                        $("#resQuality").html('No Data');
-            
-                    }
-                    response[0].forEach(function (elemento, indice) {
-                        config.data.labels.push(elemento['date']);
-                        config.data.datasets[0].data.push(elemento['availability'])
-                        config.data.datasets[1].data.push(elemento['performance'])
-                        config.data.datasets[2].data.push(elemento['quality'])
-                        config.data.datasets[3].data.push(elemento['oee'])
-
-                    });
-                    response[2].forEach(function (elemento, indice) {
-                        var tr = `<tr>
-                            <td style="font-size:90%;">`+elemento['date']+`</td>
-                            <td style="font-size:90%;">`+elemento['oee']+`</td>
-                            <td style="font-size:90%;">`+elemento['availability']+`</td>
-                            <td style="font-size:90%;">`+elemento['performance']+`</td>
-                            <td style="font-size:90%;">`+elemento['quality']+`</td>
-                            <td style="font-size:90%;">`+elemento['runTime']+`</td>
-                            <td style="font-size:90%;">`+elemento['availableTime']+`</td>
-                            <td style="font-size:90%;">`+elemento['ict']+`</td>
-                            <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
-                            <td style="font-size:90%;">`+elemento['goodParts']+`</td>
-                            <td style="font-size:90%;">`+elemento['lotId']+`</td>
-                            <td style="font-size:90%;">`+elemento['partId']+`</td>
-                            <td style="font-size:90%;">`+elemento['turno']+`</td>
-                        </tr>`
-                            $("#cuerpo").append(tr)
-
-                    });
-                $('#dataTable').DataTable({
-                            "pageLength": 50,
-                            "order": [[ 1, "desc" ]],
-                            "searching": false
-                    });
-                    response[3].forEach(function (elemento, indice) {
-                        $("#RunningTime").html(elemento['RunningTime']);
-                        $("#AvailableTime").html(elemento['AvailableTime']);
-
-                        $("#TotalParts").html(elemento['TotalParts']);
-                        $("#IdealCycleTime").html(elemento['ICT']);
-                        $("#RunningTime2").html(elemento['RunningTime']);
-
-                        $("#GoodParts").html(elemento['GoodParts']);
-                        $("#TotalParts2").html(elemento['TotalParts']);
-                    });
-                    if (response[3][0].date == null) {
-                            
-                            $("#RunningTime").html('No Data');
-                            $("#AvailableTime").html('No Data');
-
-                            $("#TotalParts").html('No Data');
-                            $("#IdealCycleTime").html('No Data');
-                            $("#RunningTime2").html('No Data');
-
-                            $("#GoodParts").html('No Data');
-                            $("#TotalParts2").html('No Data');
-                
-                    }
-
-                    window.myLine.update()
-                    window.myMaq5.update()
-                    window.myMaq6.update()
-                    window.myMaq7.update()
-                    window.myMaq8.update()
-                }
-            });
-        });
-        $("#i_year").change(function () {
-            var date = $('#i_year').val();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: '/oee/' + idmachine + '/y/' + date + '/datos',
-                type: 'GET',
-                success: function (response) {
-                    config.data.labels.length = 0;
-                    config.data.datasets[0].data.length = 0;
-                    config.data.datasets[1].data.length = 0;
-                    config.data.datasets[2].data.length = 0;
-                    config.data.datasets[3].data.length = 0;
-                    config.options.scales.xAxes[0].scaleLabel.labelString= "Año"
-                    
-                    $("#dataTable").dataTable().fnDestroy();
-                    $("#cuerpo").empty();
-                    response[1].forEach(function(elemento, indice){
-                        configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-                        configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
-                        configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
-                        configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
-                        configM1.options.elements.center.text = elemento.OEEG+'%';
-                        configEf.options.elements.center.text = elemento.performanceG+'%';
-                        configDis.options.elements.center.text = elemento.AvailabilityG+'%';
-                        configQty.options.elements.center.text = elemento.qualityG+'%';
-
-                        var resAvailability = elemento.AvailabilityG+'%';
-                        $("#resAvailability").html(resAvailability);
-
-                        var resThroghput = elemento.performanceG+'%';
-                        $("#resThroghput").html(resThroghput);
-
-                        var resQuality = elemento.qualityG+'%';
-                        $("#resQuality").html(resQuality);
-
-                    });
-                    if (response[1][0].date == null) {
-                        
-                        configDis.options.elements.center.text = 'No Data'
-                        configEf.options.elements.center.text = 'No Data'
-                        configQty.options.elements.center.text = 'No Data'
-                        configM1.options.elements.center.text = 'No Data';
-                        $("#resAvailability").html('No Data');
-                        $("#resThroghput").html('No Data');
-                        $("#resQuality").html('No Data');
-            
-                    }
-                    response[0].forEach(function (elemento, indice) {
-                        config.data.labels.push(elemento['date']);
-                        config.data.datasets[0].data.push(elemento['availability'])
-                        config.data.datasets[1].data.push(elemento['performance'])
-                        config.data.datasets[2].data.push(elemento['quality'])
-                        config.data.datasets[3].data.push(elemento['oee'])
-
-                    });
-                    response[2].forEach(function (elemento, indice) {
-                        var tr = `<tr>
-                            <td style="font-size:90%;">`+elemento['date']+`</td>
-                            <td style="font-size:90%;">`+elemento['oee']+`</td>
-                            <td style="font-size:90%;">`+elemento['availability']+`</td>
-                            <td style="font-size:90%;">`+elemento['performance']+`</td>
-                            <td style="font-size:90%;">`+elemento['quality']+`</td>
-                            <td style="font-size:90%;">`+elemento['runTime']+`</td>
-                            <td style="font-size:90%;">`+elemento['availableTime']+`</td>
-                            <td style="font-size:90%;">`+elemento['ict']+`</td>
-                            <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
-                            <td style="font-size:90%;">`+elemento['goodParts']+`</td>
-                            <td style="font-size:90%;">`+elemento['lotId']+`</td>
-                            <td style="font-size:90%;">`+elemento['partId']+`</td>
-                            <td style="font-size:90%;">`+elemento['turno']+`</td>
-                        </tr>`
-                            $("#cuerpo").append(tr)
-
-                    });
-                $('#dataTable').DataTable({
-                            "pageLength": 100,
-                            "order": [[ 1, "desc" ]],
-                            "searching": false
-                    });
-                    response[3].forEach(function (elemento, indice) {
-                        $("#RunningTime").html(elemento['RunningTime']);
-                        $("#AvailableTime").html(elemento['AvailableTime']);
-
-                        $("#TotalParts").html(elemento['TotalParts']);
-                        $("#IdealCycleTime").html(elemento['ICT']);
-                        $("#RunningTime2").html(elemento['RunningTime']);
-
-                        $("#GoodParts").html(elemento['GoodParts']);
-                        $("#TotalParts2").html(elemento['TotalParts']);
-                    });
-                    if (response[3][0].date == null) {
-                        
-                        $("#RunningTime").html('No Data');
-                        $("#AvailableTime").html('No Data');
-
-                        $("#TotalParts").html('No Data');
-                        $("#IdealCycleTime").html('No Data');
-                        $("#RunningTime2").html('No Data');
-
-                        $("#GoodParts").html('No Data');
-                        $("#TotalParts2").html('No Data');
-            
-                    }
-
-                    window.myLine.update()
-                    window.myMaq5.update()
-                    window.myMaq6.update()
-                    window.myMaq7.update()
-                    window.myMaq8.update()
-                }
-            });
-        });
-
-
-    });
+        });   
 </script>
-
+<script>
+$(document).ready(function () {
+    $('#i_dia').keyup(function () {
+        var fecha = $(this).val();
+        $('#i_date').val(fecha);
+    });
+});
+$(document).ready(function () {
+    $('#i_mes').keyup(function () {
+        var fecha = $(this).val();
+        $('#i_date').val(fecha);
+    });
+});
+</script>
+<script src="{{ asset('js/selectfecha.js') }}"></script>
+<script src="{{ asset('js/selectfechaid.js') }}"></script>
 @endsection

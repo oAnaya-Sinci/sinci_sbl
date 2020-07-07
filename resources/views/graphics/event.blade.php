@@ -101,24 +101,33 @@ $(document).ready(function() {
                 });
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
-                            <td>  
-                            <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
-                                <i class="fas fa-fw fa-wrench"></i>
-                            </button> &nbsp;
-                            </td>
-                            <td>`+elemento['startTime']+`</td>
-                            <td>`+elemento['endTime']+`</td>
-                            <td>`+elemento['descriptions']+`</td>`;
-
-                            if (elemento['justification'] != null){
-                            tr = tr + `<td>`+elemento['justification']+`</td>`
+                        <td>  
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
+                            <i class="fas fa-fw fa-wrench"></i>
+                        </button> &nbsp;
+                        </td>
+                        <td>`+elemento['startTime']+`</td>`;
+                        if (elemento['endTime'] != null){
+                            tr = tr + `<td>`+elemento['endTime']+`</td>`
                             }else{
                                 tr = tr + `<td></td>`
                             }
-                            tr = tr +`<td>`+elemento['event']+`</td>
-                                    <td>`+elemento['duration']+`</td>
-                            </tr>`
-                        $("#cuerpo").append(tr)
+                        tr = tr + `<td>`+elemento['descriptions']+`</td>`;
+
+                        if (elemento['justification'] != null){
+                        tr = tr + `<td>`+elemento['justification']+`</td>`
+                        }else{
+                            tr = tr + `<td></td>`
+                        }
+                        tr = tr +`<td>`+elemento['event']+`</td>`;
+
+                        if (elemento['duration'] != null){
+                            tr = tr + `<td>`+elemento['duration']+`</td>`
+                        }else{
+                            tr = tr + `<td></td>`
+                        }
+                        tr = tr + `</tr>`
+                    $("#cuerpo").append(tr)
 
                 });
                 $('#dataTable').DataTable({
@@ -164,18 +173,27 @@ $(document).ready(function() {
                             <i class="fas fa-fw fa-wrench"></i>
                         </button> &nbsp;
                         </td>
-                        <td>`+elemento['startTime']+`</td>
-                        <td>`+elemento['endTime']+`</td>
-                        <td>`+elemento['descriptions']+`</td>`;
+                        <td>`+elemento['startTime']+`</td>`;
+                        if (elemento['endTime'] != null){
+                            tr = tr + `<td>`+elemento['endTime']+`</td>`
+                            }else{
+                                tr = tr + `<td></td>`
+                            }
+                        tr = tr + `<td>`+elemento['descriptions']+`</td>`;
 
                         if (elemento['justification'] != null){
                         tr = tr + `<td>`+elemento['justification']+`</td>`
                         }else{
                             tr = tr + `<td></td>`
                         }
-                        tr = tr +`<td>`+elemento['event']+`</td>
-                                <td>`+elemento['duration']+`</td>
-                        </tr>`
+                        tr = tr +`<td>`+elemento['event']+`</td>`;
+
+                        if (elemento['duration'] != null){
+                            tr = tr + `<td>`+elemento['duration']+`</td>`
+                        }else{
+                            tr = tr + `<td></td>`
+                        }
+                        tr = tr + `</tr>`
                     $("#cuerpo").append(tr)
 
                 });

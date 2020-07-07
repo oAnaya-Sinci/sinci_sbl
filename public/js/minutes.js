@@ -1,4 +1,5 @@
 var var_name = $('#var_name').val() + '(' + $('#description').val() +')' ;
+var varname = $('#var_name').val();
 $('#nom_var').val(var_name);
 var idvariable = $('#idvariable').val();
 var eu = $('#eu').val();
@@ -22,14 +23,11 @@ $.ajaxSetup({
                     option.series[2].data.length = 0;
                     
                 response.forEach(function (elemento, indice) {
-                
-                    
+                      
                     option.xAxis.data.push(elemento['date'])
                     option.series[0].data.push(elemento['value']);
                     option.series[1].data.push(elemento['highLimit']);
                     option.series[2].data.push(elemento['lowLimit']);
-
-                    
 
                 });
                 myChart.setOption(option);
@@ -62,9 +60,30 @@ option = {
                 title: 'Descargar',
             },
             dataView: {
-                readOnly: false,
+                readOnly: true,
                 title: 'Ver datos',
-                lang: [var_name,'Cerrar','Actualizar']
+                optionToContent: function(opt) {  
+                    var axisData = opt.xAxis[0].data;
+                    var series = opt.series;
+                    var table = '<table style="width:60%;text-align:center"><tbody><tr>'
+                                + '<td>'+varname+'</td>'
+                                + '<td>' + series[0].name + '</td>'
+                                + '<td>' + series[1].name + '</td>'
+                                + '<td>' + series[2].name + '</td>'
+                                + '</tr>';
+                    for (var i = 0, l = axisData.length; i < l; i++) {
+                        table += '<tr>'
+                                + '<td>' + axisData[i] + '</td>'
+                                + '<td>' + series[0].data[i] + '</td>'
+                                + '<td>' + series[1].data[i] + '</td>'
+                                + '<td>' + series[2].data[i] + '</td>'
+                                + '</tr>';
+                    }
+                    table += '</tbody></table>';
+                    return table;
+                },
+            
+                lang: [var_name,'Cerrar']
             }
         }
     },
@@ -90,8 +109,8 @@ option = {
     },
     dataZoom: [{
         type: 'inside',
-        start: 0,
-        end: 10
+        start: 60,
+        end: 100
     }, {
         start: 0,
         end: 10,

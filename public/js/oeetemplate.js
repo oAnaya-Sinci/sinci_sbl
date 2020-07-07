@@ -3,7 +3,8 @@ var var_name = $('#var_name').val();
 var idmachine = $('#idmachine').val();
 var eu = "";
 var date = $('#date').val(); 
-
+$('#i_date').val(date);
+$('#i_caso').val('d');
 //arrays de prueba ver los valores
 $(document).ready(function() {
     $.ajaxSetup({
@@ -12,7 +13,7 @@ $(document).ready(function() {
         }
     });
     $.ajax({
-        url: '/oee/' + idmachine + '/d/' + date + '/datos',
+        url: '/oee/' + idmachine + '/d/' + date +'/1'+ '/datos',
         type: 'GET',
         success: function (response) {
             
@@ -83,8 +84,8 @@ $(document).ready(function() {
                         <td style="font-size:90%;">`+elemento['ict']+`</td>
                         <td style="font-size:90%;">`+elemento['totalPieces']+`</td>
                         <td style="font-size:90%;">`+elemento['goodParts']+`</td>
-                        <td style="font-size:90%;">`+elemento['lotId']+`</td>
                         <td style="font-size:90%;">`+elemento['partId']+`</td>
+                        <td style="font-size:90%;">`+elemento['lotId']+`</td>
                         <td style="font-size:90%;">`+elemento['turno']+`</td>
                     </tr>`
                     $("#cuerpo").append(tr)
@@ -107,6 +108,10 @@ $(document).ready(function() {
                 $("#GoodParts").html(elemento['GoodParts']);
                 $("#TotalParts2").html(elemento['TotalParts']);
                 
+            });
+            response[4].forEach(function (elemento, indice) {
+                var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`
+            $("#i_partid").append(opt)
             });
             if (response[3][0].date == null) {
                             

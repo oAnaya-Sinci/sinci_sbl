@@ -30,7 +30,10 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/events/{idevent}/editm', 'EventsController@editm');
         Route::put('/events/{idmachine}', 'EventsController@update')->name('e_edit');
         Route::get('/trends/{idvariable}/{caso}/{date}/datos', 'TrendsController@datos');
-        Route::get('/oee/{idmachine}/{caso}/{date}/datos', 'OeeController@datos');
+        Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/datos', 'OeeController@datos');
+        Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/datos', 'OeeController@datospartid');
+        Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/datos', 'OeeController@datoslotid');
+        Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/{idshift}/datos', 'OeeController@datosidshift');
         Route::get('/Events/{idmachine}/{caso}/{date}/datos', 'EventsController@datos');
     });
 
