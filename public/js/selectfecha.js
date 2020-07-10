@@ -1,7 +1,5 @@
 $(document).ready(function () {
     $("#i_dia").change(function () {
-        $("#i_loteid").prop('disabled',true);
-        $("#i_shift").prop('disabled',true); 
         var date = $('#i_dia').val();
         var idmachine = $('#idmachine').val();
         $('#i_date').val(date);
@@ -108,8 +106,12 @@ $(document).ready(function () {
                     
                 });
                 response[4].forEach(function (elemento, indice) {
-                    var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`
-                $("#i_partid").append(opt)
+                    var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`;
+                    $("#i_partid").append(opt);
+                    var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`;
+                    $("#i_loteid").append(opt);
+                    var opt = `<option value="`+elemento['idShift']+`">`+elemento['turno']+`</option>`;
+                    $("#i_shift").append(opt);
                 });
                 if (response[3][0].date == null) {
                         
@@ -135,8 +137,6 @@ $(document).ready(function () {
 
     });
     $("#i_mes").change(function () {
-        $("#i_loteid").prop('disabled',true);
-        $("#i_shift").prop('disabled',true); 
         var date = $('#i_mes').val();
         $('#i_date').val(date);
         $.ajaxSetup({
@@ -238,9 +238,13 @@ $(document).ready(function () {
                     $("#TotalParts2").html(elemento['TotalParts']);
                 });
                 response[4].forEach(function (elemento, indice) {
-                    var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`
-                $("#i_partid").append(opt)
-                });
+                    var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`;
+                    $("#i_partid").append(opt);
+                    var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`;
+                    $("#i_loteid").append(opt);
+                    var opt = `<option value="`+elemento['idShift']+`">`+elemento['turno']+`</option>`;
+                    $("#i_shift").append(opt);
+                    });
                 if (response[3][0].date == null) {
                         
                         $("#RunningTime").html('No Data');

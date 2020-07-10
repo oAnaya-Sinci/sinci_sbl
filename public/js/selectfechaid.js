@@ -1,7 +1,5 @@
 $(document).ready(function () {
     $("#i_partid").change(function () {
-        $("#i_loteid").prop('disabled',false);
-        $("#i_shift").prop('disabled',true); 
 
         var date = $('#i_date').val();
         var partid = $('#i_partid').val();
@@ -109,8 +107,10 @@ $(document).ready(function () {
                     
                 });
                 response[4].forEach(function (elemento, indice) {
-                    var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`
-                $("#i_loteid").append(opt)
+                    var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`;
+                    $("#i_loteid").append(opt);
+                    var opt = `<option value="`+elemento['idShift']+`">`+elemento['turno']+`</option>`;
+                    $("#i_shift").append(opt);
                 });
                 if (response[3][0].date == null) {
                         
@@ -137,8 +137,6 @@ $(document).ready(function () {
     });
     $("#i_loteid").change(function () {
 
-        $("#i_shift").prop('disabled',false);
-
         var date = $('#i_date').val();
         var partid = $('#i_partid').val();
         var lotid = $('#i_loteid').val();
@@ -164,7 +162,9 @@ $(document).ready(function () {
                 $("#dataTable").dataTable().fnDestroy();
                 $("#cuerpo").empty();
                 $("#i_shift").empty();
+                $("#i_partid").empty();
                 $("#i_shift").prepend("<option value='' disabled selected>Seleccione</option>");
+                $("#i_partid").prepend("<option value='' disabled selected>Seleccione</option>");
                 response[1].forEach(function(elemento, indice){
                     configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
                     configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
@@ -245,7 +245,9 @@ $(document).ready(function () {
                 });
                 response[4].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['idShift']+`">`+elemento['turno']+`</option>`
-                $("#i_shift").append(opt)
+                    $("#i_shift").append(opt)
+                    var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`;
+                    $("#i_partid").append(opt);
                 });
                 if (response[3][0].date == null) {
                         
@@ -295,6 +297,10 @@ $(document).ready(function () {
                 
                 $("#dataTable").dataTable().fnDestroy();
                 $("#cuerpo").empty();
+                $('#i_partid').empty();
+                $('#i_loteid').empty();
+                $('#i_partid').prepend("<option value='' disabled selected>Seleccione</option>");
+                $('#i_loteid').prepend("<option value='' disabled selected>Seleccione</option>");
                 response[1].forEach(function(elemento, indice){
                     configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
                     configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
@@ -372,6 +378,12 @@ $(document).ready(function () {
                     $("#TotalParts2").html(elemento['TotalParts']);
 
                     
+                });
+                response[4].forEach(function (elemento, indice) {
+                    var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`;
+                    $("#i_partid").append(opt);
+                    var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`;
+                    $("#i_loteid").append(opt);
                 });
                 if (response[3][0].date == null) {
                         

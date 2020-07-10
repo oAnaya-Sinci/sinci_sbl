@@ -33,10 +33,9 @@ class OeeController extends Controller
             $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
 
-            $partId = DB::select('call ConsultaSelectpartId(?,?,?)',array($caso,$idmachine,$date));
+            $ids = DB::select('call ConsultaSelectIds(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
 
-            
-        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$partId);
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$ids);
     }
 
     public function datospartid($idmachine,$caso,$date,$casoS,$partId)
@@ -49,9 +48,9 @@ class OeeController extends Controller
             $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
 
-            $lotId = DB::select('call ConsultaSelectlotId(?,?,?,?)',array($caso,$idmachine,$partId,$date));
- 
-        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$lotId);
+            $ids = DB::select('call ConsultaSelectIds(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
+
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$ids);
     }
 
     public function datoslotid($idmachine,$caso,$date,$casoS,$partId,$lotId)
@@ -62,10 +61,10 @@ class OeeController extends Controller
             $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
-
-            $Shift = DB::select('call ConsultaSelectidShift(?,?,?,?,?)',array($caso,$idgroup,$idmachine,$lotId,$date));
  
-        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$Shift);
+            $ids = DB::select('call ConsultaSelectIds(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
+
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$ids);
     }
     public function datosidshift($idmachine,$caso,$date,$casoS,$partId,$lotId,$idShift)
     {    
@@ -75,6 +74,8 @@ class OeeController extends Controller
             $oeeGrid = DB::select('call ConsultaOEETrendsGrid(?,?,?,?,?,?,?,?)',array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeComponet = DB::select('call ConsultaOEEComponentes(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
  
-        return array ($oee,$oeepro,$oeeGrid,$oeeComponet);
+            $ids = DB::select('call ConsultaSelectIds(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
+
+        return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$ids);
     }
 }

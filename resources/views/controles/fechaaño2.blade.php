@@ -24,7 +24,7 @@
                 <div class="row align-items-start"> 
                 <h4>Buscar por:</h4>
                     <div class="input-group">
-                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;">PartId:</label>
+                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">PartId:</label>
                         <div class="col-md-8">
                             <select class="form-control" id="i_partid" name="partid">
                                 <option value="" disabled selected>Seleccione</option>
@@ -34,9 +34,9 @@
                     <br>
                     <br>
                     <div class="input-group">
-                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;">LoteId:</label>
+                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">LoteId:</label>
                         <div class="col-md-8">
-                            <select class="form-control" id="i_loteid" name="loteid" disabled>
+                            <select class="form-control" id="i_loteid" name="loteid">
                                 <option value="" disabled selected>Seleccione</option>
                             </select>
                         </div>
@@ -44,9 +44,9 @@
                     <br>
                     <br>
                     <div class="input-group">
-                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;">Turno:</label>
+                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">Turno:</label>
                         <div class="col-md-8">
-                            <select class="form-control" id="i_shift" name="shift" disabled>
+                            <select class="form-control" id="i_shift" name="shift">
                                 <option value="" disabled selected>Seleccione</option>
                             </select>
                         </div>
