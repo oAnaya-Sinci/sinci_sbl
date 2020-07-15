@@ -108,8 +108,12 @@ $(document).ready(function () {
                 response[4].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`;
                     $("#i_partid").append(opt);
+                });
+                response[5].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`;
                     $("#i_loteid").append(opt);
+                });
+                response[6].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['idShift']+`">`+elemento['turno']+`</option>`;
                     $("#i_shift").append(opt);
                 });
@@ -240,11 +244,15 @@ $(document).ready(function () {
                 response[4].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['partId']+`">`+elemento['partId']+`</option>`;
                     $("#i_partid").append(opt);
+                });
+                response[5].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['lotId']+`">`+elemento['lotId']+`</option>`;
                     $("#i_loteid").append(opt);
+                });
+                response[6].forEach(function (elemento, indice) {
                     var opt = `<option value="`+elemento['idShift']+`">`+elemento['turno']+`</option>`;
                     $("#i_shift").append(opt);
-                    });
+                });
                 if (response[3][0].date == null) {
                         
                         $("#RunningTime").html('No Data');
