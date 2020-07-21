@@ -15,7 +15,6 @@
                     <input type="hidden" class="form-control" name="description" id="description" value="{{$var['description']}}">       
                 @endforeach
             </div>
-               
                 <div class="card-body">
                     <div id="chart" style="width: 1000px; height: 390px;"></div>
                 </div>
@@ -70,6 +69,8 @@ $(document).ready(function()
     });
    
 });
-</script>
 
+
+</script>
+<script src="{{ asset('js/monitoreo.js')}}"></script>
 @endsection

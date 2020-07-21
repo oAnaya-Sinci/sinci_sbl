@@ -28,4 +28,13 @@ class TrendsController extends Controller
 
         return $trends;
     }
+
+    public function monitoreo($id)
+    {
+            $date = Carbon::now();
+            $date = $date->format('Y-m-d H:i'); 
+            $monitoreo = DB::select('call ConsultaMonitoreovar(?)',array($date));
+
+         return $monitoreo;
+    }
 }

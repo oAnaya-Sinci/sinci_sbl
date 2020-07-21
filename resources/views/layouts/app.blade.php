@@ -20,7 +20,8 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" type="text/css" />
-    
+    <link href="{{ asset('vendor/sweetalert/sweetalert2.css') }}" rel="stylesheet" type="text/css" />
+
 </head>
 <body id="page-top">
     
@@ -163,6 +164,8 @@
   
     @yield('scripts')
     <script src="{{ asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js')}}"></script>
+    
     <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
     <!-- Scripts -->

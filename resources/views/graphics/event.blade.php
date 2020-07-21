@@ -112,7 +112,7 @@ $(document).ready(function() {
                             }else{
                                 tr = tr + `<td></td>`
                             }
-                        tr = tr + `<td>`+elemento['descriptions']+`</td>`;
+                         tr = tr + `<td>`+elemento['descriptions']+`</td>`;
 
                         if (elemento['justification'] != null){
                         tr = tr + `<td>`+elemento['justification']+`</td>`
@@ -262,16 +262,7 @@ $(document).ready(function() {
             }
         });
     });
-
-    // function Mostrar(btn){
-    //     console.log(btn.value);
-    //     // var route = "http://localhost:8000/genero/"+btn.value+"/edit";
-
-    //     // $.get(route, function(res){
-    //     //     $("#genre").val(res.genre);
-    //     //     $("#id").val(res.id);
-    //     // });
-    // }
 });
 </script>
+<script src="{{ asset('js/monitoreo.js')}}"></script>
 @endsection

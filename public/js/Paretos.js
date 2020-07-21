@@ -80,8 +80,6 @@ function Mostrar(btn){
     var route = "/events/"+btn.value+"/editm";
 
     $.get(route, function(res){
-        console.log(res);
-        console.log(res.justification);
         $("#id").val(btn.value);
         $("#idmachines").val(res.idmachine);
         $("#just").val(res.justification);

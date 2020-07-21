@@ -110,4 +110,5 @@ $(document).ready(function () {
 </script>
 <script src="{{ asset('js/selectfecha.js') }}"></script>
 <script src="{{ asset('js/selectfechaid.js') }}"></script>
+<script src="{{ asset('js/monitoreo.js')}}"></script>
 @endsection
