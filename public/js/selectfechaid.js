@@ -270,6 +270,7 @@ $(document).ready(function () {
     $("#i_loteid").change(function () {
 
         var date = $('#i_date').val();
+        var partid = $('#i_partid').val();
         var lotid = $('#i_loteid').val();
         var idmachine = $('#idmachine').val();
         var caso = $('#i_caso').val();
@@ -406,7 +407,7 @@ $(document).ready(function () {
             });
         }else{
             $.ajax({
-                url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/3/'+  lotid + '/datos/',
+                url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/3/'+ partid+'/'+ lotid + '/datos',
                 type: 'GET',
                 success: function (response) {
                     config.data.labels.length = 0;
@@ -534,6 +535,8 @@ $(document).ready(function () {
     });
     $("#i_shift").change(function () {
         var date = $('#i_date').val();
+        var partid = $('#i_partid').val();
+        var lotid = $('#i_loteid').val();
         var idshift = $('#i_shift').val();
         var idmachine = $('#idmachine').val();
         var caso = $('#i_caso').val();
@@ -670,7 +673,7 @@ $(document).ready(function () {
             });
         }else{
             $.ajax({
-                url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/4/'+ idshift + '/datos',
+                url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/4/'+ partid +'/'+ lotid +'/'+ idshift + '/datos',
                 type: 'GET',
                 success: function (response) {
                     config.data.labels.length = 0;
@@ -691,21 +694,21 @@ $(document).ready(function () {
                         configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
                         configQty.data.datasets[0].data=[elemento.qualityG,elemento.qualityR]
                         configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
-    
+
                         configDis.options.elements.center.text = elemento.AvailabilityG+'%';
                         configEf.options.elements.center.text = elemento.performanceG+'%';
                         configQty.options.elements.center.text = elemento.qualityG+'%';
                         configM1.options.elements.center.text = elemento.OEEG+'%';
-    
+
                         var resAvailability = elemento.AvailabilityG+'%';
                         $("#resAvailability").html(resAvailability);
-    
+
                         var resThroghput = elemento.performanceG+'%';
                         $("#resThroghput").html(resThroghput);
-    
+
                         var resQuality = elemento.qualityG+'%';
                         $("#resQuality").html(resQuality);
-    
+
                     });
                     if (response[1][0].date == null) {
                         
@@ -716,16 +719,16 @@ $(document).ready(function () {
                         $("#resAvailability").html('No Data');
                         $("#resThroghput").html('No Data');
                         $("#resQuality").html('No Data');
-    
+
                     }
-    
+
                     response[0].forEach(function (elemento, indice) {
                         config.data.labels.push(elemento['date']);
                         config.data.datasets[0].data.push(elemento['availability'])
                         config.data.datasets[1].data.push(elemento['performance'])
                         config.data.datasets[2].data.push(elemento['quality'])
                         config.data.datasets[3].data.push(elemento['oee'])
-    
+
                     });
                     response[2].forEach(function (elemento, indice) {
                         var tr = `<tr>
@@ -744,7 +747,7 @@ $(document).ready(function () {
                             <td style="font-size:90%;">`+elemento['turno']+`</td>
                         </tr>`
                             $("#cuerpo").append(tr)
-    
+
                     });
                     $('#dataTable').DataTable({
                             "pageLength": 50,
@@ -754,14 +757,14 @@ $(document).ready(function () {
                     response[3].forEach(function (elemento, indice) {
                         $("#RunningTime").html(elemento['RunningTime']);
                         $("#AvailableTime").html(elemento['AvailableTime']);
-    
+
                         $("#TotalParts").html(elemento['TotalParts']);
                         $("#IdealCycleTime").html(elemento['ICT']);
                         $("#RunningTime2").html(elemento['RunningTime']);
-    
+
                         $("#GoodParts").html(elemento['GoodParts']);
                         $("#TotalParts2").html(elemento['TotalParts']);
-    
+
                         
                     });
                     response[4].forEach(function (elemento, indice) {
@@ -776,16 +779,16 @@ $(document).ready(function () {
                             
                             $("#RunningTime").html('No Data');
                             $("#AvailableTime").html('No Data');
-    
+
                             $("#TotalParts").html('No Data');
                             $("#IdealCycleTime").html('No Data');
                             $("#RunningTime2").html('No Data');
-    
+
                             $("#GoodParts").html('No Data');
                             $("#TotalParts2").html('No Data');
                 
                     }
-    
+
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()
@@ -794,6 +797,5 @@ $(document).ready(function () {
                 }
             });
         }
-       
     });
 });
