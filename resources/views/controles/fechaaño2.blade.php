@@ -27,7 +27,7 @@
                         <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">PartId:</label>
                         <div class="col-md-8">
                             <select class="form-control" id="i_partid" name="partid">
-                                <option value="" disabled selected>Seleccione</option>
+                                <option value="all"  selected>Select all</option>
                             </select>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">LoteId:</label>
                         <div class="col-md-8">
                             <select class="form-control" id="i_loteid" name="loteid">
-                                <option value="" disabled selected>Seleccione</option>
+                                <option value="all"  selected>Select all</option>
                             </select>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">Turno:</label>
                         <div class="col-md-8">
                             <select class="form-control" id="i_shift" name="shift">
-                                <option value="" disabled selected>Seleccione</option>
+                                <option value="all"  selected>Select all</option>
                             </select>
                         </div>
                     </div>

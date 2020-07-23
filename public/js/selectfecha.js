@@ -24,9 +24,9 @@ $(document).ready(function () {
                 $('#i_partid').empty();
                 $('#i_loteid').empty();
                 $('#i_shift').empty();
-                $('#i_partid').prepend("<option value='' disabled selected>Seleccione</option>");
-                $('#i_loteid').prepend("<option value='' disabled selected>Seleccione</option>");
-                $('#i_shift').prepend("<option value='' disabled selected>Seleccione</option>");
+                $('#i_partid').prepend("<option value='all'  selected>Select all</option>");
+                $('#i_loteid').prepend("<option value='all'  selected>Select all</option>");
+                $('#i_shift').prepend("<option value='all'  selected>Select all</option>");
                 response[1].forEach(function(elemento, indice){
                     configDis.data.datasets[0].data=[elemento.AvailabilityG,elemento.AvailabilityR]
                     configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
@@ -164,9 +164,9 @@ $(document).ready(function () {
                 $('#i_partid').empty();
                 $('#i_loteid').empty();
                 $('#i_shift').empty();
-                $('#i_partid').prepend("<option value='' disabled selected>Seleccione</option>");
-                $('#i_loteid').prepend("<option value='' disabled selected>Seleccione</option>");
-                $('#i_shift').prepend("<option value='' disabled selected>Seleccione</option>");
+                $('#i_partid').prepend("<option value='all'  selected>Select all</option>");
+                $('#i_loteid').prepend("<option value='all'  selected>Select all</option>");
+                $('#i_shift').prepend("<option value='all'  selected>Select all</option>");
                 response[1].forEach(function(elemento, indice){
                     configM1.data.datasets[0].data=[elemento.OEEG,elemento.OEER]
                     configEf.data.datasets[0].data=[elemento.performanceG,elemento. performanceR]
