@@ -36,7 +36,7 @@
         <div class="sidebar-brand-icon">
         <img src="{{ asset('img/Logo_Sinci_Blanco.png')}}" height="40">
         </div>
-        <div class="sidebar-brand-text mx-3">SDS</div>
+        <div class="sidebar-brand-text mx-3">SDA</div>
     </a>
 
     <!-- Divider -->
