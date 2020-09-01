@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TrendsExport;
 use Carbon\Carbon;
 use App\Variable;
 use DB;
@@ -36,5 +38,9 @@ class TrendsController extends Controller
             $monitoreo = DB::select('call ConsultaMonitoreovar(?)',array($date));
 
          return $monitoreo;
+    }
+    public function export($caso,$date,$idvar,$nomvar)
+    {
+        return (new TrendsExport)->datos($caso,$date,$idvar,$nomvar)->download("ReporteTrends$nomvar$date.xlsx");
     }
 }

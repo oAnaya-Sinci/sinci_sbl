@@ -4,6 +4,7 @@ $(document).ready(function(){
         $('#i_mes').hide();
         $('#i_mes').val('');
         $('#i_caso').val('d');
+        
      });
     $("#b_mes").on( "click", function() {
         $('#i_mes').show(); 

@@ -13,7 +13,8 @@
 
 // Route::get('/', function () {
 //     return view('welcome');
-// });
+// });;
+use App\Exports\EventsExport;
 
 Auth::routes();
 Route::group(['middleware'=>['auth']],function(){
@@ -31,11 +32,16 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/events/{idevent}/editm', 'EventsController@editm');
         Route::put('/events/{idmachine}', 'EventsController@update')->name('e_edit');
         Route::get('/trends/{idvariable}/{caso}/{date}/datos', 'TrendsController@datos');
+        Route::get('/trends/{caso}/{date}/{idvar}/{nomvar}/export', 'TrendsController@export')->name('excelT');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/datos', 'OeeController@datos');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/datos', 'OeeController@datospartid');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/datos', 'OeeController@datoslotid');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/{idshift}/datos', 'OeeController@datosidshift');
         Route::get('/Events/{idmachine}/{caso}/{date}/datos', 'EventsController@datos');
+        Route::get('/events/{caso}/{date}/{idmachine}/{idgroup}/{nomvar}/export', 'EventsController@export')->name('excelA');
+       
+       
+
     });
 
     Route::group(['middleware' => ['Admin']], function () {

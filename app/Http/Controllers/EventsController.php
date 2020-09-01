@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\EventsExport;
 use Carbon\Carbon;
 use App\Machine;
 use App\Events;
@@ -46,4 +48,10 @@ class EventsController extends Controller
         $events = Events::find($id);
         return response()->json($events);
     }
+
+    public function export($caso,$date,$idmachine,$idgroup,$nomvar)
+    {
+        return (new EventsExport)->datos($caso,$date,$idgroup,$idmachine,$nomvar)->download("ReporteAlarmas$nomvar$date.xlsx");
+    }
+    
 }

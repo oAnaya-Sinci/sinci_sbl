@@ -14,6 +14,13 @@
                 </div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+                <h4>Exportar reporte</h4>
+                <button class="btn btn-primary btn-icon-split" id="exportT" name="exportT">
+                    <span class="icon text-white-50">    
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Descargar</span>
+                </button>
             </div>
         </div>
     </div>

@@ -2,7 +2,9 @@
 var var_name = $('#var_name').val();
 var idmachine = $('#idmachine').val();
 var date = $('#date').val();
-$('#i_dia').val(date)
+$('#i_dia').val(date);
+$('#i_date').val(date);
+$('#i_caso').val('d');
 var maxy = 0
 //var Acumulado= []
 $(document).ready(function() {

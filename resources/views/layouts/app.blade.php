@@ -168,6 +168,7 @@
     
     <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
+    <script src="{{ asset('js/btnexport.js') }}"></script>
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}"></script> -->
 

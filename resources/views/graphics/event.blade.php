@@ -74,6 +74,7 @@ $(function() {
 $(document).ready(function() {
     $("#i_dia").change(function() {
         var date = $('#i_dia').val();
+        $('#i_date').val(date);
 
         $.ajaxSetup({
             headers: {
@@ -142,6 +143,7 @@ $(document).ready(function() {
     });
     $("#i_mes").change(function() {
         var date = $('#i_mes').val();
+        $('#i_date').val(date);
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

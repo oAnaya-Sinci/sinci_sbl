@@ -24,8 +24,8 @@
                 <div class="row align-items-start"> 
                 <h4>Buscar por:</h4>
                     <div class="input-group">
-                        <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">PartId:</label>
-                        <div class="col-md-8">
+                        <label class="col-xs-12 col-sm-6 col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">PartId:</label>
+                        <div class="col-xs-12 col-sm-6 col-md-8">
                             <select class="form-control" id="i_partid" name="partid">
                                 <option value="all"  selected>Select all</option>
                             </select>
@@ -35,7 +35,7 @@
                     <br>
                     <div class="input-group">
                         <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">LoteId:</label>
-                        <div class="col-md-8">
+                        <div class="col-xs-12 col-sm-6 col-md-8">
                             <select class="form-control" id="i_loteid" name="loteid">
                                 <option value="all"  selected>Select all</option>
                             </select>
@@ -45,7 +45,7 @@
                     <br>
                     <div class="input-group">
                         <label class="col-md-3 form-control-label" for="text-input" style="max-width: 32%;flex: auto">Turno:</label>
-                        <div class="col-md-8">
+                        <div class="col-xs-12 col-sm-6 col-md-8">
                             <select class="form-control" id="i_shift" name="shift">
                                 <option value="all"  selected>Select all</option>
                             </select>
@@ -54,6 +54,7 @@
                 </div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+               
             </div>
         </div>
     </div>

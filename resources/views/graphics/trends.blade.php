@@ -16,8 +16,15 @@
                 @endforeach
             </div>
                 <div class="card-body">
-                    <div id="chart" style="width: 1000px; height: 390px;"></div>
+                    <div id="chart" style="width: 900px; height: 390px;"></div>
+                    
+                    <!-- <div class="row">
+                        <div class="container">
+                                <canvas id="chart" width="740%" height="320%" ></canvas>
+                        </div>
+                    </div> -->
                 </div>
+                
         </div>
     </div>
     @include('controles.fecha')
@@ -31,46 +38,47 @@
 <!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
 <script src="{{ asset('js/minutes.js')}}"></script>
 <script>
- $(function () {
-    $('#i_dia').datepicker({
-        format: "yyyy-mm-dd"
-        }).datepicker("setDate", new Date());
-});
-$(document).ready(function()
-{  
-    $("#i_dia").change(function () {
-        var date = $('#i_dia').val();
-         
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
-            }
-        }); 
-        $.ajax({
-                url:'/trends/'+idvariable+'/d/'+date+'/datos',
-                type:'GET',
-                success:function(response){
-                    option.xAxis.data.length = 0;
-                    option.series[0].data.length = 0; 
-                    option.series[1].data.length = 0;
-                    option.series[2].data.length = 0;
-                response.forEach(function (elemento, indice) {
-                    
-                    option.xAxis.data.push(elemento['date'])
-                    option.series[0].data.push(elemento['value']);
-                    option.series[1].data.push(elemento['highLimit']);
-                    option.series[2].data.push(elemento['lowLimit']);
-
-                });	            
-                myChart.setOption(option);
-                }
-        });
-
+    $(function () {
+        $('#i_dia').datepicker({
+            format: "yyyy-mm-dd"
+            }).datepicker("setDate", new Date());
     });
-   
-});
+    $(document).ready(function()
+        {  
+            $("#i_dia").change(function () {
+                var date = $('#i_dia').val();
+                
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                    }
+                }); 
+                $.ajax({
+                        url:'/trends/'+idvariable+'/d/'+date+'/datos',
+                        type:'GET',
+                        success:function(response){
+                            option.xAxis.data.length = 0;
+                            option.series[0].data.length = 0; 
+                            option.series[1].data.length = 0;
+                            option.series[2].data.length = 0;
+                        response.forEach(function (elemento, indice) {
+                            
+                            option.xAxis.data.push(elemento['date'])
+                            option.series[0].data.push(elemento['value']);
+                            option.series[1].data.push(elemento['highLimit']);
+                            option.series[2].data.push(elemento['lowLimit']);
+
+                        });	            
+                        myChart.setOption(option);
+                        }
+                });
+
+            });
+        
+    });
 
 
 </script>
 <script src="{{ asset('js/monitoreo.js')}}"></script>
+
 @endsection

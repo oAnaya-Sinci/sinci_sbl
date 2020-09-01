@@ -15,11 +15,20 @@
                     <div class="input-group">
                         <input type="text" class="form-control" id="i_dia" name="dia" placeholder="YYYY-MM-DD"/>
                         <input type="text" class="form-control" id="i_mes" name="mes" placeholder="YYYY-MM" style="display: none;"/>
+                        <input type="hidden" class="form-control" id="i_date" name="date"/>
+                        <input type="hidden" class="form-control" id="i_caso" name="caso"/>
                     </div>
                     
                 </div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
+                <h4>Exportar reporte</h4>
+                <button class="btn btn-primary btn-icon-split" id="exportA" name="exportA">
+                    <span class="icon text-white-50">    
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Descargar</span>
+                </button>
             </div>
         </div>
     </div>
