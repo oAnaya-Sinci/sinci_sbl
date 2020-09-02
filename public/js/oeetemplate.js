@@ -5,6 +5,7 @@ var eu = "";
 var date = $('#date').val(); 
 $('#i_date').val(date);
 $('#i_caso').val('d');
+$('#i_casoS').val('1');
 //arrays de prueba ver los valores
 $(document).ready(function() {
     $.ajaxSetup({

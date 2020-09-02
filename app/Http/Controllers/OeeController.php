@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OeeExport;
 use Carbon\Carbon;
 use App\Machine;
 use DB;
@@ -85,5 +87,14 @@ class OeeController extends Controller
             $turno = DB::select('call ConsultaSelectidShift(?,?,?,?)',array($caso,$idgroup,$idmachine,$date));
 
         return array ($oee,$oeepro,$oeeGrid,$oeeComponet,$partId,$lotId,$turno);
+    }
+
+    public function export($idmachine,$caso,$date,$casoS,$partId,$lotId,$idShift,$nomvar)
+    {
+        if($idShift=="all"){
+            $idShift=1;
+        }
+        $idgroup = auth()->user()->idgroup;
+        return (new OeeExport)->datos($idmachine,$caso,$date,$idgroup,$casoS,$partId,$lotId,$idShift,$nomvar)->download("ReporteOee$nomvar$date.xlsx");
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Events;
+use App\Oee;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -13,25 +13,30 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-
 use DB;
 
-class EventsExport implements FromCollection,WithHeadings,WithStyles,WithTitle,ShouldAutoSize, WithEvents
+class OeeExport implements FromCollection,WithHeadings,WithStyles,WithTitle,ShouldAutoSize, WithEvents
 {
     use Exportable;
     /**
     * @return \Illuminate\Support\Collection
     */
-   
     public function headings(): array
     {
         return [
-            'Inicio del evento',
-            'Fin del Evento',
-            'Descripción',
-            'Justificación',
-            'Tipo',
-            'Duracion'
+            'Date',
+            'OEE',
+            'Availability',
+            'Performance',
+            'Quality',
+            'RunTime',
+            'AvailableTime',
+            'ICT',
+            'TotalPieces',
+            'GoodParts',
+            'PartId',
+            'LotId',
+            'Shift'
         ];
 
     }
@@ -47,33 +52,38 @@ class EventsExport implements FromCollection,WithHeadings,WithStyles,WithTitle,S
     {
         return [
             AfterSheet::class    => function(AfterSheet $event) {
-                $cellRange = 'A1:F1'; // All headers
+                $cellRange = 'A1:M1'; // All headers
                 $event->sheet->getDelegate()->getStyle($cellRange)->getFont()->setSize(12);
             },
         ];
     }
 
-    public function datos(string $caso,string $date,int $group, int $idmaq, string $nomvar)
+    public function datos(int $idmaq,string $caso,string $date,int $group, string $casoS, string $partId,string $lotId,int $idShift,string $nomvar)
     {
         $this->date = $date;
         $this->group = $group;
         $this->idmaq = $idmaq;
         $this->nomvar = $nomvar;
         $this->caso = $caso;
+        $this->casoS = $casoS;
+        $this->partId = $partId;
+        $this->lotId = $lotId;
+        $this->idShift = $idShift;
+
+        $this->title = $nomvar." ".$date;
         
         return $this;
     }
 
     public function title(): string
     {
-        return $this->nomvar;
+        return $this->title;
     }
 
     public function collection()
     {
 
-      return  collect(DB::select('call ConsultaParetoGridExcel(?,?,?,?)',array($this->caso,$this->group,$this->idmaq,$this->date)));
+      return  collect(DB::select('call ConsultaOEETrendsGridExcel(?,?,?,?,?,?,?,?)',array($this->caso,$this->group,$this->idmaq,$this->date,$this->casoS,$this->partId,$this->lotId,$this->idShift)));
       
-   
     }
 }

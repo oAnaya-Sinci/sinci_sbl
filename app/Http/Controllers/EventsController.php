@@ -49,8 +49,9 @@ class EventsController extends Controller
         return response()->json($events);
     }
 
-    public function export($caso,$date,$idmachine,$idgroup,$nomvar)
+    public function export($caso,$date,$idmachine,$nomvar)
     {
+        $idgroup = auth()->user()->idgroup;
         return (new EventsExport)->datos($caso,$date,$idgroup,$idmachine,$nomvar)->download("ReporteAlarmas$nomvar$date.xlsx");
     }
     

@@ -37,8 +37,10 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/datos', 'OeeController@datospartid');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/datos', 'OeeController@datoslotid');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/{idshift}/datos', 'OeeController@datosidshift');
+        Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/{idshift}/{nomvar}/export', 'OeeController@export');
         Route::get('/Events/{idmachine}/{caso}/{date}/datos', 'EventsController@datos');
-        Route::get('/events/{caso}/{date}/{idmachine}/{idgroup}/{nomvar}/export', 'EventsController@export')->name('excelA');
+        Route::get('/events/{caso}/{date}/{idmachine}/{nomvar}/export', 'EventsController@export')->name('excelA');
+        
        
        
 

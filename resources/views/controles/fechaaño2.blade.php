@@ -17,6 +17,7 @@
                         <input type="text" class="form-control" id="i_mes" name="mes" placeholder="YYYY-MM" style="display: none;"/>
                         <input type="hidden" class="form-control" id="i_date" name="date"/>
                         <input type="hidden" class="form-control" id="i_caso" name="caso"/>
+                        <input type="hidden" class="form-control" id="i_casoS" name="casoS"/>
                     </div>
                 </div>
                 <hr class="sidebar-divider">
@@ -54,7 +55,13 @@
                 </div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-               
+                <h4>Exportar Reporte</h4>
+                <button class="btn btn-primary btn-icon-split" id="exportO" name="exportO">
+                    <span class="icon text-white-50">    
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Descargar</span>
+                </button>
             </div>
         </div>
     </div>

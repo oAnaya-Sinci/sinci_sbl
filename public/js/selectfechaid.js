@@ -12,6 +12,7 @@ $(document).ready(function () {
             }
         });
         if(partid == "all"){
+            $('#i_casoS').val('1');
             $.ajax({
                 url: '/oee/' + idmachine+ '/'+ caso +'/' + date +'/1/datos/',
                 type: 'GET',
@@ -139,6 +140,7 @@ $(document).ready(function () {
 
 
         }else{
+            $('#i_casoS').val('2');
             $.ajax({
                 url: '/oee/' + idmachine+ '/'+ caso +'/' + date +'/2/'+ partid + '/datos/',
                 type: 'GET',
@@ -281,6 +283,7 @@ $(document).ready(function () {
             }
         });
         if(lotid== 'all'){
+            $('#i_casoS').val('1');
             $.ajax({
                 url: '/oee/' + idmachine+ '/'+ caso +'/' + date +'/1/datos/',
                 type: 'GET',
@@ -406,6 +409,7 @@ $(document).ready(function () {
                 }
             });
         }else{
+            $('#i_casoS').val('3');
             $.ajax({
                 url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/3/'+ partid+'/'+ lotid + '/datos',
                 type: 'GET',
@@ -547,6 +551,7 @@ $(document).ready(function () {
             }
         });
         if(idshift=='all'){
+            $('#i_casoS').val('1');
             $.ajax({
                 url: '/oee/' + idmachine+ '/'+ caso +'/' + date +'/1/datos/',
                 type: 'GET',
@@ -672,6 +677,7 @@ $(document).ready(function () {
                 }
             });
         }else{
+            $('#i_casoS').val('4');
             $.ajax({
                 url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/4/'+ partid +'/'+ lotid +'/'+ idshift + '/datos',
                 type: 'GET',

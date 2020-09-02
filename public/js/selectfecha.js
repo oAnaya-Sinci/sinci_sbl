@@ -3,6 +3,7 @@ $(document).ready(function () {
         var date = $('#i_dia').val();
         var idmachine = $('#idmachine').val();
         $('#i_date').val(date);
+        $('#i_casoS').val('1');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -143,6 +144,7 @@ $(document).ready(function () {
     $("#i_mes").change(function () {
         var date = $('#i_mes').val();
         $('#i_date').val(date);
+        $('#i_casoS').val('1');
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

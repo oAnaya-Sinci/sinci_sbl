@@ -22,7 +22,7 @@
                 </div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-                <h4>Exportar reporte</h4>
+                <h4>Exportar Reporte</h4>
                 <button class="btn btn-primary btn-icon-split" id="exportA" name="exportA">
                     <span class="icon text-white-50">    
                         <i class="fas fa-download"></i>
