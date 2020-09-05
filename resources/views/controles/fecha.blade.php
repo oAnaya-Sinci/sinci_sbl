@@ -6,7 +6,7 @@
             <div class="card-body">
                 <div class="row align-items-start"> 
                 <h4>Para mostrar las tendencias</h4>
-                    <label class="form-control-label" for="fecha">Selecciona una Dia:</label><br>
+                    <label class="form-control-label" for="fecha">Selecciona un día:</label><br>
                     <div class="input-group">
                         <input type="text" class="form-control" id="i_dia" name="dia" placeholder="YYYY-MM-DD"/>
                     </div>
