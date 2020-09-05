@@ -15,21 +15,21 @@
             <div class="card-body">
                 <div class="table-responsive" style="overflow-x: unset;height:70%">
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-xs-3">
                             <canvas id="Canvas1" data-toggle="modal" data-target="#myModalDis" style="cursor: pointer;"></canvas>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-xs-3">
                          <canvas id="Canvas2" data-toggle="modal" data-target="#myModalRen" style="cursor: pointer;"></canvas>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-xs-3">
                            <canvas id="Canvas3" data-toggle="modal" data-target="#myModalCal" style="cursor: pointer;"></canvas>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-xs-3">
                             <canvas id="Canvas4"></canvas>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="container">
+                        <div class="col-lg-12">
                             <canvas id="Canvas"></canvas>
                         </div>
                     </div>

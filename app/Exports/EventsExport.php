@@ -31,7 +31,7 @@ class EventsExport implements FromCollection,WithHeadings,WithStyles,WithTitle,S
             'Descripción',
             'Justificación',
             'Tipo',
-            'Duracion'
+            'Duración'
         ];
 
     }

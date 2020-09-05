@@ -4,9 +4,8 @@ $('#nom_var').val(var_name);
 var idvariable = $('#idvariable').val();
 var eu = $('#eu').val();
 var dates = $('#date').val(); 
-var chart = document.getElementById('chart');
+var chart = document.getElementById('chart-panel');
 var myChart = echarts.init(chart);
-
 
 $.ajaxSetup({
     headers: {
@@ -125,6 +124,7 @@ option = {
             shadowOffsetY: 2
         }
     }],
+    
     series: [
         {
             name: 'Valor',

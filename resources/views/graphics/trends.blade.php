@@ -16,13 +16,9 @@
                 @endforeach
             </div>
                 <div class="card-body">
-                    <div id="chart" style="width: 900px; height: 390px;"></div>
-                    
-                    <!-- <div class="row">
-                        <div class="container">
-                                <canvas id="chart" width="740%" height="320%" ></canvas>
-                        </div>
-                    </div> -->
+                    <div class="row">
+                        <div class="echarts" id="chart-panel" style="width: 900px; height: 390px;"></div>
+                    </div>
                 </div>
                 
         </div>
@@ -37,6 +33,16 @@
              
 <!--Probar los ejemplos de minutos al dia y de promedios por hora al mes para observar la estructura que toma el canvas!-->
 <script src="{{ asset('js/minutes.js')}}"></script>
+<script>
+ $(document).ready(function()
+    {  
+        window.addEventListener('resize',function(){
+            myChart.resize();
+        });
+
+    });
+
+</script>
 <script>
     $(function () {
         $('#i_dia').datepicker({
