@@ -66,11 +66,11 @@
                     <td>
                        @if($var['notificaciones']==1)
                          <div>
-                            <span class="badge badge-success">Activo</span>
+                            <span class="badge badge-success">Activas</span>
                          </div>
                          @else
                         <div>
-                            <span class="badge badge-danger">Desactivado</span>
+                            <span class="badge badge-danger">Desactivadas</span>
                         </div>
                         @endif
                     </td>
