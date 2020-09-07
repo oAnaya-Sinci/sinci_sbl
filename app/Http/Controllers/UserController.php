@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
             $personas = User::join('groups','users.idgroup','=','groups.id')
-            ->select('users.id','users.idgroup','groups.name as name_group','users.name','users.email','users.condicion')
+            ->select('users.id','users.idgroup','groups.name as name_group','users.name','users.email','users.condicion','users.notificaciones')
             ->orderBy('users.id', 'desc')->get();
 
             $groups = Groups::where('condicion','=','1')
@@ -31,7 +31,8 @@ class UserController extends Controller
             $user->email = $request->email;
             $user->password = bcrypt( $request->password);
             $user->idgroup = $request->idgroup;
-            $user->condicion = '1';       
+            $user->condicion = '1';  
+            $user->notificaciones = $request->notif ? true : false;     
             $user->save();
             $user->roles()->attach($role_user);
             return Redirect::to('/user');
@@ -46,6 +47,7 @@ class UserController extends Controller
             $user->password = bcrypt( $request->password);
             $user->idgroup = $request->idgroup;
             $user->condicion = '1';
+            $user->notificaciones = $request->notif ? true : false; 
             $user->save();
             return Redirect::to('/user');
 
