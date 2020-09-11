@@ -66,7 +66,7 @@ class TrendsExport implements FromCollection,WithHeadings,WithStyles,WithTitle,S
     public function collection()
     {
 
-      return  collect(DB::select("call ConsultaTrends(?,?,?)",array($this->caso,$this->idvar, $this->date)));
+      return  collect(DB::select("call ConsultaTrendsExcel(?,?,?)",array($this->caso,$this->idvar, $this->date)));
           
 
     }
