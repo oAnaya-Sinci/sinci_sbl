@@ -16,11 +16,6 @@
                <br>
                 <span>{{$machine['name_machine']}}</span>
             </center>
-            <!-- <center>
-                <img src="{{ asset('img/icono_WorkCell_configuracion.svg')}}" height="70">
-                <br>
-                <span>Configuración</span>
-            </center> -->
         </a>
         <div id="collapse{{$machine['id']}}" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">

@@ -2,7 +2,7 @@
 
 @section('contenido')
 <div class="row">
-    <div class="col-xl-10 col-lg-7">
+    <div class="col-xl-9 col-lg-7">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 @foreach($machines as $machine)

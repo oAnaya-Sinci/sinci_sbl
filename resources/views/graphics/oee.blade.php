@@ -4,9 +4,6 @@
 <div class="row">
     <div class="col-xl-9 col-lg-7">
         <div class="card shadow mb-4">
-            <!-- <div class="card-header py-3">
-                
-            </div> -->
             <div class="card-body">
                 @foreach($machines as $machine)
                     <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$machine['name']}}">
