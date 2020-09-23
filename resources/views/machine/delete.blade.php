@@ -3,7 +3,7 @@
                                 <div class="modal-dialog modal-primary modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" >Cambiar Estado</h4>
+                                            <h4 class="modal-title" style="color:rgb(0,51,100)">Cambiar Estado</h4>
                                             <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
@@ -19,8 +19,8 @@
                                                 </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <input type="submit" class="btn btn-primary" value="Desactivar">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                                            <input type="submit" class="btn btn-success" value="Desactivar">
                                             </form>
                                         </div>
                                     </div>

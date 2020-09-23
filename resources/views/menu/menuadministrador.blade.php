@@ -20,8 +20,8 @@
             <h6 class="collapse-header">componentes:</h6>
             <a class="collapse-item" href="{{route('machine')}}">Máquinas</a>
             <a class="collapse-item" href="{{route('variable')}}">Variables</a>
-            <a class="collapse-item" href="{{route('typeevent')}}">Catalogo de eventos</a>
-            <a class="collapse-item" href="{{route('shift')}}">Catalogo de turnos</a>
+            <a class="collapse-item" href="{{route('typeevent')}}">Catálogo de eventos</a>
+            <a class="collapse-item" href="{{route('shift')}}">Catálogo de turnos</a>
         </div>
         </div>
     </li>

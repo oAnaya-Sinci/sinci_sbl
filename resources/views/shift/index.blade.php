@@ -7,10 +7,10 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Catalogo de Turnos
               <button  data-toggle="modal" data-target="#myModalNuevo" class="btn btn-success btn-icon-split btn-sm">
-                <span class="icon text-white-50">
-                      <i class="fas fa-arrow-right"></i>
-                </span>
                     <span class="text">Nuevo</span>
+                    <span class="icon text-white-50">
+                      <i class="fas fa-angle-down"></i>
+                    </span>
               </button>
               </h6>
             </div>
@@ -30,15 +30,15 @@
                    @foreach($shift as $var)   
                     <tr>
                      <td>
-                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
+                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary2 btn-circle btn-sm">
+                        <img src="{{ asset('img/icono_editar_actualizar.svg')}}" height="50">
                         </button> &nbsp;
                         @include('shift.edit')
 
 
                         @if($var['condicion']==1)
                           <button type="button"  title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
-                                <i class="fas fa-trash"></i>
+                            <img src="{{ asset('img/icono_cambiar_eliminar.svg')}}" height="50">
                           </button>
                           @include('shift.delete')
                         @else
@@ -74,7 +74,7 @@
             <div class="modal-dialog modal-primary modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" >Nueva Variable</h4>
+                        <h4 class="modal-title" style="color:rgb(0,51,100)">Nueva Variable</h4>
                         <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -110,8 +110,8 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <input type="submit" class="btn btn-primary" value="Guardar">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-success" value="Guardar">
                         </form>
                     </div>
                 </div>
