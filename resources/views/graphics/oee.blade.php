@@ -2,17 +2,17 @@
 
 @section('contenido')
 <div class="row">
-    <div class="col-xl-10 col-lg-7">
+    <div class="col-xl-9 col-lg-7">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                @foreach($machines as $machine)
-                <h6 class="m-0 font-weight-bold text-primary">{{$machine['name']}}</h6>
-                <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$machine['name']}}">
-                <input type="hidden" class="form-control" name="idmachine" id="idmachine" value="{{$machine['id']}}">
-                <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">
-                @endforeach
-            </div>
+            <!-- <div class="card-header py-3">
+                
+            </div> -->
             <div class="card-body">
+                @foreach($machines as $machine)
+                    <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$machine['name']}}">
+                    <input type="hidden" class="form-control" name="idmachine" id="idmachine" value="{{$machine['id']}}">
+                    <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">
+                @endforeach
                 <div class="table-responsive" style="overflow-x: unset;height:70%">
                     <div class="row">
                         <div class="col-xs-3">
@@ -50,8 +50,8 @@
                         <th style="font-size:85%;">ICT</th>
                         <th style="font-size:85%;">TotalParts</th>
                         <th style="font-size:85%;">GoodParts</th>
-                        <th style="font-size:85%;">partId</th>
-                        <th style="font-size:85%;">lotId</th>
+                        <th style="font-size:85%;">PartId</th>
+                        <th style="font-size:85%;">LotId</th>
                         <th style="font-size:85%;">Shift</th>
                         </tr>
                     </thead>

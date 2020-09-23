@@ -32,7 +32,7 @@ class OeeExport implements FromCollection,WithHeadings,WithStyles,WithTitle,Shou
             'RunTime',
             'AvailableTime',
             'ICT',
-            'TotalPieces',
+            'TotalParts',
             'GoodParts',
             'PartId',
             'LotId',

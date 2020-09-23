@@ -5,8 +5,8 @@
             </div>
             <div class="card-body">
                 <div class="row align-items-start"> 
-                <h4>Para mostrar las tendencias</h4>
-                    <label class="form-control-label" for="fecha">Selecciona un día:</label><br>
+                <h5 style="color:rgb(0,51,100)">Para mostrar las tendencias</h5>
+                    <label class="form-control-label" style="color:rgb(0,51,100)" for="fecha">Selecciona un día:</label><br>
                     <div class="input-group">
                         <input type="text" class="form-control" id="i_dia" name="dia" placeholder="YYYY-MM-DD"/>
                     </div>
@@ -14,13 +14,13 @@
                 </div>
                 <!-- Divider -->
                 <hr class="sidebar-divider">
-                <h4>Exportar Reporte</h4>
-                <button class="btn btn-primary btn-icon-split" id="exportT" name="exportT">
-                    <span class="icon text-white-50">    
-                        <i class="fas fa-download"></i>
-                    </span>
-                    <span class="text">Descargar</span>
-                </button>
+                <h4 style="color:rgb(0,51,100)">Exportar Reporte</h4>
+                <div style="text-align: center;">
+                    <img src="{{ asset('img/icono_descargar.svg')}}" height="30">
+                    <button class="btn btn-success btn-icon-split" id="exportT" name="exportT">
+                        <span class="text">Descargar</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

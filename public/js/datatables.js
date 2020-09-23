@@ -10,7 +10,7 @@ $(document).ready(function() {
       "infoFiltered": "(Filtrado de _MAX_ total entradas)",
       "infoPostFix": "",
       "thousands": ",",
-      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "lengthMenu": "Mostrar _MENU_ Entidades",
       "loadingRecords": "Cargando...",
       "processing": "Procesando...",
       "search": "Buscar:",

@@ -7,10 +7,10 @@
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Maquinas
               <button  data-toggle="modal" data-target="#myModalNuevo" class="btn btn-success btn-icon-split btn-sm">
-                <span class="icon text-white-50">
-                      <i class="fas fa-arrow-right"></i>
-                </span>
                     <span class="text">Nuevo</span>
+                    <span class="icon text-white-50">
+                      <i class="fas fa-angle-down"></i>
+                </span>
               </button>
               </h6>
             </div>
@@ -19,6 +19,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      
                       <th>Opciones</th>
                       <th>Id</th>
                       <th>Nombre</th>
@@ -33,20 +34,20 @@
                    @foreach($machines as $var)   
                     <tr>
                      <td>
-                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
+                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary2 btn-circle btn-sm">
+                        <img src="{{ asset('img/icono_editar_actualizar.svg')}}" height="50">
                         </button> &nbsp;
                         @include('machine.edit')
 
 
                         @if($var['condicion']==1)
                           <button type="button"  title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
-                                <i class="fas fa-trash"></i>
+                            <img src="{{ asset('img/icono_cambiar_eliminar.svg')}}" height="50">
                           </button>
                           @include('machine.delete')
                         @else
                             <button type="button"  title="Activar" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#myModalActivar{{$var['id']}}">
-                                <i class="fas fa-check"></i>
+                            <img src="{{ asset('img/icono_cambiar_eliminar.svg')}}" height="50">
                             </button>
                             @include('machine.activar')
                         @endif

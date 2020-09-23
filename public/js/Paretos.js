@@ -41,8 +41,8 @@ $(document).ready(function() {
                 
                 var tr = `<tr>
                         <td>  
-                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-circle btn-sm">
+                            <img src="/img/icono_editar_actualizar.svg" height="50">
                         </button> &nbsp;
                         </td>
                         <td>`+elemento['startTime']+`</td>`;
@@ -70,7 +70,8 @@ $(document).ready(function() {
     
             });
             $('#dataTable').DataTable({
-                    "pageLength": 100
+                    "pageLength": 100,
+                    "searching": false
                 });
             
             options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
@@ -95,7 +96,7 @@ var chartData = {
     datasets: [{
         type: 'line',
         label: 'Porcentaje Acumulado',
-        borderColor: window.chartColors.blue,
+        borderColor: 'rgb(0,51,100)',
         borderWidth: 2,
         fill: false,
         data: [], //Porcentaje acumulado
@@ -103,7 +104,7 @@ var chartData = {
     }, {
         type: 'bar',
         label: 'Tiempo Acumulado de falla',
-        backgroundColor: window.chartColors.green,
+        backgroundColor: 'rgb(255,185,46)',
         data: [], //Frecuencia
         yAxisID: "y-axis2",
     }]
@@ -121,12 +122,12 @@ var options = {
         responsive: true,
         legend: {
             labels: {
-                defaultFontSize: 1,
+                defaultFontSize: 1
             }
         },
         title: {
             display: true,
-            text: 'Pareto'
+            text: ''
         },
 
         tooltips: {
@@ -138,7 +139,9 @@ var options = {
             xAxes: [{
                 ticks: {
                     autoSkip: false,
-                    autoSkipPadding: 0
+                    autoSkipPadding: 0,  
+                    maxRotation: 80, 
+                    minRotation: 80 
                 }
             }],
 
