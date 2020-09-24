@@ -11,7 +11,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SINCI</title>
+    <title>SBL</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     
@@ -72,7 +72,6 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-                <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
@@ -88,6 +87,12 @@
                         </a>
                     </div>
                 </li>
+                <div class="topbar-divider d-none d-sm-block"></div>
+                <li class="nav-item dropdown no-arrow">
+                    <div class="sidebar-brand-icon">
+                        <img src="{{asset('img/Logo_Sinci.svg')}}" alt="" height="60">
+                    </div>
+                </li> 
             </ul>
 
         </nav>
@@ -104,14 +109,14 @@
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
+    <!-- <footer class="sticky-footer bg-white">
         <div class="container my-auto">
         <div class="copyright text-center my-auto">
             <span><img src="{{ asset('img/Logo_Sinci_Simplificada.png')}}" height="20"></span>
           </div>
             
         </div>
-    </footer>
+    </footer> -->
     <!-- End of Footer -->
 
     </div>

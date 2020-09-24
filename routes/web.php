@@ -28,11 +28,13 @@ Route::group(['middleware'=>['auth']],function(){
         Route::get('/trends/{idvariable}', 'TrendsController@index')->name('trends');
         Route::get('/trends/{id}/monitoreo', 'TrendsController@monitoreo');
         Route::get('/oee/{idmachine}', 'OeeController@index')->name('oee');
+        Route::get('/andon/{idmachine}', 'OeeController@andon')->name('andon');
         Route::get('/events/{idmachine}', 'EventsController@index')->name('events');
         Route::get('/events/{idevent}/editm', 'EventsController@editm');
         Route::put('/events/{idmachine}', 'EventsController@update')->name('e_edit');
         Route::get('/trends/{idvariable}/{caso}/{date}/datos', 'TrendsController@datos');
         Route::get('/trends/{caso}/{date}/{idvar}/{nomvar}/export', 'TrendsController@export')->name('excelT');
+        Route::get('/andon/{idmachine}/{caso}/{date}/{casoS}/datos', 'OeeController@datosandon');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/datos', 'OeeController@datos');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/datos', 'OeeController@datospartid');
         Route::get('/oee/{idmachine}/{caso}/{date}/{casoS}/{partid}/{lotid}/datos', 'OeeController@datoslotid');

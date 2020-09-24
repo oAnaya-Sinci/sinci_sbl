@@ -97,4 +97,28 @@ class OeeController extends Controller
         $idgroup = auth()->user()->idgroup;
         return (new OeeExport)->datos($idmachine,$caso,$date,$idgroup,$casoS,$partId,$lotId,$idShift,$nomvar)->download("ReporteOee$nomvar$date.xlsx");
     }
+
+    public function andon($idmachine)
+    {
+        $date = Carbon::now();
+        $date = $date->format('Y-m-d');
+        $caso = "d";
+
+        $machines = Machine::where('id','=', $idmachine)
+           ->select('id','name')->orderBy('name', 'asc')->get();
+        
+       
+        return view('graphics.andon')->with(compact('machines','date'));
+    }
+    public function datosandon($idmachine,$caso,$date,$casoS)
+    {
+        $partId = '0';
+        $lotId ='0';
+        $idShift = 1; 
+
+        $oeepro = DB::select('call ConsultaOEEDoughnut(?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+        
+       
+        return array ($oeepro);
+    }
 }
