@@ -10,13 +10,13 @@
                     <input type="hidden" class="form-control" name="idmachine" id="idmachine" value="{{$machine['id']}}">
                     <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">
                 @endforeach
-                <div class="table-responsive" style="overflow-x: unset;height:70%">
-                    <div class="row">
+                <div class="table-responsive" >
+                    <div class="row" >
                         <div class="col-xs-3">
                             <canvas id="Canvas1" data-toggle="modal" data-target="#myModalDis" style="cursor: pointer;"></canvas>
                         </div>
                         <div class="col-xs-3">
-                         <canvas id="Canvas2" data-toggle="modal" data-target="#myModalRen" style="cursor: pointer;"></canvas>
+                            <canvas id="Canvas2" data-toggle="modal" data-target="#myModalRen" style="cursor: pointer;"></canvas>
                         </div>
                         <div class="col-xs-3">
                            <canvas id="Canvas3" data-toggle="modal" data-target="#myModalCal" style="cursor: pointer;"></canvas>

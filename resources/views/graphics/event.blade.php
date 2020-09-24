@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <div style="width: 75%">
+                    <div class="col-lg-12">
                         <canvas id="canvas"></canvas>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 <div class="col-xl-3 col-lg-5">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            <div class="card-header py-3" style="background-color:rgb(250,250,250);border-color:rgb(250,250,250)">
                 <h6 class="m-0 font-weight-bold text-primary">Controles</h6>  
             </div>
             <div class="card-body">
