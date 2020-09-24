@@ -75,19 +75,19 @@ $(document).ready(function() {
             response[2].forEach(function (elemento, indice) {
                 
             var tr = `<tr>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['date']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['oee']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['availability']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['performance']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['quality']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['runTime']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['availableTime']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['ict']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['totalPieces']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['goodParts']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['partId']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['lotId']+`</td>
-                        <td style="font-size:90%;color:rgb(0,51,100)">`+elemento['turno']+`</td>
+                        <td style="font-size:90%">`+elemento['date']+`</td>
+                        <td style="font-size:90%">`+elemento['oee']+`</td>
+                        <td style="font-size:90%">`+elemento['availability']+`</td>
+                        <td style="font-size:90%">`+elemento['performance']+`</td>
+                        <td style="font-size:90%">`+elemento['quality']+`</td>
+                        <td style="font-size:90%">`+elemento['runTime']+`</td>
+                        <td style="font-size:90%">`+elemento['availableTime']+`</td>
+                        <td style="font-size:90%">`+elemento['ict']+`</td>
+                        <td style="font-size:90%">`+elemento['totalPieces']+`</td>
+                        <td style="font-size:90%">`+elemento['goodParts']+`</td>
+                        <td style="font-size:90%">`+elemento['partId']+`</td>
+                        <td style="font-size:90%">`+elemento['lotId']+`</td>
+                        <td style="font-size:90%">`+elemento['turno']+`</td>
                     </tr>`
                     $("#cuerpo").append(tr)
 
