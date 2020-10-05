@@ -6,6 +6,13 @@ var date = $('#date').val();
 $('#i_date').val(date);
 $('#i_caso').val('d');
 $('#i_casoS').val('1');
+
+var caso =  $('#i_caso').val();
+var casoS = $('#i_casoS').val();
+var partid = $('#i_partid').val();
+var lotid = $('#i_loteid').val();
+var idshift = $('#i_shift').val();
+
 //arrays de prueba ver los valores
 $(document).ready(function() {
     $.ajaxSetup({
@@ -14,7 +21,7 @@ $(document).ready(function() {
         }
     });
     $.ajax({
-        url: '/oee/' + idmachine + '/d/' + date +'/1'+ '/datos',
+        url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/'+ casoS +'/'+ partid +'/'+ lotid +'/'+ idshift + '/datos',
         type: 'GET',
         success: function (response) {
             
