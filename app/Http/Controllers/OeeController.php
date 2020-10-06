@@ -35,7 +35,7 @@ class OeeController extends Controller
             $DB_SP_END= env('DB_SP_END');
             
             $idgroup = auth()->user()->idgroup;
-            $oee = DB::select($DB_SP.' ConsultaOEETrends (?,?,?,?,?,?,?)',array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
+            $oee = DB::select($DB_SP.' ConsultaOEETrends '.$DB_SP_START.'?,?,?,?,?,?,?'.$DB_SP_END,array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeepro = DB::select($DB_SP.' ConsultaOEEDoughnut '.$DB_SP_START.'?,?,?,?,?,?,?'.$DB_SP_END,array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeGrid = DB::select($DB_SP.' ConsultaOEETrendsGrid '.$DB_SP_START.'?,?,?,?,?,?,?,?'.$DB_SP_END,array($caso,$idgroup,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
             $oeeComponet = DB::select($DB_SP.' ConsultaOEEComponentes '.$DB_SP_START.'?,?,?,?,?,?,?'.$DB_SP_END,array($caso,$idmachine,$date,$casoS,$partId,$lotId,$idShift));
