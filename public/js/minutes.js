@@ -28,6 +28,7 @@ $.ajaxSetup({
                     option.series[0].data.push(elemento['value']);
                     option.series[1].data.push(elemento['highLimit']);
                     option.series[2].data.push(elemento['lowLimit']);
+                    
 
                 });
                 myChart.setOption(option);

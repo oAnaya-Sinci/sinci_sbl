@@ -207,12 +207,6 @@ var configM1 = {
                 borderWidth: 2,
                 anchor: 'end',
                 color: 'white',
-                /*display: function (context) {
-                    var dataset = context.dataset;
-                    var count = dataset.data.length;
-                    var value = dataset.data[context.dataIndex];
-                    return value > count * 1.5;
-                },*/
                 font: {
                     weight: 'bolder',
                     size: 50,
@@ -221,9 +215,7 @@ var configM1 = {
                 formatter: Math.round
             }
         }
-
-
-    },
+    }
 
 };
 
