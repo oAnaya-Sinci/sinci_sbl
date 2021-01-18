@@ -28,7 +28,7 @@ class TrendsController extends Controller
     {
         $DB_SP = env('DB_SP');
         $DB_SP_START= env('DB_SP_START');
-        $DB_SP_END= env('$DB_SP_END');
+        $DB_SP_END= env('DB_SP_END');
 
         $trends = DB::select($DB_SP.' ConsultaTrends '.$DB_SP_START.'?,?,?'.$DB_SP_END,array($caso,$idvariable,$date));
 
