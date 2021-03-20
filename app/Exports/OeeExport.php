@@ -86,7 +86,7 @@ class OeeExport implements FromCollection,WithHeadings,WithStyles,WithTitle,Shou
         $DB_SP_START= env('DB_SP_START');
         $DB_SP_END= env('DB_SP_END');
 
-      return  collect(DB::select($DB_SP.' ConsultaOEETrendsGridExcel '.$DB_SP_START.'?,?,?,?,?,?,?'.$DB_SP_END,array($this->caso,$this->group,$this->idmaq,$this->date,$this->casoS,$this->partId,$this->lotId,$this->idShift)));
+      return  collect(DB::select($DB_SP.' ConsultaOEETrendsGridExcel '.$DB_SP_START.'?,?,?,?,?,?,?,?'.$DB_SP_END,array($this->caso,$this->group,$this->idmaq,$this->date,$this->casoS,$this->partId,$this->lotId,$this->idShift)));
       
     }
 }
