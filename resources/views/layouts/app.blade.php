@@ -173,7 +173,7 @@
     <script src="{{ asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js')}}"></script>
     
-    <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
+    <script src="{{ asset('js/mspace.js') }}"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
     <script src="{{ asset('js/btnexport.js') }}"></script>
     <!-- Scripts -->
