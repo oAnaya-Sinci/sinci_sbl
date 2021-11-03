@@ -5,12 +5,12 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Maquinas
+              <h6 class="m-0 font-weight-bold text-primary">Máquinas
               <button  data-toggle="modal" data-target="#myModalNuevo" class="btn btn-success btn-icon-split btn-sm">
-                <span class="icon text-white-50">
-                      <i class="fas fa-arrow-right"></i>
-                </span>
                     <span class="text">Nuevo</span>
+                    <span class="icon text-white-50">
+                      <i class="fas fa-angle-down"></i>
+                    </span>
               </button>
               </h6>
             </div>
@@ -19,6 +19,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      
                       <th>Opciones</th>
                       <th>Id</th>
                       <th>Nombre</th>
@@ -33,20 +34,20 @@
                    @foreach($machines as $var)   
                     <tr>
                      <td>
-                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
+                        <button data-toggle="modal" title="Editar" data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary2 btn-circle btn-sm">
+                        <img src="{{ asset('img/icono_editar_actualizar.svg')}}" height="35">
                         </button> &nbsp;
                         @include('machine.edit')
 
 
                         @if($var['condicion']==1)
                           <button type="button"  title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
-                                <i class="fas fa-trash"></i>
+                            <img src="{{ asset('img/icono_cambiar_eliminar.svg')}}" height="35">
                           </button>
                           @include('machine.delete')
                         @else
                             <button type="button"  title="Activar" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#myModalActivar{{$var['id']}}">
-                                <i class="fas fa-check"></i>
+                              <i class="fas fa-check"></i>
                             </button>
                             @include('machine.activar')
                         @endif
@@ -99,7 +100,7 @@
             <div class="modal-dialog modal-primary modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" >Nueva Maquina</h4>
+                        <h4 class="modal-title" style="color:rgb(0,51,100)">Nueva Máquina</h4>
                         <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -108,9 +109,9 @@
                         <form action="{{route('m_registrar')}}" role="form" method="post"  class="form-horizontal">
                            {{ csrf_field() }}
                             <div class="form-group row">
-                                <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
+                                <label class="col-md-3 form-control-label" for="text-input" >Nombre</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="name" placeholder="Nombre de la maquina" maxlength="30" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Nombre de la máquina" maxlength="30" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -158,8 +159,8 @@
                         
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <input type="submit" class="btn btn-primary" value="Guardar">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                        <input type="submit" class="btn btn-success" value="Guardar">
                         </form>
                     </div>
                 </div>

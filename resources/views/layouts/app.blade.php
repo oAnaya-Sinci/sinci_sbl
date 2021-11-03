@@ -11,12 +11,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SINCI</title>
+    <title>SBL</title>
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     
     
     <!-- Styles -->
+    <link href="{{ asset('css/fuentes.css') }}" rel="stylesheet">
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/bootstrap-datepicker/css/bootstrap-datepicker.css') }}" rel="stylesheet" type="text/css" />
@@ -34,9 +35,8 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
         <div class="sidebar-brand-icon">
-        <img src="{{ asset('img/Logo_Sinci_Blanco.png')}}" height="40">
+        <img src="{{ asset('img/LogotipoSBL.svg')}}" height="60">
         </div>
-        <div class="sidebar-brand-text mx-3">SDA</div>
     </a>
 
     <!-- Divider -->
@@ -55,7 +55,8 @@
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        <button class="rounded-circle border-0" id="sidebarToggle">
+        </button>
     </div>
 
     </ul>
@@ -71,12 +72,12 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-                <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ Auth::user()->name }}</span>
+                        <img src="{{asset('img/icono_usuario.svg')}}" alt="" height="30">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:rgb(0,51,100)" > {{ Auth::user()->name }}</span>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -86,6 +87,12 @@
                         </a>
                     </div>
                 </li>
+                <div class="topbar-divider d-none d-sm-block"></div>
+                <li class="nav-item dropdown no-arrow">
+                    <div class="sidebar-brand-icon">
+                        <img src="{{asset('img/Logo_Sinci.svg')}}" alt="" height="60">
+                    </div>
+                </li> 
             </ul>
 
         </nav>
@@ -93,7 +100,7 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-
+        
             @yield('contenido')
         </div>
         <!-- /.container-fluid -->
@@ -102,14 +109,14 @@
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
+    <!-- <footer class="sticky-footer bg-white">
         <div class="container my-auto">
         <div class="copyright text-center my-auto">
             <span><img src="{{ asset('img/Logo_Sinci_Simplificada.png')}}" height="20"></span>
           </div>
             
         </div>
-    </footer>
+    </footer> -->
     <!-- End of Footer -->
 
     </div>
@@ -128,15 +135,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
+                <h5 class="modal-title" id="exampleModalLabel" style="color:rgb(0,51,100)">¿Listo para salir?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
                 </div>
-                <div class="modal-body">Da click en cerrar para salir</div>
+                <div class="modal-body" style="color:rgb(0,51,100)">Da click en cerrar para salir</div>
                 <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="{{ route('logout')}}" 
+                <button class="btn btn-success" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-success" href="{{ route('logout')}}" 
                     onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                     Cerrar
@@ -166,7 +173,7 @@
     <script src="{{ asset('vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert2.all.min.js')}}"></script>
     
-    <script src="http://fred-wang.github.io/mathml.css/mspace.js"></script>
+    <script src="{{ asset('js/mspace.js') }}"></script>
     <script src="{{ asset('js/controlesyear.js') }}"></script>
     <script src="{{ asset('js/btnexport.js') }}"></script>
     <!-- Scripts -->

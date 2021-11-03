@@ -26,7 +26,11 @@ class TrendsController extends Controller
 
     public function datos($idvariable,$caso,$date)
     {
-            $trends = DB::select('call ConsultaTrends(?,?,?)',array($caso,$idvariable,$date));
+        $DB_SP = env('DB_SP');
+        $DB_SP_START= env('DB_SP_START');
+        $DB_SP_END= env('DB_SP_END');
+
+        $trends = DB::select($DB_SP.' ConsultaTrends '.$DB_SP_START.'?,?,?'.$DB_SP_END,array($caso,$idvariable,$date));
 
         return $trends;
     }
@@ -35,7 +39,10 @@ class TrendsController extends Controller
     {
             $date = Carbon::now();
             $date = $date->format('Y-m-d H:i'); 
-            $monitoreo = DB::select('call ConsultaMonitoreovar(?)',array($date));
+            $DB_SP = env('DB_SP');
+            $DB_SP_START= env('DB_SP_START');
+            $DB_SP_END= env('DB_SP_END');
+            $monitoreo = DB::select($DB_SP.' ConsultaMonitoreovar '.$DB_SP_START.'?'.$DB_SP_END,array($date));
 
          return $monitoreo;
     }

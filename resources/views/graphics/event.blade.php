@@ -2,11 +2,11 @@
 
 @section('contenido')
 <div class="row">
-    <div class="col-xl-10 col-lg-7">
+    <div class="col-xl-9 col-lg-7">
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
+            <div class="card-header py-3" style="background-color:rgb(250,250,250);border-color:rgb(250,250,250)">
                 @foreach($machines as $machine)
-                <h6 class="m-0 font-weight-bold text-primary">{{$machine['name']}}</h6>
+                <h6 class="m-0 font-weight-bold text-primary" style="color:rgb(0,51,100)">Pareto</h6>
                 <input type="hidden" class="form-control" name="var_name" id="var_name" value="{{$machine['name']}}">
                 <input type="hidden" class="form-control" name="idmachine" id="idmachine" value="{{$machine['id']}}">
                 <input type="hidden" class="form-control" name="date" id="date" value="{{$date}}">
@@ -15,7 +15,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <div style="width: 75%">
+                    <div class="col-lg-12">
                         <canvas id="canvas"></canvas>
                     </div>
                 </div>
@@ -103,8 +103,8 @@ $(document).ready(function() {
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                         <td>  
-                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-circle btn-sm">
+                            <img src="/img/icono_editar_actualizar.svg" height="50">
                         </button> &nbsp;
                         </td>
                         <td>`+elemento['startTime']+`</td>`;
@@ -132,7 +132,8 @@ $(document).ready(function() {
 
                 });
                 $('#dataTable').DataTable({
-                    "pageLength": 100
+                    "pageLength": 100,
+                "searching": false
                 });
 
                 options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
@@ -171,8 +172,8 @@ $(document).ready(function() {
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                         <td>  
-                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary btn-circle btn-sm">
-                            <i class="fas fa-fw fa-wrench"></i>
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-circle btn-sm">
+                            <img src="/img/icono_editar_actualizar.svg" height="50">
                         </button> &nbsp;
                         </td>
                         <td>`+elemento['startTime']+`</td>`;
@@ -200,7 +201,8 @@ $(document).ready(function() {
 
                 });
                 $('#dataTable').DataTable({
-                    "pageLength": 100
+                    "pageLength": 100,
+                    "searching": false
                 });
                 options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
                 window.myMixedChart.update()
@@ -257,7 +259,8 @@ $(document).ready(function() {
 
                 });
                 $('#dataTable').DataTable({
-                    "pageLength": 100
+                    "pageLength": 100,
+                    "searching": false
                 });
                 options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
                 window.myMixedChart.update()

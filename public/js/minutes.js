@@ -1,12 +1,12 @@
-var var_name = $('#var_name').val() + '(' + $('#description').val() +')' ;
+var var_name = $('#var_name').val();
+var description = '(' + $('#description').val() +')' ;
 var varname = $('#var_name').val();
 $('#nom_var').val(var_name);
 var idvariable = $('#idvariable').val();
 var eu = $('#eu').val();
 var dates = $('#date').val(); 
-var chart = document.getElementById('chart');
+var chart = document.getElementById('chart-panel');
 var myChart = echarts.init(chart);
-
 
 $.ajaxSetup({
     headers: {
@@ -28,6 +28,7 @@ $.ajaxSetup({
                     option.series[0].data.push(elemento['value']);
                     option.series[1].data.push(elemento['highLimit']);
                     option.series[2].data.push(elemento['lowLimit']);
+                    
 
                 });
                 myChart.setOption(option);
@@ -43,7 +44,12 @@ option = {
     },
     title: {
         left: 'center',
-        text: var_name
+        text: var_name,
+        subtext: description,
+        subtextStyle: {
+            fontWeight: 'bolder',
+            fontSize: 12
+          }
     },
     toolbox: {
         show:true,
@@ -88,7 +94,7 @@ option = {
         }
     },
     legend: {
-        top: 30,
+        top: 43,
         data: ['Valor', 'Limite superior', 'Limite inferior'],
 
     },
@@ -125,6 +131,7 @@ option = {
             shadowOffsetY: 2
         }
     }],
+    
     series: [
         {
             name: 'Valor',

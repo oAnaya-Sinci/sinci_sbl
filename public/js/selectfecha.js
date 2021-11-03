@@ -3,13 +3,19 @@ $(document).ready(function () {
         var date = $('#i_dia').val();
         var idmachine = $('#idmachine').val();
         $('#i_date').val(date);
+        $('#i_casoS').val('1');
+        var caso =  $('#i_caso').val();
+        var casoS = $('#i_casoS').val();
+        var partid = $('#i_partid').val();
+        var lotid = $('#i_loteid').val();
+        var idshift = $('#i_shift').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '/oee/' + idmachine + '/d/' + date +'/1'+ '/datos',
+            url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/'+ casoS +'/'+ partid +'/'+ lotid +'/'+ idshift + '/datos',
             type: 'GET',
             success: function (response) {
                 config.data.labels.length = 0;
@@ -143,13 +149,19 @@ $(document).ready(function () {
     $("#i_mes").change(function () {
         var date = $('#i_mes').val();
         $('#i_date').val(date);
+        $('#i_casoS').val('1');
+        var caso =  $('#i_caso').val();
+        var casoS = $('#i_casoS').val();
+        var partid = $('#i_partid').val();
+        var lotid = $('#i_loteid').val();
+        var idshift = $('#i_shift').val();
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
         $.ajax({
-            url: '/oee/' + idmachine + '/m/' + date +'/1'+ '/datos',
+            url: '/oee/' + idmachine + '/'+ caso +'/' + date +'/'+ casoS +'/'+ partid +'/'+ lotid +'/'+ idshift + '/datos',
             type: 'GET',
             success: function (response) {
                 config.data.labels.length = 0;

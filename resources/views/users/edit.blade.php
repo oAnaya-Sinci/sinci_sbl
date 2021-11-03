@@ -3,7 +3,7 @@
                                 <div class="modal-dialog modal-primary modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title" >Actualizar Usuario</h4>
+                                            <h4 class="modal-title" style="color:rgb(0,51,100)">Actualizar Usuario</h4>
                                             <button type="button" class="close"  data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">×</span>
                                             </button>
@@ -41,10 +41,21 @@
                                                         </select>
                                                     </div>
                                                 </div>
+                                                <div class="form-group row">
+                                                <label class="col-md-3 form-control-label" for="text-input">Notificaciones por email</label>
+                                                    <div class="col-md-9">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" id="notif" name="notif" @if($var['notificaciones']=== 1) checked @endif>
+                                                        <label class="form-check-label" for="gridCheck1">
+                                                        Variables Analógicas 
+                                                        </label>
+                                                    </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                            <input type="submit" class="btn btn-primary" value="Actualizar">
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+                                            <input type="submit" class="btn btn-success" value="Actualizar">
                                             </form>
                                         </div>
                                     </div>

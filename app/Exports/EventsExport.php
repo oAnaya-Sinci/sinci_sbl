@@ -31,7 +31,7 @@ class EventsExport implements FromCollection,WithHeadings,WithStyles,WithTitle,S
             'Descripción',
             'Justificación',
             'Tipo',
-            'Duracion'
+            'Duración'
         ];
 
     }
@@ -71,10 +71,12 @@ class EventsExport implements FromCollection,WithHeadings,WithStyles,WithTitle,S
 
     public function collection()
     {
+        $DB_SP = env('DB_SP');
+        $DB_SP_START= env('DB_SP_START');
+        $DB_SP_END= env('DB_SP_END');
 
-      return  collect(DB::select('call ConsultaParetoGridExcel(?,?,?,?)',array($this->caso,$this->group,$this->idmaq,$this->date)));
+      return  collect(DB::select($DB_SP.' ConsultaParetoGridExcel '.$DB_SP_START.'?,?,?,?'.$DB_SP_END,array($this->caso,$this->group,$this->idmaq,$this->date)));
       
    
-
     }
 }

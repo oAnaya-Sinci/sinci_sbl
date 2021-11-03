@@ -10,10 +10,10 @@ $(document).ready(function() {
       "infoFiltered": "(Filtrado de _MAX_ total entradas)",
       "infoPostFix": "",
       "thousands": ",",
-      "lengthMenu": "Mostrar _MENU_ Entradas",
+      "lengthMenu": "Mostrar _MENU_ Entidades",
       "loadingRecords": "Cargando...",
       "processing": "Procesando...",
-      "search": "Buscar:",
+      "search": "<img src='/img/icono_buscar.svg' height='30'>",
       "zeroRecords": "Sin resultados encontrados",
       "paginate": {
           "first": "Primero",
