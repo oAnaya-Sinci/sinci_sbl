@@ -9,7 +9,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <center>
-        <img src="{{ asset('img/icono_WorkCell_configuracion.svg')}}" height="70">
+        <img src="{{ asset('img/icono_WorkCell_configuracion.png')}}" height="70">
         <br>
         <span>Configuración</span>
         </center>
@@ -40,7 +40,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <center>
-            <img src="{{ asset('img/icono_acceso.svg')}}" height="70">
+            <img src="{{ asset('img/icono_acceso.png')}}" height="70">
             <br>
             <span>Acceso</span>
         </center>

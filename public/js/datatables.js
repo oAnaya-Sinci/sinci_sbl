@@ -13,7 +13,7 @@ $(document).ready(function() {
       "lengthMenu": "Mostrar _MENU_ Entidades",
       "loadingRecords": "Cargando...",
       "processing": "Procesando...",
-      "search": "<img src='/img/icono_buscar.svg' height='30'>",
+      "search": "<img src='/img/icono_buscar.png' height='30'>",
       "zeroRecords": "Sin resultados encontrados",
       "paginate": {
           "first": "Primero",

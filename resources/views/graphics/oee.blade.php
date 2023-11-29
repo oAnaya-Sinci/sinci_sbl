@@ -59,6 +59,17 @@
             </div>
         </div>
     </div>
+    <!--Inicio del modal Loading-->
+    <div class="modal fade" id="myModalLoading" aria-labelledby="myModalLoading" aria-hidden="true" style="lefto:auto">
+                <div class="modal-dialog modal-primary modal-lg modal-dialog-centered " role="document">
+                    <div class="modal-content" style="background:transparent; border:none; align-self: center;">
+                        <div class="spinner-border text-dangerr" style="width:250px; height: 250px; align-self: center; color:rgb(128,34,36);" role="status"></div>
+                        <br>
+                        <h5 style="align-self: center; color:rgb(128,34,36);">Loading...</h5>
+                    </div>
+                </div>
+    </div>
+    <!--Fin Modal Loading -->
     @include('controles.fechaaño2')
 </div>
 @endsection
@@ -74,6 +85,7 @@
 <!-- Page level custom scripts -->
 <script src="{{ asset('js/datatables.js') }}"></script>
 <script>
+     
     $(function () {
         $('#i_dia').datepicker({
             format: "yyyy-mm-dd"
@@ -93,6 +105,7 @@
 </script>
 <script>
 $(document).ready(function () {
+    $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
     $('#i_dia').keyup(function () {
         var fecha = $(this).val();
         $('#i_date').val(fecha);
@@ -107,5 +120,5 @@ $(document).ready(function () {
 </script>
 <script src="{{ asset('js/selectfecha.js') }}"></script>
 <script src="{{ asset('js/selectfechaid.js') }}"></script>
-<script src="{{ asset('js/monitoreo.js')}}"></script>
+{{-- <script src="{{ asset('js/monitoreo.js')}}"></script> --}}
 @endsection

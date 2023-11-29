@@ -76,7 +76,7 @@
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{asset('img/icono_usuario.svg')}}" alt="" height="30">
+                        <img src="{{asset('img/icono_usuario.png')}}" alt="" height="25">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="color:rgb(0,51,100)" > {{ Auth::user()->name }}</span>
                     </a>
                     <!-- Dropdown - User Information -->

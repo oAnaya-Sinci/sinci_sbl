@@ -142,7 +142,9 @@ $(document).ready(function() {
                 $("#TotalParts2").html('No Data');
     
             }
-
+            setTimeout(() => {
+                $('#myModalLoading').modal('hide');
+            }, 3);
             window.myLine.update()
             window.myMaq5.update()
             window.myMaq6.update()

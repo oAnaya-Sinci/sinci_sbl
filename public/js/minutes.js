@@ -7,7 +7,7 @@ var eu = $('#eu').val();
 var dates = $('#date').val(); 
 var chart = document.getElementById('chart-panel');
 var myChart = echarts.init(chart);
-
+//$('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
@@ -31,9 +31,16 @@ $.ajaxSetup({
                     
 
                 });
+                setTimeout(() => {
+                    $('#myModalLoading').modal('hide');
+                }, 3); 
                 myChart.setOption(option);
+                
                 }
+                
+               
         });
+        
 
 option = {
     tooltip: {

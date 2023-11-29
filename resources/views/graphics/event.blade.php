@@ -40,6 +40,17 @@
             </div>
         </div>
     </div>
+    <!--Inicio del modal Loading-->
+    <div class="modal fade" id="myModalLoading" aria-labelledby="myModalLoading" aria-hidden="true" style="lefto:auto">
+                <div class="modal-dialog modal-primary modal-lg modal-dialog-centered " role="document">
+                    <div class="modal-content" style="background:transparent; border:none; align-self: center;">
+                        <div class="spinner-border text-dangerr" style="width:250px; height: 250px; align-self: center; color:rgb(128,34,36);" role="status"></div>
+                        <br>
+                        <h5 style="align-self: center; color:rgb(128,34,36);">Loading...</h5>
+                    </div>
+                </div>
+    </div>
+    <!--Fin Modal Loading -->
     @include('controles.fechaaño')
 </div>
 @endsection
@@ -55,6 +66,7 @@
 <script src="{{ asset('js/datatables.js') }}"></script>
 <script>
 $(function() {
+    $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
     $('#i_dia').datepicker({
         format: "yyyy-mm-dd"
     }).datepicker("setDate", new Date());
@@ -72,8 +84,13 @@ $(function() {
 });
 
 $(document).ready(function() {
+    $("#i_dia").click(function() {
+        $('.datepicker').css("display", "block");
+    });
     $("#i_dia").change(function() {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_dia').val();
+        $('.datepicker').css("display", "none");
         $('#i_date').val(date);
 
         $.ajaxSetup({
@@ -103,8 +120,8 @@ $(document).ready(function() {
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                         <td>  
-                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-circle btn-sm">
-                            <img src="/img/icono_editar_actualizar.svg" height="50">
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-sm">
+                            <img src="/img/icono_editar_actualizar.png" height="35">
                         </button> &nbsp;
                         </td>
                         <td>`+elemento['startTime']+`</td>`;
@@ -137,13 +154,21 @@ $(document).ready(function() {
                 });
 
                 options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
+                setTimeout(() => {
+                    $('#myModalLoading').modal('hide');
+                }, 3);
                 window.myMixedChart.update()
             }
         });
 
     });
+    $("#i_mes").click(function() {
+        $('.datepicker').css("display", "block");
+    });
     $("#i_mes").change(function() {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_mes').val();
+        $('.datepicker').css("display", "none");
         $('#i_date').val(date);
         $.ajaxSetup({
             headers: {
@@ -172,8 +197,8 @@ $(document).ready(function() {
                 response[1].forEach(function(elemento, indice) {
                     var tr = `<tr>
                         <td>  
-                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-circle btn-sm">
-                            <img src="/img/icono_editar_actualizar.svg" height="50">
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-sm">
+                            <img src="/img/icono_editar_actualizar.png" height="35">
                         </button> &nbsp;
                         </td>
                         <td>`+elemento['startTime']+`</td>`;
@@ -205,11 +230,15 @@ $(document).ready(function() {
                     "searching": false
                 });
                 options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
+                setTimeout(() => {
+                    $('#myModalLoading').modal('hide');
+                }, 3);	 
                 window.myMixedChart.update()
             }
         });
     });
     $("#i_year").change(function() {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_year').val();
         $.ajaxSetup({
             headers: {
@@ -263,11 +292,14 @@ $(document).ready(function() {
                     "searching": false
                 });
                 options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
+                setTimeout(() => {
+                    $('#myModalLoading').modal('hide');
+                }, 3);
                 window.myMixedChart.update()
             }
         });
     });
 });
 </script>
-<script src="{{ asset('js/monitoreo.js')}}"></script>
+{{-- <script src="{{ asset('js/monitoreo.js')}}"></script> --}}
 @endsection

@@ -1,6 +1,11 @@
 $(document).ready(function () {
+    $("#i_dia").click(function() {
+        $('.datepicker').css("display", "block");
+    });
     $("#i_dia").change(function () {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_dia').val();
+        $('.datepicker').css("display", "none");
         var idmachine = $('#idmachine').val();
         $('#i_date').val(date);
         $('#i_casoS').val('1');
@@ -136,7 +141,9 @@ $(document).ready(function () {
                         $("#TotalParts2").html('No Data');
             
                 }
-
+                setTimeout(() => {
+                    $('#myModalLoading').modal('hide');
+                }, 3);
                 window.myLine.update()
                 window.myMaq5.update()
                 window.myMaq6.update()
@@ -146,8 +153,13 @@ $(document).ready(function () {
         });
 
     });
+    $("#i_mes").click(function() {
+        $('.datepicker').css("display", "block");
+    });
     $("#i_mes").change(function () {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_mes').val();
+        $('.datepicker').css("display", "none");
         $('#i_date').val(date);
         $('#i_casoS').val('1');
         var caso =  $('#i_caso').val();
@@ -278,7 +290,9 @@ $(document).ready(function () {
                         $("#TotalParts2").html('No Data');
             
                 }
-
+                setTimeout(() => {
+                    $('#myModalLoading').modal('hide');
+                }, 3);
                 window.myLine.update()
                 window.myMaq5.update()
                 window.myMaq6.update()

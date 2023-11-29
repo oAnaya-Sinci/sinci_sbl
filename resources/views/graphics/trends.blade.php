@@ -15,11 +15,23 @@
                     <input type="hidden" class="form-control" name="description" id="description" value="{{$var['description']}}">       
                 @endforeach
             </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="echarts" id="chart-panel" style="width: 900px; height: 390px;"></div>
+            
+            <div class="card-body">
+                <div class="row">
+                    <div class="echarts" id="chart-panel" style="width: 900px; height: 390px;"></div>
+                </div>
+            </div>
+            <!--Inicio del modal Loading-->
+            <div class="modal fade" id="myModalLoading" aria-labelledby="myModalLoading" aria-hidden="true" style="lefto:auto">
+                <div class="modal-dialog modal-primary modal-lg modal-dialog-centered " role="document">
+                    <div class="modal-content" style="background:transparent; border:none; align-self: center;">
+                        <div class="spinner-border text-dangerr" style="width:250px; height: 250px; align-self: center; color:rgb(128,34,36);" role="status"></div>
+                        <br>
+                        <h5 style="align-self: center; color:rgb(128,34,36);">Loading...</h5>
                     </div>
                 </div>
+            </div>
+            <!--Fin Modal Loading -->
                 
         </div>
     </div>
@@ -35,7 +47,8 @@
 <script src="{{ asset('js/minutes.js')}}"></script>
 <script>
  $(document).ready(function()
-    {  
+    {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false });  
         window.addEventListener('resize',function(){
             myChart.resize();
         });
@@ -51,9 +64,13 @@
     });
     $(document).ready(function()
         {  
+            $("#i_dia").click(function() {
+                $('.datepicker').css("display", "block");
+            });
             $("#i_dia").change(function () {
                 var date = $('#i_dia').val();
-                
+                $('.datepicker').css("display", "none");
+                $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
@@ -74,8 +91,12 @@
                             option.series[1].data.push(elemento['highLimit']);
                             option.series[2].data.push(elemento['lowLimit']);
 
-                        });	            
+                        });
+                        setTimeout(() => {
+                            $('#myModalLoading').modal('hide');
+                        }, 3);          
                         myChart.setOption(option);
+                        
                         }
                 });
 
@@ -85,6 +106,6 @@
 
 
 </script>
-<script src="{{ asset('js/monitoreo.js')}}"></script>
+{{-- <script src="{{ asset('js/monitoreo.js')}}"></script> --}}
 
 @endsection

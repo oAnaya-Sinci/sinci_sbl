@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#i_partid").change(function () {
-
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_date').val();
         var partid = $('#i_partid').val();
         var idmachine = $('#idmachine').val();
@@ -132,7 +132,9 @@ $(document).ready(function () {
                             $("#TotalParts2").html('No Data');
                 
                     }
-    
+                    setTimeout(() => {
+                        $('#myModalLoading').modal('hide');
+                    }, 3);
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()
@@ -261,7 +263,9 @@ $(document).ready(function () {
                             $("#TotalParts2").html('No Data');
                 
                     }
-    
+                    setTimeout(() => {
+                        $('#myModalLoading').modal('hide');
+                    }, 3);
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()
@@ -274,7 +278,7 @@ $(document).ready(function () {
       
     });
     $("#i_loteid").change(function () {
-
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_date').val();
         var partid = $('#i_partid').val();
         var lotid = $('#i_loteid').val();
@@ -408,7 +412,9 @@ $(document).ready(function () {
                             $("#TotalParts2").html('No Data');
                 
                     }
-    
+                    setTimeout(() => {
+                        $('#myModalLoading').modal('hide');
+                    }, 3);
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()
@@ -535,7 +541,9 @@ $(document).ready(function () {
                             $("#TotalParts2").html('No Data');
                 
                     }
-    
+                    setTimeout(() => {
+                        $('#myModalLoading').modal('hide');
+                    }, 3);
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()
@@ -547,6 +555,7 @@ $(document).ready(function () {
         
     });
     $("#i_shift").change(function () {
+        $('#myModalLoading').modal({ backdrop: 'static', keyboard: false }); 
         var date = $('#i_date').val();
         var partid = $('#i_partid').val();
         var lotid = $('#i_loteid').val();
@@ -678,7 +687,9 @@ $(document).ready(function () {
                             $("#TotalParts2").html('No Data');
                 
                     }
-    
+                    setTimeout(() => {
+                        $('#myModalLoading').modal('hide');
+                    }, 3);
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()
@@ -805,7 +816,9 @@ $(document).ready(function () {
                             $("#TotalParts2").html('No Data');
                 
                     }
-
+                    setTimeout(() => {
+                        $('#myModalLoading').modal('hide');
+                    }, 3);
                     window.myLine.update()
                     window.myMaq5.update()
                     window.myMaq6.update()

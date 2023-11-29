@@ -12,7 +12,7 @@
     <li class="nav-item">    
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse{{$machine['id']}}" aria-expanded="true" aria-controls="collapseTwo">
             <center>
-               <img src="{{ asset('img/icono_WorkCell_configuracion.svg')}}" height="70">
+               <img src="{{ asset('img/icono_WorkCell_configuracion.png')}}" height="70">
                <br>
                 <span>{{$machine['name_machine']}}</span>
             </center>

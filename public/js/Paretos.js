@@ -41,8 +41,8 @@ $(document).ready(function() {
                 
                 var tr = `<tr>
                         <td>  
-                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-circle btn-sm">
-                            <img src="/img/icono_editar_actualizar.svg" height="50">
+                        <button value="`+elemento['idevent']+`" OnClick='Mostrar(this);' data-toggle="modal" data-target="#myModalEdit" type="button" class="btn btn-primary2 btn-sm">
+                            <img src="/img/icono_editar_actualizar.png" height="35">
                         </button> &nbsp;
                         </td>
                         <td>`+elemento['startTime']+`</td>`;
@@ -75,6 +75,9 @@ $(document).ready(function() {
                 });
             
             options.options.scales.yAxes[1].ticks.max = parseFloat(maxy)
+            setTimeout(() => {
+                $('#myModalLoading').modal('hide');
+            }, 3);
             window.myMixedChart.update()
         }
     });

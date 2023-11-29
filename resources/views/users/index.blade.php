@@ -32,14 +32,14 @@
                     <tr>
                      <td>
                         <button data-toggle="modal" title="Editar"  data-target="#myModalEdit{{$var['id']}}" type="button" class="btn btn-primary2 btn-circle btn-sm">
-                            <img src="{{ asset('img/icono_editar_actualizar.svg')}}" height="35">
+                            <img src="{{ asset('img/icono_editar_actualizar.png')}}" height="25">
                         </button> &nbsp;
                         @include('users.edit')
 
 
                         @if($var['condicion']==1)
                           <button type="button" title="Desactivar" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#myModalDesactivar{{$var['id']}}">
-                              <img src="{{ asset('img/icono_cambiar_eliminar.svg')}}" height="35">
+                              <img src="{{ asset('img/icono_cambiar_eliminar.png')}}" height="25">
                           </button>
                           @include('users.delete')
                         @else
